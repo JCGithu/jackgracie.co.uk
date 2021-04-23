@@ -1,0 +1,33 @@
+{
+  "redirects": [
+    { "slug": "/pages/audiosetup", "URL": "https://www.notion.so/Audio-Checklist-929bd60e2c0f4f449c94514856f0ead3" },
+    { "slug": "/notion/audiosetup", "URL": "https://www.notion.so/Audio-Checklist-929bd60e2c0f4f449c94514856f0ead3" },
+    { "slug": "/pages/notfound", "URL": "https://www.notion.so/Video-Not-Found-684053e79ddb4f219ac312c28d1edf43" },
+    { "slug": "/notion/notfound", "URL": "https://www.notion.so/Video-Not-Found-684053e79ddb4f219ac312c28d1edf43" },
+    {
+      "slug": "/pages/pitch",
+      "URL": "https://www.notion.so/Pitching-Video-to-Trello-be9050910220473db62567a82a0e6a7b"
+    },
+    {
+      "slug": "/notion/pitch",
+      "URL": "https://www.notion.so/Pitching-Video-to-Trello-be9050910220473db62567a82a0e6a7b"
+    },
+    {
+      "slug": "/pages/videowidget",
+      "URL": "https://www.notion.so/Metro-Video-Widget-3c367ec7e20742b08ccf6945fb95aff6"
+    },
+    {
+      "slug": "/notion/videowidget",
+      "URL": "https://www.notion.so/Metro-Video-Widget-3c367ec7e20742b08ccf6945fb95aff6"
+    },
+    { "slug": "/pages/wishlist", "URL": "https://www.notion.so/Wishlist-a262268888bf41bab78cb25c1a338639" },
+    { "slug": "/notion/wishlist", "URL": "https://www.notion.so/Wishlist-a262268888bf41bab78cb25c1a338639" },
+    { "slug": "/wishlist", "URL": "https://www.notion.so/Wishlist-a262268888bf41bab78cb25c1a338639" },
+    { "slug": "/twitter", "URL": "https://twitter.com/JackCGracie" },
+    { "slug": "/mograph", "URL": "/motion" }
+  ],
+  "layouts": [
+    { "path": "/projects/notionclock", "layout": "hidden", "component": "./src/projects/notionclock.jsx" },
+    { "path": "/projects/videowidget", "layout": "hidden", "component": "./src/projects/notionclock.jsx" }
+  ]
+}

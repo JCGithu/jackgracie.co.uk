@@ -1,0 +1,96 @@
+#menu {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  right: -100vw;
+  background-color: $sinon-black;
+  z-index: 40;
+  transition: all 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+$underline-colors-1: $pastel1, #e975fd, #67b8fa, #89f08d, #f76e6e, #f39797;
+$underline-colors-2: $pastel2, #9c27b0, #2196f3, #4caf50, #ff9800, #9e9e9e;
+@mixin alternating-background {
+  @for $i from 1 through length($underline-colors-1) {
+    &:nth-child(#{length($underline-colors-1)}n + #{$i}) {
+      li {
+        &:before {
+          background: linear-gradient(to right, (nth($underline-colors-1, $i)), nth($underline-colors-2, $i));
+        }
+      }
+    }
+  }
+}
+
+.menu_inner {
+  width: 80vw;
+  height: 80vh;
+  text-align: left;
+  color: white;
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 6vw, 7rem);
+  @media (min-width: 1200px) {
+    font-size: clamp(2rem, 7vh, 7rem);
+  }
+  a {
+    @include alternating-background;
+  }
+}
+
+.menu_item {
+  position: relative;
+  list-style-type: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  &:before {
+    content: '';
+    position: absolute;
+    height: 0.2rem;
+    bottom: 0.4rem;
+    left: 0;
+    width: clamp(5rem, 10vw, 12rem);
+    @media screen and (max-width: 640px) {
+      height: 0.1rem;
+      bottom: 0.3rem;
+    }
+    background: white;
+    transform: scaleX(0);
+    transition: all 0.5s ease;
+  }
+  &:hover {
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.menu__on {
+  right: 0vw !important;
+}
+
+.social-list {
+  width: 100%;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding-top: 0.5rem;
+  a {
+    position: relative;
+    height: 100%;
+    width: clamp(1rem, 10%, 5rem);
+    margin: 0 0.5rem;
+    transition: 0.6s;
+    &:hover {
+      color: white;
+    }
+    svg {
+      width: 100% !important;
+      height: 100%;
+      align-self: center;
+    }
+  }
+}
