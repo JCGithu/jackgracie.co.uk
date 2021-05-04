@@ -39,7 +39,7 @@ export default function NotionClock({ toggleNav }) {
         </section>
         <div className="id_input">
           <form>
-            <span className="id_input_emoji" role="img">
+            <span className="id_input_emoji" role="img" aria-label="Camera">
               🎥
             </span>
             <input type="text" placeholder="Video code?" onChange={(e) => textUpdater(e)} />
