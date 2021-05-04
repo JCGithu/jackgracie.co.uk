@@ -1,5 +1,3 @@
-let layoutList = [];
-
 exports.createPages = async ({ graphql, actions: { createRedirect, createPage } }) => {
   let data = await graphql(`
     {
@@ -8,16 +6,17 @@ exports.createPages = async ({ graphql, actions: { createRedirect, createPage } 
           slug
           URL
         }
-        layouts {
+        additionalPages {
           path
-          layout
           component
         }
       }
       allPageDataJson {
         edges {
-          name
-          path
+          node {
+            name
+            path
+          }
         }
       }
     }
@@ -50,12 +49,19 @@ exports.createPages = async ({ graphql, actions: { createRedirect, createPage } 
     });
   });
 
+  structure.additionalPages.forEach((bonusPage) => {
+    createPage({
+      path: `${bonusPage.path}`,
+      component: require.resolve(bonusPage.component),
+    });
+  });
+
   subpages.edges.forEach((subpage) => {
     createPage({
-      path: subpage.path,
+      path: subpage.node.path,
       component: subpageTemplate,
       context: {
-        name: subpage.name,
+        name: subpage.node.name,
       },
     });
   });
