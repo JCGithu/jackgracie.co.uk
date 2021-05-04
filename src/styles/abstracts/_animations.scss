@@ -1,0 +1,46 @@
+@keyframes popUp {
+  0% {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+$elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+@mixin popUpAnim {
+  animation-name: popUp;
+  animation-timing-function: $elastic;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@mixin scaleUpElastic {
+  animation-name: scaleUp;
+  animation-timing-function: $elastic;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  transform: scale(0);
+}
