@@ -1,37 +1,16 @@
 import React, { useState } from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import SocialList from './social_icons';
+import JSONData from '../data/pageData.json';
 
-export const query = graphql(`
-  {
-    allPageDataJson {
-      edges {
-        name
-        path
-      }
-    }
-  }
-`);
-
-const menuItems = [
-  { url: '/video', name: 'Video' },
-  { url: '/mograph', name: 'Motion Graphics' },
-  { url: '/webdesign', name: 'Web Design' },
-  { url: '/audio', name: 'Audio' },
-  { url: '/photography', name: 'Photography' },
-  { url: '/projects', name: 'Other Projects' },
-];
-
-export default function Layout({ children, data }) {
+export default function Layout({ children }) {
   const [menuActive, setMenuState] = useState(false);
   const [navBarOn, toggleNav] = useState(true);
   const [home, toggleHome] = useState(false);
-
-  let menu_items = data.data.allPageJson.edges;
 
   const childrenWithProps = React.Children.map(children, (child, i) =>
     React.cloneElement(child, { toggleNav: toggleNav, toggleHome: toggleHome })
@@ -63,13 +42,12 @@ export default function Layout({ children, data }) {
       )}
       <div id="menu" className={menuActive ? 'menu__on' : ''}>
         <div className="menu_inner">
-          {menu_items.map((page) => (
+          {JSONData.map((page) => (
             <Link
               to={page.path}
               key={page.name}
               onClick={() => {
                 setMenuState(!menuActive);
-                toggleHome(false);
               }}
             >
               <li className="menu_item" key={page.url}>
