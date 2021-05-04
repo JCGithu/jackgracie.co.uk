@@ -1,3 +1,8 @@
+@mixin bannerSetup {
+  position: absolute;
+  max-width: 100%;
+}
+
 .page_banner {
   width: 100vw;
   height: 90vh;
@@ -47,23 +52,27 @@
 }
 
 .banner_image {
-  &_top {
-    position: absolute;
-    max-width: 100%;
-    top: 0;
-  }
-  &_bottom {
-    position: absolute;
-    max-width: 100%;
-    bottom: 0;
-  }
-  &_center {
-    position: absolute;
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    max-width: 100%;
-  }
+  @include bannerSetup();
+}
+
+.b_top {
+  top: 0;
+}
+.b_bottom {
+  bottom: 0;
+}
+.b_center {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .page_content_box {
@@ -71,4 +80,12 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+}
+
+.description {
+  font-family: 'Poppins';
+  color: white;
+  @media screen and (max-width: 640px) {
+    font-size: 0.7rem;
+  }
 }
