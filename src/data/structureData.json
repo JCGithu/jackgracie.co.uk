@@ -25,7 +25,8 @@
     { "slug": "/wishlist", "URL": "https://www.notion.so/Wishlist-a262268888bf41bab78cb25c1a338639" },
     { "slug": "/twitter", "URL": "https://twitter.com/JackCGracie" },
     { "slug": "/mograph", "URL": "/motion" },
-    { "slug": "/notionclock", "URL": "/projects/notionclock" }
+    { "slug": "/notionclock", "URL": "/pages/notionclock" }
+    { "slug": "/idparse", "URL": "/pages/idparse" }
   ],
   "additionalPages": [
     { "path": "/pages/notionclock", "component": "./src/projects/notionclock.jsx" },
