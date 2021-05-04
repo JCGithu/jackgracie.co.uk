@@ -97,9 +97,6 @@ $openpadding: 4vw;
     grid-template-rows: (auto auto);
     padding: 0.5rem 0;
   }
-  .open_content_right {
-    border-left: 0.2rem solid white;
-  }
   padding: 1rem 0;
   bottom: 0;
   display: grid;
@@ -113,11 +110,16 @@ $openpadding: 4vw;
 
 .open_content_left {
   position: relative;
+  > * {
+    @include popUpAnim;
+    animation-delay: 150ms;
+  }
   h1 {
     position: relative;
     padding-bottom: 0;
     margin: 0;
     font-size: 4rem;
+    animation-delay: 150ms;
     &:before {
       content: '';
       position: absolute;
@@ -144,9 +146,11 @@ $openpadding: 4vw;
 
 .open_content_right {
   border-left: 0.2rem solid white;
-  p {
-    padding: 1rem;
-  }
+  padding: 1rem;
+  font-family: 'Poppins';
+  @include popUpAnim;
+  animation-delay: 350ms;
+
   img {
     width: 1.25rem;
     padding-top: 0.4rem;
@@ -155,11 +159,18 @@ $openpadding: 4vw;
   .links {
     color: $sinon-red;
   }
+
+  a {
+    transition: all 0.25s ease-in-out;
+    &:hover {
+      font-weight: bold;
+      border-bottom: 2px solid white;
+    }
+  }
+
   @media screen and (max-width: 780px) {
     border-left: 0rem solid white !important;
-    p {
-      padding: 0;
-    }
+    padding: 0;
   }
 }
 
@@ -186,6 +197,7 @@ $openpadding: 4vw;
     align-self: center;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 10;
+    @include scaleUpElastic;
   }
   p {
     color: white;
