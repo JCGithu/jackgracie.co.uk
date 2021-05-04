@@ -2,6 +2,16 @@
   {
     "name": "Motion Graphics",
     "path": "/motion",
+    "description": "Highlights from my work for brands <br /> such as Headspace, ViewRanger, and Metro.co.uk",
+    "tools": ["AdobeAE", "AdobePhotoshop", "AdobeIllustrator", "AdobePremiere", "Blender", "C4D"],
+    "banner": [
+      {
+        "url": "../images/motion_foreground.png",
+        "position": "bottom",
+        "alt": "Motion Graphics Foreground"
+      },
+      { "url": "../images/colin.svg", "position": "bottom", "alt": "Colin!" }
+    ],
     "posts": [
       {
         "video": "/webm/reel.webm",
@@ -11,20 +21,7 @@
         "subtitle": "Compilation",
         "description": "A collection of some of my work over the past 2 years. This includes personal pieces and projects for Metro.co.uk & Headspace.",
         "accent": "#fbcb71",
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
-            "alt": "photoshop"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
-            "alt": "premiere"
-          }
-        ]
+        "tools": ["AdobeAE", "AdobePhotoshop", "AdobePremiere"]
       },
       {
         "video": "/webm/head4.webm",
@@ -38,20 +35,7 @@
         "links": [
           { "url": "https://www.facebook.com/MetroUK/videos/552370459041373", "text": "Watch a full episode here!" }
         ],
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
-            "alt": "premiere"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
-            "alt": "photoshop"
-          }
-        ]
+        "tools": ["AdobeAE", "AdobePhotoshop", "AdobePremiere"]
       },
       {
         "title": "My Odd Job",
@@ -62,12 +46,7 @@
         "feature": { "url": "/webm/oddjob.webm", "video": true },
         "client": "Metro.co.uk",
         "accent": "#004690",
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          }
-        ]
+        "tools": ["AdobeAE"]
       },
       {
         "title": "Scrapped",
@@ -77,16 +56,7 @@
         "poster": "../images/girl.jpg",
         "feature": { "url": "/webm/scrapped.webm", "video": true },
         "accent": "#E04E4E",
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
-            "alt": "photoshop"
-          }
-        ]
+        "tools": ["AdobeAE", "AdobePhotoshop"]
       },
       {
         "title": "Pond Time",
@@ -96,22 +66,16 @@
         "poster": "../images/frog.jpg",
         "feature": { "url": "/webm/frog.webm", "video": true },
         "accent": "#138A40",
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
-            "alt": "photoshop"
-          }
-        ]
+        "tools": ["AdobeAE", "AdobePhotoshop"]
       }
     ]
   },
   {
     "name": "Video",
     "path": "/video",
+    "description": "Projects I've produced, shot, or edited. <br /> Details are included in the individual project cards.",
+    "tools": ["AdobeAE", "AdobePremiere", "AdobePhotoshop", "AdobeAudition", "AbletonLive", "IzotopeRX8"],
+    "banner": [{ "url": "../images/videoBanner.jpg", "position": "top", "fit": "cover", "alt": "Video Banner" }],
     "posts": [
       {
         "video": "/webm/reel.webm",
@@ -121,24 +85,7 @@
         "subtitle": "Compilation",
         "description": "Clips from projects both professional and personal. All footage shot, graded, edited by me.",
         "accent": "#fbcb71",
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
-            "alt": "photoshop"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
-            "alt": "premiere"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Adobe_Audition_CC_icon_%282020%29.svg",
-            "alt": "audition"
-          }
-        ]
+        "tools": ["AdobeAE", "AdobePhotoshop", "AdobePremiere", "AdobeAudition"]
       },
       {
         "video": "/webm/playlist.webm",
@@ -158,28 +105,7 @@
             "text": "Watch the series here!"
           }
         ],
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
-            "alt": "premiere"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg",
-            "alt": "photoshop"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Adobe_Audition_CC_icon_%282020%29.svg",
-            "alt": "audition"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Ableton_Live_logo.png",
-            "alt": "ableton"
-          }
-        ]
+        "tools": ["AdobeAE", "AdobePhotoshop", "AdobePremiere", "AdobeAudition", "AbletonLive"]
       },
       {
         "title": "ViewRanger Stories",
@@ -192,24 +118,7 @@
         },
         "client": "ViewRanger",
         "accent": "#138A40",
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
-            "alt": "premiere"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Adobe_Audition_CC_icon_%282020%29.svg",
-            "alt": "audition"
-          },
-          {
-            "url": "https://1.bp.blogspot.com/-XozOmc9zS8k/X0-wbx5WJiI/AAAAAAAAZeQ/5cbw56AA0kYHSSIfqA_7wI7TsUNrbYBNACLcBGAsYHQ/s1600/iZotope%2BRX%2B8%2BAdvanced%2BFull%2Bversion.png",
-            "alt": "izotope"
-          }
-        ]
+        "tools": ["AdobeAE", "AdobePremiere", "AdobeAudition", "AbletonLive", "IzotopeRX8"]
       },
       {
         "title": "Deepfakes",
@@ -219,22 +128,16 @@
         "poster": "../images/deep.jpg",
         "feature": { "url": "https://www.youtube.com/embed/TFy594yTAns", "embed": true },
         "accent": "#4472CA",
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg",
-            "alt": "aftereffects"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
-            "alt": "premiere"
-          }
-        ]
+        "tools": ["AdobeAE", "AdobePremiere"]
       }
     ]
   },
   {
     "name": "Web Design",
     "path": "/webdesign",
+    "description": "Sites I've built recently. Including this one!",
+    "tools": ["JS", "Tailwind", "React", "Gatsby", "SASS", "Netlify"],
+    "banner": [{ "url": "../images/Desk.png", "position": "center", "fit": "cover", "alt": "Web Design Banner" }],
     "posts": [
       {
         "poster": "../images/roBanner.jpg",
@@ -249,36 +152,7 @@
             "text": "Read some reviews here!"
           }
         ],
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/HTML5_Badge.svg",
-            "alt": "HTML"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/640px-CSS3_logo_and_wordmark.svg.png",
-            "alt": "CSS"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Javascript_Logo.png/640px-Javascript_Logo.png",
-            "alt": "JS"
-          },
-          {
-            "url": "https://www.markusantonwolf.com/media/pages/blog/tailwind-css/265298487-1596675041/tailwind-css-logo.svg",
-            "alt": "Tailwind"
-          },
-          {
-            "url": "https://ui-router.github.io/images/logos/react.png",
-            "alt": "React"
-          },
-          {
-            "url": "https://www.gatsbyjs.com/Gatsby-Monogram.svg",
-            "alt": "Gatsby"
-          },
-          {
-            "url": "https://www.netlify.com/img/press/logos/logomark.png",
-            "alt": "Netlify"
-          }
-        ]
+        "tools": ["JS", "Tailwind", "React", "Gatsby", "Netlify"]
       },
       {
         "poster": "../images/portfolio.png",
@@ -295,36 +169,7 @@
             "text": "You're already here!"
           }
         ],
-        "tools": [
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/HTML5_Badge.svg",
-            "alt": "HTML"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/640px-CSS3_logo_and_wordmark.svg.png",
-            "alt": "CSS"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Javascript_Logo.png/640px-Javascript_Logo.png",
-            "alt": "JS"
-          },
-          {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Sass_Logo_Color.svg",
-            "alt": "SASS"
-          },
-          {
-            "url": "https://ui-router.github.io/images/logos/react.png",
-            "alt": "React"
-          },
-          {
-            "url": "https://www.gatsbyjs.com/Gatsby-Monogram.svg",
-            "alt": "Gatsby"
-          },
-          {
-            "url": "https://www.netlify.com/img/press/logos/logomark.png",
-            "alt": "Netlify"
-          }
-        ]
+        "tools": ["JS", "Tailwind", "React", "Gatsby", "SASS", "Netlify"]
       }
     ]
   }
