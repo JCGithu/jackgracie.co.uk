@@ -31,7 +31,7 @@ exports.createPages = async ({ graphql, actions: { createRedirect, createPage } 
   let subpages = data.data.allPageDataJson;
 
   const redirectTemplate = require.resolve('./src/templates/Redirect.jsx');
-  const subpageTemplate = require.resolve('./src/pages/subpage.jsx');
+  const subpageTemplate = require.resolve('./src/templates/Subpage.jsx');
 
   structure.redirects.forEach((redirection) => {
     createRedirect({
