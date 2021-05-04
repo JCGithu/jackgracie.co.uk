@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import toolList from '../data/tools.json';
 
 export default function ContentDetails({ data, index }) {
   let post = data[index - 1];
@@ -25,19 +26,16 @@ export default function ContentDetails({ data, index }) {
   });
 
   function featureCheck(post) {
-    if (post.feature) {
-      if (post.feature.video) {
-        return <video autoPlay muted loop playsInline src={post.feature.url} />;
-      }
-      if (post.feature.image) {
-        return <img src={post.feature.image.childImageSharp.original.src} alt={post.title} />;
-      }
-      if (post.feature.embed) {
-        return <iframe id="embed" src={post.feature.url} title={post.title}></iframe>;
-      }
-    } else {
-      return <img src={post.poster.childImageSharp.original.src} alt={post.title} />;
+    if (post.feature.video) {
+      return <video autoPlay muted loop playsInline src={post.feature.url} />;
     }
+    if (post.feature.embed) {
+      return <iframe id="embed" src={post.feature.url} title={post.title}></iframe>;
+    }
+    if (post.feature.image) {
+      return <img src={post.feature.image.childImageSharp.original.src} alt={post.title} />;
+    }
+    return <img src={post.poster.childImageSharp.original.src} alt={post.title} />;
   }
 
   return (
@@ -58,32 +56,30 @@ export default function ContentDetails({ data, index }) {
           )}
         </div>
         <div className="open_content_right" style={post.accent && { borderColor: `${post.accent}` }}>
-          <p>
-            {post.links &&
-              post.links.map((link) => (
-                <span className="links">
-                  {link.url && <a href={link.url}>{link.text}</a>}
-                  <br />
-                </span>
-              ))}
-            {post.client && (
-              <span>
-                <b>Client:</b> {post.client}
+          {post.links &&
+            post.links.map((link) => (
+              <span className="links">
+                {link.url && <a href={link.url}>{link.text}</a>}
+                <br />
               </span>
-            )}
-            <br />
-            {post.tools && (
+            ))}
+          {post.client && (
+            <span>
+              <b>Client:</b> {post.client}
+            </span>
+          )}
+          <br />
+          {post.tools && (
+            <span>
+              Tools: <br />
+            </span>
+          )}
+          {post.tools &&
+            post.tools.map((tool) => (
               <span>
-                Tools: <br />
+                <img src={toolList[tool]} alt={tool} />
               </span>
-            )}
-            {post.tools &&
-              post.tools.map((tool) => (
-                <span>
-                  <img src={tool.url} alt={tool.alt}></img>
-                </span>
-              ))}
-          </p>
+            ))}
         </div>
       </div>
     </div>
