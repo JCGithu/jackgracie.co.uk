@@ -25,7 +25,7 @@ const NotFoundPage = () => {
         <span role="img" aria-label="Pensive emoji">
           😔
         </span>{' '}
-        we couldn’t find what you were looking for.
+        I haven't made this page yet.
       </p>
     </main>
   );
