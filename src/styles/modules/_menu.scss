@@ -1,7 +1,7 @@
 #menu {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   right: -100vw;
   background-color: $sinon-black;
   z-index: 40;
