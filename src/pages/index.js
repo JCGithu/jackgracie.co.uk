@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import '../styles/globals.scss';
-import Layout from '../modules/Layout';
 import Helmet from 'react-helmet';
 
 //Modules
@@ -15,6 +14,7 @@ import SplitText from '../modules/tools/split-text';
 
 const IndexPage = ({ toggleHome }) => {
   useEffect(() => {
+    toggleHome(true);
     function windowResize() {
       if (document.getElementById('backdrop')) {
         let backdrop = document.getElementById('backdrop');
@@ -34,8 +34,6 @@ const IndexPage = ({ toggleHome }) => {
     window.addEventListener('resize', windowResize);
     windowResize();
   });
-
-  toggleHome(true);
 
   return (
     <div className="home">
