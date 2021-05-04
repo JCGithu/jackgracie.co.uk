@@ -1,38 +1,29 @@
 import * as React from 'react';
 import '../styles/globals.scss';
-import Helmet from 'react-helmet';
-import { withPrefix, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
 import ContentGrid from '../modules/contentGrid';
+import toolList from '../data/tools.json';
+import lazyLoad from '../modules/tools/lazyload';
 
-export const data = graphql`
-  query pageQuery($name: String!) {
-    allPageDataJson {
+const isBrowser = typeof window !== 'undefined';
+
+export const query = graphql`
+  query($name: String!) {
+    allPageDataJson(filter: { name: { eq: $name } }) {
       edges {
-        node(name: { eq: $name }) {
+        node {
           name
           path
+          description
+          tools
           posts {
-            video
-            title
-            subtitle
-            description
-            client
             accent
-            poster {
-              childImageSharp {
-                resize(width: 260) {
-                  src
-                }
-                original {
-                  src
-                }
-              }
-            }
+            client
+            description
             feature {
+              embed
               url
               video
-              embed
               image {
                 childImageSharp {
                   original {
@@ -41,13 +32,31 @@ export const data = graphql`
                 }
               }
             }
-            tools {
-              alt
-              url
-            }
             links {
               text
               url
+            }
+            video
+            tools
+            subtitle
+            title
+            poster {
+              childImageSharp {
+                original {
+                  src
+                }
+                resize {
+                  src
+                }
+              }
+            }
+          }
+          banner {
+            position
+            alt
+            fit
+            url {
+              publicURL
             }
           }
         }
@@ -56,48 +65,38 @@ export const data = graphql`
   }
 `;
 
-import bannerImage from '../images/videoBanner.jpg';
-
-const toolIcons = [
-  { url: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg', alt: 'aftereffects' },
-  { url: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg', alt: 'premiere' },
-  { url: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Adobe_Audition_CC_icon_%282020%29.svg', alt: 'audition' },
-  {
-    url:
-      'https://1.bp.blogspot.com/-XozOmc9zS8k/X0-wbx5WJiI/AAAAAAAAZeQ/5cbw56AA0kYHSSIfqA_7wI7TsUNrbYBNACLcBGAsYHQ/s1600/iZotope%2BRX%2B8%2BAdvanced%2BFull%2Bversion.png',
-    alt: 'izotope',
-  },
-  { url: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/Ableton_Live_logo.png', alt: 'ableton' },
-];
-
-const Subpage = ({ data }) => {
-  let page = data.data.allPageDataJson.edges.node;
+const Subpage = ({ data, toggleHome }) => {
+  React.useEffect(() => {
+    toggleHome(false);
+  });
+  let page = data.allPageDataJson.edges[0].node;
+  if (isBrowser) lazyLoad();
 
   return (
     <div>
-      <Helmet>
-        <script src={withPrefix('/scripts/lazyload.js')} type="text/javascript" />
-      </Helmet>
       <div className="page_banner">
-        <Img fluid={data.fl}></Img>
-        <img className="banner_image_top" src={bannerImage} alt="videoBanner"></img>
+        {page.banner.map((b) => {
+          let classAdd = 'banner_image';
+          console.log(b);
+          classAdd = b.position ? classAdd + ` b_${b.position}` : classAdd;
+          classAdd = b.fit ? classAdd + ` ${b.fit}` : classAdd;
+          return <img src={b.url.publicURL} className={`${classAdd}`} alt={b.alt} key={b.alt} />;
+        })}
         <div className="banner_frame">
           <div className="page_banner_box">
-            <h1>Video</h1>
-            <p>
-              Here are a some projects I've produced, shot, or edited. <br /> Details are included in the individual
-              project cards.
-            </p>
+            <h1>{page.name}</h1>
+            {page.description && (
+              <section className="description" dangerouslySetInnerHTML={{ __html: page.description }} />
+            )}
             <div>
-              {toolIcons.map((tool) => (
-                <img className="toolIcon" src={tool.url} alt={tool.alt} />
-              ))}
+              {page.tools &&
+                page.tools.map((tool) => <img className="toolIcon" src={toolList[tool]} alt={tool} key={tool} />)}
             </div>
           </div>
         </div>
       </div>
       <div className="page_content_box">
-        <ContentGrid page="video"></ContentGrid>
+        <ContentGrid data={page}></ContentGrid>
       </div>
     </div>
   );
