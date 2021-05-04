@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-
 import Content from './contentDetails';
 
-export default function ContentGrid({ posts }) {
+export default function ContentGrid({ data }) {
+  let posts = data.posts;
   const [open, setState] = useState(0);
   let openData = (i) => setState(i + 1);
 
@@ -46,7 +45,7 @@ export default function ContentGrid({ posts }) {
                   <source data-src={post.video} type="video/webm" />
                 </video>
               ) : (
-                <img src={post.poster.childImageSharp.original.src} />
+                <img src={post.poster.childImageSharp.original.src} alt={post.title} />
               )}
             </div>
             <div className="content_text">
