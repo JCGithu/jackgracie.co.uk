@@ -1,6 +1,6 @@
 @use './' as *;
 
-@import './modules/navBar', './modules/contentGrid', './modules/menu', './page';
+@import './modules/navBar', './modules/contentGrid', './modules/menu', './page', './idparse';
 
 *,
 *::before,
