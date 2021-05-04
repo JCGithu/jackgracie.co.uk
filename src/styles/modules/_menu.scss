@@ -45,6 +45,7 @@ $underline-colors-2: $pastel2, #9c27b0, #2196f3, #4caf50, #ff9800, #9e9e9e;
   list-style-type: none;
   cursor: pointer;
   transition: all 0.5s ease;
+  font-size: clamp(3rem, 6rem, 5vw);
   &:before {
     content: '';
     position: absolute;
