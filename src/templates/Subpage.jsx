@@ -73,7 +73,7 @@ const Subpage = ({ data, toggleHome }) => {
   if (isBrowser) lazyLoad();
 
   return (
-    <div>
+    <div className="subpage_holder">
       <div className="page_banner">
         {page.banner.map((b) => {
           let classAdd = 'banner_image';

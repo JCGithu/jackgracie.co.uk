@@ -5,8 +5,7 @@
 
 .page_banner {
   width: 100vw;
-  max-height: 80vh;
-  height: 40rem;
+  height: clamp(70vh, calc(40rem+1vh), 90vh);
   position: relative;
   overflow: hidden;
 
@@ -89,4 +88,9 @@
   @media screen and (max-width: 640px) {
     font-size: 0.7rem;
   }
+}
+
+.subpage_holder {
+  background-color: $sinon-black;
+  min-height: 100vh;
 }
