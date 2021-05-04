@@ -15,6 +15,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "animejs": "^3.2.1",
     "gatsby": "^3.1.2",
     "gatsby-plugin-client-side-redirect": "^1.1.0",
