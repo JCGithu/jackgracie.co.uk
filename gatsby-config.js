@@ -13,6 +13,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     `gatsby-plugin-fontawesome-css`,
     `gatsby-transformer-json`,
+    'gatsby-plugin-use-query-params',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
