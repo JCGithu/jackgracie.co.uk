@@ -21,6 +21,7 @@ export default function NotionClock({ toggleNav }) {
           <div className="id_alert_box">
             <p>{text}</p>
             <button
+              tabindex="0"
               onClick={() => {
                 navigator.clipboard.writeText(text);
                 alertTrigger(false);
@@ -43,7 +44,15 @@ export default function NotionClock({ toggleNav }) {
               🎥
             </span>
             <input type="text" placeholder="Video code?" onChange={(e) => textUpdater(e)} />
-            <span className="id_input_button" onClick={() => alertTrigger(true)}>
+            <span
+              className="id_input_button"
+              onClick={() => alertTrigger(true)}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') alertTrigger(true);
+              }}
+              role="button"
+              tabindex="0"
+            >
               <button onClick={(e) => e.preventDefault()}>Get ID</button>
             </span>
           </form>
