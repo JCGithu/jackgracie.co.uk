@@ -18,7 +18,7 @@ function formatAMPM(date) {
 }
 
 function clockConvert(hours, double) {
-  hours = hours >= 12 ? hours - 12 : hours;
+  hours = hours > 12 ? hours - 12 : hours;
   if (double) return hours.toLocaleString('default', { minimumIntegerDigits: 2 });
   return hours;
 }
