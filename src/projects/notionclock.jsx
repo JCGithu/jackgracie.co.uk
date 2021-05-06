@@ -6,7 +6,7 @@ import clockUpdate from '../modules/projects/notionclock';
 import { useQueryParams, StringParam, NumberParam } from 'use-query-params';
 
 export default function NotionClock({ toggleNav }) {
-  const [query, setQuery] = useQueryParams({
+  const [query] = useQueryParams({
     bg: StringParam,
     bghex: StringParam,
     text: StringParam,
