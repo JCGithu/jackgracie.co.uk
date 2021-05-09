@@ -16,6 +16,12 @@ function ordinal_suffix_of(i) {
 function formatAMPM(date) {
   return date.getHours() >= 12 ? 'PM' : 'AM';
 }
+function formatEmoji(date) {
+  if (date.getHours() > 19 || date.getHours() < 5) {
+    return '🌙';
+  }
+  return '☀️';
+}
 
 function clockConvert(hours, double) {
   hours = hours > 12 ? hours - 12 : hours;
@@ -36,9 +42,10 @@ function timeFormatter(formatTime, timeNow) {
     s: timeNow.getSeconds().toLocaleString('default'),
     ss: timeNow.getSeconds().toLocaleString('default', { minimumIntegerDigits: 2 }),
     P: formatAMPM(timeNow),
+    E: formatEmoji(timeNow),
   };
 
-  let finalTime = formatTime.replace(/h(?!h)|h{2}|H(?!H)|H{2}|m(?!m)|m{2}|s(?!s)|s{2}|P/g, (matched) => {
+  let finalTime = formatTime.replace(/h(?!h)|h{2}|H(?!H)|H{2}|m(?!m)|m{2}|s(?!s)|s{2}|P|E/g, (matched) => {
     return map[matched];
   });
   return finalTime;
@@ -62,10 +69,11 @@ function dateFormatter(formatCode, timeNow) {
     DDD: timeNow.toLocaleString('default', { weekday: 'long' }),
     yy: timeNow.toLocaleString('default', { year: '2-digit' }),
     yyyy: timeNow.getFullYear(),
+    E: formatEmoji(timeNow),
   };
 
   let finalDate = formatCode.replace(
-    /m(?!m)|m{2}|M(?!M)|MM(?!M)|M{3}|d(?![ds])|dd{2}(?!s)|(?<!d)ds|dds|D(?!D)|DD(?!D)|D{3}|yy(?!y)|y{4}|_/g,
+    /m(?!m)|m{2}|M(?!M)|MM(?!M)|M{3}|d(?![ds])|dd{2}(?!s)|(?<!d)ds|dds|D(?!D)|DD(?!D)|D{3}|yy(?!y)|y{4}|E/g,
     (matched) => {
       return map[matched];
     }
