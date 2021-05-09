@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 2rem;
+  height: clamp(2rem, 4vh, 4rem);
   top: 0;
   width: 100vw;
   z-index: 50;
@@ -16,7 +16,8 @@
     color: white;
     font-family: 'DM Serif Display', serif;
     font-weight: normal;
-    font-size: 1rem;
+    font-size: clamp(1.2rem, 2.5vh, 2.5rem);
+    line-height: 1rem;
     cursor: pointer;
     visibility: hidden;
   }
@@ -31,8 +32,8 @@
 }
 
 .hamburger {
-  width: 1rem;
-  color: white;
+  height: 70%;
+  margin: 0.5rem;
   display: flex;
   justify-self: right;
   margin-right: 1rem;

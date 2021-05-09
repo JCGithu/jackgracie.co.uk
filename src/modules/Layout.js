@@ -7,6 +7,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import SocialList from './social_icons';
 import JSONData from '../data/pageData.json';
 
+import hamburger from '../images/hamburger.svg';
+
 export default function Layout({ children }) {
   const [menuActive, setMenuState] = useState(false);
   const [navBarOn, toggleNav] = useState(true);
@@ -30,9 +32,8 @@ export default function Layout({ children }) {
               jg
             </button>
           </Link>
-          <FontAwesomeIcon
-            icon={faBars}
-            id="hamburger"
+          <img
+            src={hamburger}
             className="hamburger"
             onClick={() => {
               setMenuState(!menuActive);
