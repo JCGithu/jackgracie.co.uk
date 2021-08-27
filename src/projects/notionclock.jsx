@@ -11,6 +11,7 @@ export default function NotionClock({ toggleNav }) {
     bghex: StringParam,
     text: StringParam,
     texthex: StringParam,
+    font: StringParam,
     align: StringParam,
     format: StringParam,
     time: StringParam,
@@ -45,6 +46,7 @@ export default function NotionClock({ toggleNav }) {
     if (query.bghex) frame.style.backgroundColor = `#${query.bghex}`;
     if (query.text) clock.style.color = query.text;
     if (query.texthex) clock.style.color = `#${query.texthex}`;
+    if (query.font) clock.style.fontFamily = query.font;
     if (query.format) formatCode = query.format;
     if (query.time) formatTime = query.time;
     if (query.scale) {
