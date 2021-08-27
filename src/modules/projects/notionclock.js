@@ -35,8 +35,8 @@ function timeFormatter(formatTime, timeNow) {
   const map = {
     h: timeNow.getHours().toLocaleString('default'),
     hh: timeNow.getHours().toLocaleString('default', { minimumIntegerDigits: 2 }),
-    H: clockConvert(timeNow.toLocaleString('default', { hour: 'numeric' })),
-    HH: clockConvert(timeNow.toLocaleString('default', { hour: '2-digit', minimumIntegerDigits: 2 }), true),
+    H: clockConvert(timeNow.toLocaleString('default', { hour: 'numeric' }).replace(/\D/g,'')),
+    HH: clockConvert(timeNow.toLocaleString('default', { hour: '2-digit', minimumIntegerDigits: 2 }).replace(/\D/g,''), true),
     m: timeNow.getMinutes().toLocaleString('default'),
     mm: timeNow.getMinutes().toLocaleString('default', { minimumIntegerDigits: 2 }),
     s: timeNow.getSeconds().toLocaleString('default'),
