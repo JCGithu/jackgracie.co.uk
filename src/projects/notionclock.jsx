@@ -16,6 +16,11 @@ export default function NotionClock({ toggleNav }) {
     format: StringParam,
     time: StringParam,
     scale: NumberParam,
+    padding: NumberParam,
+    paddingTop: NumberParam,
+    paddingBottom: NumberParam,
+    paddingLeft: NumberParam,
+    paddingRight: NumberParam,
   });
 
   let timeStyle = {
@@ -63,6 +68,11 @@ export default function NotionClock({ toggleNav }) {
       clock.style.textAlign = 'center';
       clock.style.justifyContent = 'center';
     }
+    if (query.padding) clock.style.padding = `${query.padding}px`;
+    if (query.paddingTop) clock.style.paddingTop = `${query.paddingTop}px`;
+    if (query.paddingBottom) clock.style.paddingBottom = `${query.paddingBottom}px`;
+    if (query.paddingLeft) clock.style.paddingLeft = `${query.paddingLeft}px`;
+    if (query.paddingRight) clock.style.paddingRight = `${query.paddingRight}px`;
   }
 
   let [time, timeReset] = React.useState({ time: '', date: '' });
