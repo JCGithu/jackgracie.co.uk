@@ -25,9 +25,9 @@ export default function NotionClock({ toggleNav }) {
   };
 
   let query = {
-    bg = 'rgba(0,0,0,0)',
-    align = 'center',
-    format = ' ',
+    bg: 'rgba(0,0,0,0)',
+    align: 'center',
+    format: ' ',
   }
 
   // 24 Hour clock
