@@ -12,8 +12,10 @@
 }
 
 @font-face {
-  font-family: 'gothamroundedbold';
-  src: url('https://www.dafontfree.net/embed/Z290aGFtLXJvdW5kZWQtYm9sZCZkYXRhLzQ2L2cvNTg4MDUvR290aGFtUm91bmRlZC1Cb2xkLm90Zg');
+  font-family:"gotham";
+  src:url("https://www.dafontfree.net/data/46/g/58805/GothamRounded-Bold.otf") format("woff"),
+  url("https://www.dafontfree.net/data/46/g/58805/GothamRounded-Bold.otf") format("opentype"),
+  url("https://www.dafontfree.net/data/46/g/58805/GothamRounded-Bold.otf") format("truetype");
 }
 
 .DMserif {
