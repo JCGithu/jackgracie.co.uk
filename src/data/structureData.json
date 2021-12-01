@@ -31,6 +31,7 @@
   "additionalPages": [
     { "path": "/pages/notionclock", "component": "./src/projects/notionclock.jsx" },
     { "path": "/projects/notionclock", "component": "./src/projects/notionclock.jsx" },
+    { "path": "/vonnieclock", "component": "./src/projects/vonnieclock.jsx" },
     { "path": "/pages/idparse", "component": "./src/projects/idparse.jsx" }
   ]
 }
