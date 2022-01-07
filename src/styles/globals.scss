@@ -41,6 +41,7 @@ a {
 
 h1 {
   font-family: 'DM Serif Display';
+
 }
 
 .home {
@@ -85,6 +86,9 @@ h1 {
   position: relative;
   text-align: center;
   align-items: center;
+  ::selection{
+    background: #ff809a;
+  }
 }
 
 .underline {
@@ -97,7 +101,7 @@ h1 {
 }
 
 .mini {
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   opacity: 0.8;
   margin: 0;
   margin-top: -0.2rem;
