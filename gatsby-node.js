@@ -33,21 +33,23 @@ exports.createPages = async ({ graphql, actions: { createRedirect, createPage } 
   const redirectTemplate = require.resolve('./src/templates/Redirect.jsx');
   const subpageTemplate = require.resolve('./src/templates/Subpage.jsx');
 
-  structure.redirects.forEach((redirection) => {
-    createRedirect({
-      force: true,
-      redirectInBrowser: true,
-      toPath: `${redirection.URL}`,
-      fromPath: `${redirection.slug}`,
+  if (structure.redirects){
+    structure.redirects.forEach((redirection) => {
+      createRedirect({
+        force: true,
+        redirectInBrowser: true,
+        toPath: `${redirection.URL}`,
+        fromPath: `${redirection.slug}`,
+      });
+      createPage({
+        path: `${redirection.slug}`,
+        component: redirectTemplate,
+        context: {
+          slug: redirection.slug,
+        },
+      });
     });
-    createPage({
-      path: `${redirection.slug}`,
-      component: redirectTemplate,
-      context: {
-        slug: redirection.slug,
-      },
-    });
-  });
+  }
 
   structure.additionalPages.forEach((bonusPage) => {
     createPage({
