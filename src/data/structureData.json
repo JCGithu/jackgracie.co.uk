@@ -26,7 +26,8 @@
     { "slug": "/twitter", "URL": "https://twitter.com/JackCGracie" },
     { "slug": "/mograph", "URL": "/motion" },
     { "slug": "/notionclock", "URL": "/pages/notionclock" },
-    { "slug": "/idparse", "URL": "/pages/idparse" }
+    { "slug": "/idparse", "URL": "/pages/idparse" },
+    { "slug": "/editingreel", "URL": "https://youtu.be/210-9nS1tQ8"}
   ],
   "additionalPages": [
     { "path": "/pages/notionclock", "component": "./src/projects/notionclock.jsx" },
