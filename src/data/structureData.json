@@ -27,7 +27,7 @@
     { "slug": "/mograph", "URL": "/motion" },
     { "slug": "/notionclock", "URL": "/pages/notionclock" },
     { "slug": "/idparse", "URL": "/pages/idparse" },
-    { "slug": "/editingreel", "URL": "https://youtu.be/210-9nS1tQ8"}
+    { "slug": "/editingreel", "URL": "https://www.youtube.com/watch?v=gvzm4KSNp6s"}
   ],
   "additionalPages": [
     { "path": "/pages/notionclock", "component": "./src/projects/notionclock.jsx" },
