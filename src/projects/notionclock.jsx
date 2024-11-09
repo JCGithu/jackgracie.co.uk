@@ -23,6 +23,7 @@ export default function NotionClock({ toggleNav }) {
     paddingRight: NumberParam,
     timePadding: NumberParam
   });
+  console.log(query);
 
   let timeStyle = {
     fontWeight: 'bold',
@@ -44,8 +45,8 @@ export default function NotionClock({ toggleNav }) {
   };
 
   // 24 Hour clock
-  let formatCode,
-    formatTime = '';
+  let formatCode = '';
+  let formatTime = '';
 
   function styleUpdate(clock, frame, timeText) {
     if (query.bg) frame.style.backgroundColor = query.bg;
