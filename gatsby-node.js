@@ -51,7 +51,7 @@ exports.createPages = async ({ graphql, actions: { createRedirect, createPage } 
     });
   }
 
-  structure.additionalPages.forEach((bonusPage) => {
+  structure.additionalPages?.forEach((bonusPage) => {
     createPage({
       path: `${bonusPage.path}`,
       component: require.resolve(bonusPage.component),

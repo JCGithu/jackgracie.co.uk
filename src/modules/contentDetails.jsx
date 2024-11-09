@@ -47,8 +47,8 @@ export default function ContentDetails({ data, index }) {
         </div>
       </div>
       <div className="open_content">
-        <div className="open_content_left">
-          {post.title && <h1 style={post.accent && { '--accent': `${post.accent}` }}>{post.title}</h1>}
+        <div className="open_content_left" style={post.accent && {'--selection': `${post.accent}`}}>
+          {post.title && <h1 className='open_title' style={post.accent && {'--accent': `${post.accent}`, '--selection': `${post.accent}`}}>{post.title}</h1>}
           {post.description && (
             <div>
               <p>{post.description}</p>
@@ -58,7 +58,7 @@ export default function ContentDetails({ data, index }) {
         <div className="open_content_right" style={post.accent && { borderColor: `${post.accent}` }}>
           {post.links &&
             post.links.map((link) => (
-              <span className="links">
+              <span className="links" style={post.accent && {'--selection': `${post.accent}`}}>
                 {link.url && <a href={link.url}>{link.text}</a>}
                 <br />
               </span>

@@ -48,7 +48,7 @@ export default function ContentGrid({ data }) {
                 <img src={post.poster.childImageSharp.original.src} alt={post.title} />
               )}
             </div>
-            <div className="content_text">
+            <div className="content_text" style={post.accent && {'--selection': `${post.accent}`}}>
               {post.title && <h1>{post.title}</h1>}
               {post.subtitle && <p>{post.subtitle}</p>}
             </div>
