@@ -113,41 +113,6 @@
 		animation: underline 1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
 	}
 
-	footer {
-		height: 40vh;
-		display: flex;
-		text-align: center;
-		align-items: center;
-		justify-content: center;
-		margin-top: 1rem;
-		width: 100%;
-		margin-bottom: 0rem;
-		background-color: #1e1a1914;
-		button {
-			font-family: 'Poppins';
-			color: white;
-			padding: 1rem;
-			opacity: 0.6;
-			font-size: 1.5rem;
-			margin: 1rem;
-			&:hover {
-				transform: scale(2);
-			}
-		}
-	}
-
-	@keyframes underline {
-		from {
-			opacity: 0;
-			width: 0rem;
-			background: white;
-		}
-		to {
-			opacity: 1;
-			width: 17rem;
-			background: linear-gradient(90deg, #ffffff 30%, #bdbdbd 39%, #ffffff 48%);
-		}
-	}
 	.titleBanner {
 		height: 80vh;
 		width: 100%;
