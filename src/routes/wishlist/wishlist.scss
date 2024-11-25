@@ -2,12 +2,12 @@
 
 html {
   font-size: 18px;
-  max-width: 100%;  
-
+  margin: 0;
+  padding: 0;
+  height: auto;
   @media screen and (min-width: 32rem) and (max-width: 48rem) {
     font-size: 15px;
   }
-  
   @media screen and (min-width: 48rem) {
     font-size: 16px;
   }
@@ -16,7 +16,12 @@ html {
 
 body {
   background-color: black;
-  background: linear-gradient(180deg, var(--accent-dark) -20%, rgb(7, 1, 9) 30%, black 60%) !important;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, var(--accent-dark) -20%, rgb(7, 1, 9) 30%, black 60%);
+}
+
+main {
   color: white;
   padding: 3rem;
   display: flex;

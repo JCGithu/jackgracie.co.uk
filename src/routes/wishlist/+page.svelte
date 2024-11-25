@@ -15,7 +15,7 @@
   }
 </script>
  
-
+<main>
 <h1 class="p-5 w-full underline decoration-orange-400 underline-offset-4">Wishlist</h1>
 {#each Array(3) as _, i}
 <span id="star" style:top={getRandomPercent() + '%'} style:left={getRandomPercent() * 5 + '%'} use:draggable >
@@ -157,8 +157,8 @@
     </ul>
   </Accordion.Content>
 </Accordion.Item>
-
 </Accordion.Root>
+</main>
 
 <style lang="scss">
   h1 {
