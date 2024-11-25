@@ -1,0 +1,76 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;600;900&display=swap');
+
+:root {
+  --accent: rgb(136, 58, 234);
+  --accent-light: rgb(224, 204, 250);
+  --accent-dark: rgb(49, 10, 101);
+  --accent-gradient: linear-gradient(
+    0deg,
+    var(--accent-dark),
+    #232323
+  );
+  --phone: 700px;
+}
+
+html {
+  //overflow-x: hidden;
+
+  //scroll-behavior: smooth;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  //background: linear-gradient(blue, pink) !important;
+  background-color: red;
+  height: -webkit-fill-available;
+  background: var(--accent-gradient);
+}
+
+body {
+  height: 100%;
+}
+
+h1,
+h2 {
+  color: white;
+  text-align: center;
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+}
+
+
+
+.subDescription {
+  padding: 0.5rem 1.5rem;
+  text-align: justify;
+  font-family: 'League Spartan';
+}
+
+.you__tube{
+  border-radius: 0.5rem;
+  margin: 1.5rem;
+  button {
+    opacity: 0.3 !important;
+    transition: opacity 0.5s !important;
+    svg {
+      path {
+        transition: fill 0.5s;
+        fill: white;
+      }
+    }
+    &:hover{
+      opacity: 1 !important;
+      svg {
+        path {
+          fill: var(--subColour)
+        }
+      }
+    }
+
+  }
+  h3 {
+    opacity: 0;
+    font-weight: bold !important;
+    margin: 1rem;
+    text-shadow: 1px 1px #232323 !important;    
+  }
+}

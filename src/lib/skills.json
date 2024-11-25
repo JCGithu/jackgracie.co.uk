@@ -1,0 +1,40 @@
+{
+  "video": {
+    "title": "Editing",
+    "banner": ["/img/TRex_03.png", "/img/TRex_02.png", "/img/TRex_01.png"],
+    "hue": 0,
+    "homeImgs": ["/img/zoo_badge_02.png", "/img/jg2019.jpg", "/img/jg2019.jpg"],
+    "description": "I've worked as a video editor for 8 years across Tech, Journalism, and the Games industry. During that time I've produced trailers, adverts, mini documentaries, and social media content. Here are a few of my more recent projects.",
+    "tools": ["Premiere", "After Effects", "Audition", "DaVinci Resolve"], 
+    "projects": ["planetzoo", "jwe2", "stranded", "westernfront", "frontier", "viewranger"],
+    "projectInfo": []
+  },
+  "mograph": {
+    "title": "Motion Graphics",
+    "banner": ["/img/jg2019.jpg"],
+    "riveBanner": "", 
+    "description": "I've worked as an editor for 7 years across Tech, Journalism, and the games industry. I've produced trailers, adverts, mini documentaries, and social media content. Here are a few of my more recent projects.",
+    "homeImgs": ["/img/jg2019.jpg", "/img/jg2019.jpg", "/img/jg2019.jpg"],
+    "tools": ["After Effects", "Illustrator", "Lottie", "Rive"],
+    "projects":[],
+    "projectInfo": []
+  },
+  "dev": {
+    "title": "Web Development",
+    "description": "I've worked as an editor for 7 years across Tech, Journalism, and the games industry. I've produced trailers, adverts, mini documentaries, and social media content. Here are a few of my more recent projects.",
+    "banner": ["/img/jg2019.jpg"],
+    "homeImgs": ["/img/jg2019.jpg", "/img/jg2019.jpg", "/img/jg2019.jpg"],
+    "tools": ["Svelte", "Electron", "JS", "HTML", "CSS"],
+    "projects":[],
+    "projectInfo": []
+  },
+  "audio": {
+    "title": "Audio",
+    "description": "I've worked as an editor for 7 years across Tech, Journalism, and the games industry. I've produced trailers, adverts, mini documentaries, and social media content. Here are a few of my more recent projects.",
+    "banner": ["/img/jg2019.jpg"],
+    "homeImgs": ["/img/jg2019.jpg", "/img/jg2019.jpg", "/img/jg2019.jpg"],
+    "tools": ["Audition", "RX Izotope"],
+    "projectInfo": [],
+    "projects":[]
+  }
+}

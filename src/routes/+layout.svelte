@@ -1,6 +1,16 @@
 <script lang="ts">
-	import '../app.css';
-	let { children } = $props();
+	import '../app.postcss';
+	import '../app.scss';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
-{@render children()}
+<svelte:head>
+	<link rel="icon" sizes="any" href="./favicon.png" />
+	<title>Jack Gracie</title>
+</svelte:head>
+
+{@render children?.()}
