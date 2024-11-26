@@ -48,8 +48,8 @@
 
 	onMount(() => {
 		if (screen) {
-			height = window.innerHeight;
-			width = window.innerWidth;
+			height = window.innerHeight / window.devicePixelRatio;
+			width = window.innerWidth / window.devicePixelRatio;
 		}
 
 		r = new rive.Rive({
@@ -79,8 +79,8 @@
 
 		r.on(rive.EventType.RiveEvent, trigger);
 		window.onresize = () => {
-			height = window.innerHeight;
-			width = window.innerWidth;
+			height = window.innerHeight / window.devicePixelRatio;
+			width = window.innerWidth / window.devicePixelRatio;
 			if (!r) return;
 			setTimeout(()=>{
 				r.resizeDrawingSurfaceToCanvas();
