@@ -72,6 +72,7 @@
   <Accordion.Item value="item-4">
     <Accordion.Trigger>📙 Books</Accordion.Trigger>
     <Accordion.Content>
+      I use a platform called <a href="https://xigxag.co.uk/gifting/?country_code=GB">XigXag</a> for audiobooks instead of Audible, which I'd recommend. They do easy gift cards. <br><br>
       Here is my full ‘To Read’ list, in no particular order:
       <ScrollArea class="h-[300px] bg-slate-800 bg-opacity-50 my-2 px-4 rounded-2xl overflow-auto">
         <Table.Root>
