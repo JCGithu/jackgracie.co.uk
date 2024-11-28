@@ -77,8 +77,10 @@
         <Table.Root>
           <Table.Caption>Hello!</Table.Caption>
           <Table.Header>
+            <Table.Row>
             <Table.Head> Title</Table.Head>
             <Table.Head> Author</Table.Head>
+          </Table.Row>
           </Table.Header>
           <Table.Body>
             {#each Storygraph.children as child}  
