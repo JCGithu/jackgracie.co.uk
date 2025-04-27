@@ -25,7 +25,6 @@
   <p> If you have (or see someone throwing out) an old iPod, camera, or games console I would love this as a gift. I have a number of modification projects for these kinds of things I am interested in.</p>
     <ul>
       <li>Polaroid - Color 600 Film <span class="highlight">Can be purchased via Polaroid direct now </span></li>
-      <li>Anker 735 Charger</li>
       <li>Lomography <a href="https://shop.lomography.com/uk/digitaliza-plus-scanning-kit">DigitaLIZA+</a> film holder</li> 
     </ul>
 </div>
@@ -36,6 +35,7 @@
     <li>Hasami porcelain coffee dripper, unglazed</li>
     <li>Bread lame</li>
     <li>Bread banneton</li>
+    <li>Wall mounted pull up bar.</li>
   </ul>
 </div>
 <div class='section'>
@@ -78,7 +78,6 @@
   <ul>
     <li>A new phone case? Phone is a OnePlus 6T, so may be harder for an old model.</li>
     <li>Record player repaired <span class="highlight">(The hinge on the lid is broken, I have no idea who could fix it or how much)</span></li>
-    <li>Mossy Earth subscription. <span class="highlight">(Basically a charity subscription for a year)</span></li>
     <li>Nice coffee beans. Caffeinated or not.</li>
   </ul>
 </div>
@@ -90,6 +89,9 @@
   <h3 class="text-xl font-bold">🥼 Clothes</h3>
   <ul>
     <li>I'm looking to get a lightweight waterproof jacket. Something for daily wear or light hiking.</li>
+    <li>Black trainers. Simple. For everyday use, not running.</li>
+    <li>Running shorts. 2-in-1 shorts, preferably with a phone pocket.</li>
+    <li>Forest green cardigan.</li>
     <li><a href="https://uskees.com/products/3003-yellow-button-workshirt?variant=31257971359884">Uskees #3003 buttoned workshirt - Yellow</a></li>
     <li><a href="https://labomono.com/">LaboMono Coats/Jackets</a></li>       
 </div>
