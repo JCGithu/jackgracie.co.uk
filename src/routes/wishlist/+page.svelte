@@ -5,7 +5,6 @@
 	import ScrollArea from '$lib/components/ui/scroll-area/scroll-area.svelte';
   import * as Table from "$lib/components/ui/table/index.js";
   import Storygraph from './storygraph.json';
-
 </script>
  
 <main>
@@ -22,10 +21,9 @@
 </div>
 <div class='section'> 
   <h3 class="text-xl font-bold">🤖 Tech</h3>
-  <p> If you have (or see someone throwing out) an old iPod, camera, or games console I would love this as a gift. I have a number of modification projects for these kinds of things I am interested in.</p>
     <ul>
       <li>Polaroid - Color 600 Film <span class="highlight">Can be purchased via Polaroid direct now </span></li>
-      <li>Lomography <a href="https://shop.lomography.com/uk/digitaliza-plus-scanning-kit">DigitaLIZA+</a> film holder</li> 
+      <li>An old iPod, camera, or games console. I have a number of projects for these I'd like to try.</li>
     </ul>
 </div>
 <div class='section'>
@@ -70,6 +68,7 @@
     <li>Lune - Croissants all day all night</li>
     <li>Supa Ya Ramen</li>
     <li>Super Sourdough - James Morton</li>
+    <li>The Greatest Traybake Cookbook Ever — John Gregory-Smith </li>
     <li>Hirayasumi, Vol. 1</li>
   </ul>
 </div>
@@ -89,7 +88,7 @@
   <h3 class="text-xl font-bold">🥼 Clothes</h3>
   <ul>
     <li>I'm looking to get a lightweight waterproof jacket. Something for daily wear or light hiking.</li>
-    <li>Black trainers. Simple. For everyday use, not running.</li>
+    <li>Black trainers. Size 11, 10½ if possible. Simple. For everyday use, not running.</li>
     <li>Running shorts. 2-in-1 shorts, preferably with a phone pocket.</li>
     <li>Forest green cardigan.</li>
     <li><a href="https://uskees.com/products/3003-yellow-button-workshirt?variant=31257971359884">Uskees #3003 buttoned workshirt - Yellow</a></li>
@@ -127,6 +126,15 @@
   <Accordion.Content>
     <ul>
       <li>Sourdough slicer</li>
+    </ul>
+  </Accordion.Content>
+</Accordion.Item>
+<Accordion.Item value="item-3">
+  <Accordion.Trigger>🤖 Tech</Accordion.Trigger>
+  <Accordion.Content>
+    <ul>
+      <li><a href="https://tonephotographic.com/products/tonecarrier-35-mm">ToneCarrier35</a> film holder</li> 
+
     </ul>
   </Accordion.Content>
 </Accordion.Item>
