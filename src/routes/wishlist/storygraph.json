@@ -1,15 +1,6 @@
 {
   "title": "Storygraph To Read",
   "children": [
-
-      {
-          "title": "That Bonesetter Woman",
-          "author": "Frances Quinn"
-      },
-      {
-          "title": "The Work of Art: How Something Comes from Nothing",
-          "author": "Adam Moss"
-      },
       {
           "title": "The Three-Body Problem",
           "author": "Cixin Liu"
@@ -133,7 +124,11 @@
       {
           "title": "Annihilation",
           "author": "Jeff VanderMeer"
-      }
+      },
+      {
+        "title": "The Work of Art: How Something Comes from Nothing",
+        "author": "Adam Moss"
+    }
 
   ]
 }
