@@ -28,6 +28,7 @@
     { "slug": "/notionclock", "URL": "/pages/notionclock" },
     { "slug": "/idparse", "URL": "/pages/idparse" },
     { "slug": "/editingreel", "URL": "https://youtu.be/GM1dctHM1EM"},
+    { "slug": "/capturereel", "URL": "https://youtu.be/GM1dctHM1EM"},
     { "slug": "/mographreel", "URL": "https://www.youtube.com/watch?v=ak7QmAedl2k"},
     { "slug": "/cv", "URL": "/data/CV.pdf"}
   ],
