@@ -1,46 +1,41 @@
 {
-  "name": "jackgraciegatsby",
+  "name": "jackgracie-sveltekit",
   "version": "1.0.0",
   "private": true,
-  "description": "jackgraciegatsby",
+  "description": "Jack Gracie Portfolio - SvelteKit SPA",
   "author": "jcgithu",
   "keywords": [
-    "gatsby"
+    "svelte",
+    "sveltekit",
+    "portfolio",
+    "spa"
   ],
   "scripts": {
-    "dev": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "animejs": "^3.2.2",
-    "gatsby": "^3.15.0",
-    "gatsby-plugin-client-side-redirect": "1.1.0",
-    "gatsby-plugin-fontawesome-css": "1.1.0",
-    "gatsby-plugin-image": "^1.15.0",
-    "gatsby-plugin-layout": "^2.15.0",
-    "gatsby-plugin-react-helmet": "^4.15.0",
-    "gatsby-plugin-sass": "^4.15.0",
-    "gatsby-plugin-sharp": "^3.15.0",
-    "gatsby-plugin-use-query-params": "^1.0.1",
-    "gatsby-source-filesystem": "^3.15.0",
-    "gatsby-transformer-json": "^3.15.0",
-    "gatsby-transformer-sharp": "^3.15.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "sass": "^1.77.8",
-    "use-query-params": "^1.2.3"
+    "dev": "bun run vite dev",
+    "build": "bun run vite build",
+    "preview": "bun run vite preview",
+    "check": "bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.19",
-    "gatsby-image": "^3.11.0",
-    "lottie-web": "^5.12.2",
-    "react-animejs-wrapper": "^1.0.35"
-  }
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.43.8",
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/animejs": "^3.1.13",
+    "@types/node": "^20.19.19",
+    "autoprefixer": "^10.4.21",
+    "mdsvex": "^0.12.6",
+    "postcss": "^8.5.6",
+    "svelte": "^5.39.8",
+    "svelte-check": "^3.8.6",
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.6"
+  },
+  "dependencies": {
+    "animejs": "^3.2.2",
+    "lottie-web": "^5.13.0"
+  },
+  "type": "module"
 }

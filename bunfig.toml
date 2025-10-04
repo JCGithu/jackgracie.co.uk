@@ -1,0 +1,7 @@
+[install]
+# Use Bun's faster package manager
+cache = true
+production = false
+
+[install.scopes]
+# Configure scopes if needed

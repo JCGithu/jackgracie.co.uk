@@ -1,4 +1,4 @@
 node_modules/
-.cache/
-public
-astro/
+build/
+.svelte-kit/
+dist/
