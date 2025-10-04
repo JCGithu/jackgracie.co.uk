@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
 
   let navBarClass = "navBar";
 
@@ -11,6 +12,10 @@
     }
   }
 
+  function goHome() {
+    goto("/");
+  }
+
   onMount(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -20,8 +25,5 @@
 <svelte:window on:scroll={handleScroll} />
 
 <nav class={navBarClass}>
-  <button class="monogram">jg</button>
-  <button class="hamburger" aria-label="Toggle menu">
-    <img src="/images/hamburger.svg" alt="Menu" />
-  </button>
+  <button class="monogram" on:click={goHome}>jg</button>
 </nav>

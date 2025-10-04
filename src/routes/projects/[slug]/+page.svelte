@@ -1,29 +1,73 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { projects } from "$lib/data/projects.js";
-  import type { Project } from "$lib/data/projects.js";
+  import type { PageData } from "./$types";
 
-  $: project = projects.find((p: Project) => p.slug === $page.params.slug);
+  export let data: PageData;
 </script>
 
 <svelte:head>
-  {#if project}
-    <title>{project.title} - Jack Gracie</title>
-    <meta name="description" content={project.description} />
+  {#if data.project}
+    <title>{data.project.title} - Jack Gracie</title>
+    <meta name="description" content={data.project.description} />
   {:else}
     <title>Project - Jack Gracie</title>
     <meta name="description" content="Project page" />
   {/if}
 </svelte:head>
 
-{#if project}
+{#if data.project}
   <div class="project-page">
-    <h1>{project.title}</h1>
-    <p>{project.description}</p>
-    <img src={project.image} alt={project.title} />
+    <div class="project-header">
+      <h1>{data.project.title}</h1>
+      <p class="subtitle">{data.project.subtitle}</p>
+    </div>
+
+    <div class="project-content">
+      <div class="project-image">
+        {#if data.project.image}
+          <img src={data.project.image} alt={data.project.title} />
+        {:else}
+          <img src={data.project.poster} alt={data.project.title} />
+        {/if}
+      </div>
+
+      <div class="project-details">
+        <div class="description">
+          {@html data.project.description}
+        </div>
+
+        {#if data.project.client}
+          <p class="client">Client: {data.project.client}</p>
+        {/if}
+
+        <div class="project-tools">
+          <h3>Tools Used:</h3>
+          <div class="tools-list">
+            {#each data.project.tools as tool}
+              <span class="tool-tag" title={tool}>{tool}</span>
+            {/each}
+          </div>
+        </div>
+
+        {#if data.project.links && data.project.links.length > 0}
+          <div class="project-links">
+            <h3>Links:</h3>
+            <div class="links-list">
+              {#each data.project.links as link}
+                <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
+                  {link.text}
+                </a>
+              {/each}
+            </div>
+          </div>
+        {/if}
+      </div>
+    </div>
   </div>
 {:else}
-  <h1>Project not found</h1>
+  <div class="project-page">
+    <h1>Project not found</h1>
+    <p>The project you're looking for doesn't exist or has been removed.</p>
+  </div>
 {/if}
 
 <style>
@@ -32,24 +76,119 @@
     max-width: 1200px;
     margin: 0 auto;
     color: var(--sinon-white);
+    min-height: 100vh;
   }
 
-  .project-page h1 {
+  .project-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .project-header h1 {
     font-family: "DM Serif Display", serif;
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: var(--sinon-red);
   }
 
-  .project-page p {
-    font-family: "Poppins", sans-serif;
+  .subtitle {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    color: var(--sinon-white);
+    opacity: 0.8;
+    margin: 0;
   }
 
-  .project-page img {
+  .project-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .project-image {
     width: 100%;
-    max-width: 800px;
+  }
+
+  .project-image img {
+    width: 100%;
     border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  .client {
+    color: var(--sinon-red);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .project-tools h3,
+  .project-links h3 {
+    font-family: "DM Serif Display", serif;
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    color: var(--sinon-red);
+  }
+
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tool-tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-link {
+    color: var(--sinon-white);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .project-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--sinon-red);
+    transform: translateX(5px);
+  }
+
+  @media screen and (max-width: 768px) {
+    .project-page {
+      padding: 1rem;
+    }
+
+    .project-header h1 {
+      font-size: 2rem;
+    }
+
+    .project-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 </style>
