@@ -1,12 +1,11 @@
 <script lang="ts">
-  let { data } = $props();
-  console.log(data.project);
+  let { data: project } = $props();
 </script>
 
 <svelte:head>
-  {#if data.project}
-    <title>{data.project.title} - Jack</title>
-    <meta name="description" content={data.project.description} />
+  {#if project}
+    <title>{project.title} - Jack</title>
+    <meta name="description" content={project.description} />
   {:else}
     <title>Jack Gracie</title>
     <meta name="description" content="Project page" />
@@ -15,44 +14,46 @@
 
 <div class="project-page">
   <div class="project-header">
-    <h1>{data.project.title}</h1>
-    <p class="subtitle">{data.project.subtitle}</p>
+    <h1>{project.title}</h1>
+    <p class="subtitle">{project.subtitle}</p>
   </div>
 
   <div class="project-content">
     <div class="project-image">
-      {#if data.project.image}
-        <img src={data.project.image} alt={data.project.title} />
+      {#if project.image}
+        <img src={project.image} alt={project.title} />
       {:else}
-        <img src={data.project.poster} alt={data.project.title} />
+        <img src={project.poster} alt={project.title} />
       {/if}
     </div>
 
     <div class="project-details">
       <div class="description">
-        {@html data.project.description}
+        {@html project.description}
       </div>
 
-      {#if data.project.client}
-        <p class="client">Client: {data.project.client}</p>
+      {#if project.client}
+        <p class="client">Client: {project.client}</p>
       {/if}
 
       <div class="project-tools">
         <h3>Tools Used:</h3>
         <div class="tools-list">
-          {#each data.project.tools as tool}
+          {#each project.tools as tool}
             <span class="tool-tag" title={tool}>{tool}</span>
           {/each}
         </div>
       </div>
 
-      <data.project.content />
+      <div class="project-content">
+        <project.content />
+      </div>
 
-      {#if data.project.links && data.project.links.length > 0}
+      {#if project.links && project.links.length > 0}
         <div class="project-links">
           <h3>Links:</h3>
           <div class="links-list">
-            {#each data.project.links as link}
+            {#each project.links as link}
               <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
                 {link.text}
               </a>

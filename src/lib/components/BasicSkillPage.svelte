@@ -71,7 +71,7 @@
   </div>
 </div>
 
-<ProjectModal project={selectedProject} isOpen={isModalOpen} on:close={closeModal} />
+<ProjectModal project={selectedProject} isOpen={isModalOpen} on:closeModal={() => (isModalOpen = false)} />
 
 <style>
   .skill-page {

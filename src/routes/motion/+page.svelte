@@ -1,8 +1,8 @@
 <script lang="ts">
   import BasicSkillPage from "$lib/components/BasicSkillPage.svelte";
-  import type { Skill, Project } from "$lib/utils/types.js";
+  import type { Skill } from "$lib/utils/types.js";
 
-  export let data: { projects: Project[] };
+  let { data } = $props();
 
   const skillData: Skill = {
     name: "Motion Graphics",

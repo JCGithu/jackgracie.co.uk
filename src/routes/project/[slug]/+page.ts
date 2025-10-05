@@ -5,7 +5,5 @@ export async function load({ params }) {
 
   const project = await loadProject(projectSlug);
 
-  return {
-    project
-  };
+  return project;
 };

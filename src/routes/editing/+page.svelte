@@ -1,16 +1,12 @@
 <script lang="ts">
   import BasicSkillPage from "$lib/components/BasicSkillPage.svelte";
-  import type { Skill, Project } from "$lib/utils/types.js";
+  import type { Skill } from "$lib/utils/types.js";
 
-  export let data: Record<number, Project>;
-  let projects: Project[] = [];
-  Object.entries(data).map(([key, value]) => {
-    projects.push(value);
-  });
+  let { data } = $props();
 
   const skillData: Skill = {
-    name: "Video",
-    path: "/video",
+    name: "Editing",
+    path: "/editing",
     description: "Projects I've produced, shot, or edited. Details are included in the individual project cards.",
     tools: ["Adobe Premiere", "After Effects", "Adobe Audition", "Ableton Live"],
     banner: [
@@ -22,4 +18,4 @@
   };
 </script>
 
-<BasicSkillPage {skillData} {projects} />
+<BasicSkillPage {skillData} projects={data.projects} />

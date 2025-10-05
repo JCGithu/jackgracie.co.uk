@@ -1,26 +1,10 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
   import { goto } from "$app/navigation";
-  import type { Project } from "$lib/utils/types.js";
 
-  export let project: Project | null = null;
-  export let isOpen: boolean = false;
-
-  const dispatch = createEventDispatcher();
-
-  function closeModal() {
-    dispatch("close");
-  }
+  let { project, isOpen, closeModal } = $props();
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "Escape") {
-      closeModal();
-    }
-  }
-
-  function openProjectPage() {
-    if (project) {
-      goto(`/project/${project.slug}`);
       closeModal();
     }
   }
@@ -35,9 +19,9 @@
 <svelte:window on:keydown={handleKeydown} />
 
 {#if isOpen && project}
-  <div class="modal-backdrop" on:click={handleBackdropClick} on:keydown={(e) => e.key === "Enter" && closeModal()} role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+  <div class="modal-backdrop" onclick={handleBackdropClick} onkeydown={handleKeydown} role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
     <div class="modal-content">
-      <button class="close-button" on:click={closeModal} aria-label="Close modal">
+      <button class="close-button" onclick={closeModal} aria-label="Close modal">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -62,6 +46,10 @@
             <p class="client">Client: {project.client}</p>
           {/if}
 
+          <div class="project-content">
+            <project.content />
+          </div>
+
           <div class="project-tools">
             <h4>Tools Used:</h4>
             <div class="tools-list">
@@ -72,8 +60,8 @@
           </div>
 
           <div class="modal-actions">
-            <button class="primary-button" on:click={openProjectPage}> View Full Project </button>
-            <button class="secondary-button" on:click={closeModal}> Close </button>
+            <button class="primary-button" onclick={() => goto(`/project/${project.slug}`)}> View Full Project </button>
+            <button class="secondary-button" onclick={closeModal}> Close </button>
           </div>
         </div>
       </div>

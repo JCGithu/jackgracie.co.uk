@@ -1,7 +1,7 @@
 ---
-title: Deepfakes
+title: The Future of... Deepfakes
 subtitle: Journalism Feature
-description: A look into Deepfake technology.The piece includes a simple explanation of nerual networks, their applications, and how this has manifested into Deep Fake videos.
+description: A look into Deepfake technology. A mini-feature providing a simple explanation of nerual networks, their applications, and how this has manifested into Deep Fake technology.
 category: video
 client: Metro.co.uk
 accent: "#4472CA"
