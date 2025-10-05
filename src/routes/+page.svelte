@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import Backdrop from "$lib/components/Backdrop.svelte";
   import SplitText from "$lib/components/SplitText.svelte";
-  import ContentGrid from "$lib/components/ContentGrid.svelte";
 
   onMount(() => {
     // Animation for the underline
@@ -37,5 +36,4 @@
       <p class="mini">contact@jackgracie.co.uk</p>
     </div>
   </div>
-  <ContentGrid />
 </div>

@@ -1,5 +1,6 @@
 <script lang="ts">
-  let { data: project } = $props();
+  let { data } = $props();
+  let project = data.project;
 </script>
 
 <svelte:head>

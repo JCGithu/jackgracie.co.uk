@@ -1,7 +1,12 @@
 import type { LayoutLoad } from './$types';
+import { loadSkills } from '$lib/utils/projects';
 
 export const prerender = true;
 
 export const load: LayoutLoad = async () => {
-  return {};
+  const skills = await loadSkills();
+
+  return {
+    ...skills
+  };
 };

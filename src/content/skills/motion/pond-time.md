@@ -6,7 +6,7 @@ category: motion
 accent: "#138A40"
 tools: ["AdobeAE", "AdobePhotoshop"]
 video: "/webm/frog.webm"
-poster: "../images/frog.jpg"
+poster: "../images/motion/frog.jpg"
 feature:
   url: "/webm/frog.webm"
   video: true

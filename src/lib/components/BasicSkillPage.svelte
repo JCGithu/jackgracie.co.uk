@@ -5,9 +5,6 @@
   export let skillData: Skill;
   export let projects: Project[];
 
-  console.log(skillData);
-  console.log(projects);
-
   let selectedProject: Project = projects[0];
   let isModalOpen = false;
 
@@ -36,7 +33,7 @@
   <div class="skill-content">
     <h1>{skillData.name}</h1>
     <p class="skill-description">{@html skillData.description}</p>
-
+    <!-- 
     <div class="tools-used">
       <h3>Tools Used</h3>
       <div class="tools-list">
@@ -44,7 +41,7 @@
           <span class="tool-tag">{tool}</span>
         {/each}
       </div>
-    </div>
+    </div> -->
 
     <div class="projects-grid">
       {#each projects as project, projectIndex}
@@ -59,11 +56,11 @@
             {#if project.client}
               <p class="client">Client: {project.client}</p>
             {/if}
-            <div class="project-tools">
+            <!-- <div class="project-tools">
               {#each project.tools as tool}
                 <span class="tool" title={tool}>{tool}</span>
               {/each}
-            </div>
+            </div> -->
           </div>
         </div>
       {/each}
@@ -71,7 +68,7 @@
   </div>
 </div>
 
-<ProjectModal project={selectedProject} isOpen={isModalOpen} on:closeModal={() => (isModalOpen = false)} />
+<ProjectModal project={selectedProject} isOpen={isModalOpen} {closeModal} />
 
 <style>
   .skill-page {

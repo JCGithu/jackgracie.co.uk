@@ -6,7 +6,7 @@ category: "motion"
 accent: "#fbb256"
 tools: ["After Effects", "Character Animator", "Illustrator"]
 client: "Personal Project"
-poster: "/images/oddjob.jpg"
+poster: "/images/motion/oddjob.jpg"
 order: 3
 feature:
   url: "/videos/odd-job-demo.mp4"

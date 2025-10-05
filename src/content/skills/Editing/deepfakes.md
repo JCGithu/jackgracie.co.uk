@@ -6,7 +6,7 @@ category: video
 client: Metro.co.uk
 accent: "#4472CA"
 tools: ["AdobeAE", "AdobePremiere"]
-poster: "../images/deep.jpg"
+poster: "../images/editing/deep.jpg"
 feature:
   url: "https://www.youtube.com/embed/TFy594yTAns"
   embed: true

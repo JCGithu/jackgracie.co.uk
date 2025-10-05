@@ -1,7 +1,12 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-
-  let menuOpen = false;
+  import hamburgerIcon from "../../images/hamburger.svg";
+  import type { Skill } from "$lib/utils/types.js";
+  interface Props {
+    skills: Record<string, Skill>;
+  }
+  let { skills }: Props = $props();
+  let menuOpen = $state(false);
 
   function toggleMenu() {
     menuOpen = !menuOpen;
@@ -35,19 +40,19 @@
   }
 </script>
 
-<svelte:window on:keydown={handleKeydown} />
+<svelte:window onkeydown={handleKeydown} />
 
 <!-- Hamburger button positioned in nav bar -->
-<button class="hamburger hamburger-nav" aria-label="Toggle menu" on:click={handleHamburgerClick}>
-  <img src="/images/hamburger.svg" alt="Menu" />
+<button class="hamburger hamburger-nav" aria-label="Toggle menu" onclick={handleHamburgerClick}>
+  <img src={hamburgerIcon} alt="Menu" />
 </button>
 
 <div id="menu" class:menu__on={menuOpen} role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="0">
-  <button class="menu_close" aria-label="Close menu" on:click={closeMenu}>×</button>
+  <button class="menu_close" aria-label="Close menu" onclick={closeMenu}>×</button>
   <div class="menu_inner">
-    <button class="menu_item" style="--accent-color: #97A3E3" on:click={() => navigateToSkill("motion")}> Motion Graphics </button>
-    <button class="menu_item" style="--accent-color: #fbcb71" on:click={() => navigateToSkill("video")}> Video </button>
-    <button class="menu_item" style="--accent-color: #519872" on:click={() => navigateToSkill("webdesign")}> Web Design </button>
+    {#each Object.keys(skills) as skill}
+      <button class="menu_item" style="--accent-color: {skills[skill].accent}" onclick={() => navigateToSkill(skills[skill].slug)}> {skills[skill].name} </button>
+    {/each}
   </div>
 </div>
 

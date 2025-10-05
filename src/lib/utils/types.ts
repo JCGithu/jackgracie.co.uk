@@ -32,11 +32,13 @@ export interface Project {
 
 export interface Skill {
   name: string;
-  path: string;
+  slug: string;
+  accent: string;
   description: string;
   tools: string[];
   banner: Array<{
     url: string;
     alt: string;
   }>;
+  projects: Project[];
 }

@@ -5,7 +5,7 @@ description: "A curated selection of music videos featuring creative editing tec
 category: "video"
 accent: "#fbcb71"
 tools: ["Adobe Premiere", "After Effects", "DaVinci Resolve"]
-poster: "/images/projects/playlist-picks-poster.jpg"
+poster: "/images/editing/playlist.png"
 order: 1
 feature:
   url: "/videos/playlist-picks-demo.mp4"

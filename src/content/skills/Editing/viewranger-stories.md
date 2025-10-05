@@ -6,7 +6,7 @@ category: video
 client: ViewRanger
 accent: "#138A40"
 tools: ["AdobeAE", "AdobePremiere", "AdobeAudition", "AbletonLive", "IzotopeRX8"]
-poster: "../images/viewranger.jpg"
+poster: "../images/editing/viewranger.jpg"
 feature:
   url: "https://www.youtube.com/embed/Cjf0rb3DTlc"
   embed: true

@@ -1,7 +1,13 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import type { Project } from "$lib/utils/types.js";
+  interface Props {
+    project: Project;
+    isOpen: boolean;
+    closeModal: () => void;
+  }
 
-  let { project, isOpen, closeModal } = $props();
+  let { project, isOpen, closeModal }: Props = $props();
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "Escape") {
@@ -36,11 +42,11 @@
         <div class="project-details">
           <h2 id="modal-title" style="--accent: {project.accent}">{project.title}</h2>
 
-          <p class="subtitle">{project.subtitle}</p>
+          <!-- <p class="subtitle">{project.subtitle}</p> -->
 
-          <div class="description">
+          <!-- <div class="description">
             {@html project.description}
-          </div>
+          </div> -->
 
           {#if project.client}
             <p class="client">Client: {project.client}</p>
@@ -51,7 +57,6 @@
           </div>
 
           <div class="project-tools">
-            <h4>Tools Used:</h4>
             <div class="tools-list">
               {#each project.tools as tool}
                 <span class="tool-tag" title={tool}>{tool}</span>

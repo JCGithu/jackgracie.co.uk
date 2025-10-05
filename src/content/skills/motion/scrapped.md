@@ -6,7 +6,7 @@ category: motion
 accent: "#E04E4E"
 tools: ["AdobeAE", "AdobePhotoshop"]
 video: "/webm/scrapped.webm"
-poster: "../images/girl.jpg"
+poster: "../images/motion/girl.jpg"
 feature:
   url: "/webm/scrapped.webm"
   video: true
