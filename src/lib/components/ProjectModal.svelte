@@ -4,6 +4,8 @@
   import { fade, fly } from "svelte/transition";
   import { quintOut } from "svelte/easing";
   import { getToolIconUrl } from "$lib/utils/tools.js";
+  import ProjectFeature from "./ProjectFeature.svelte";
+  import "$lib/styles/markdown.css";
 
   interface Props {
     project: Project;
@@ -53,9 +55,15 @@
         </button>
         <!-- Left Column: Content -->
         <div class="content-column">
-          <div class="featured-image">
-            <img src={project.poster} alt={project.title} />
-          </div>
+          {#if project.feature && (project.feature.video || project.feature.embed || project.feature.youtube)}
+            <div class="featured-media">
+              <ProjectFeature feature={project.feature} title={project.title} />
+            </div>
+          {:else}
+            <div class="featured-image">
+              <img src={project.poster} alt={project.title} />
+            </div>
+          {/if}
 
           <h2 id="modal-title" class="project-title">{project.title}</h2>
 
@@ -69,6 +77,10 @@
           <div class="metadata-section">
             {#if project.subtitle}
               <p class="subtitle-text"><strong>{project.subtitle}</strong></p>
+            {/if}
+
+            {#if project.description}
+              <p class="description-text">{project.description}</p>
             {/if}
 
             {#if project.client}
@@ -119,7 +131,6 @@
     border-radius: 1rem;
     max-width: 1000px;
     width: 100%;
-    height: 80vh;
     max-height: 80vh;
     overflow: hidden;
     position: relative;
@@ -169,18 +180,33 @@
     background: rgba(255, 255, 255, 0.2);
   }
 
-  .featured-image {
+  .featured-image,
+  .featured-media {
     width: 100%;
-    height: 250px;
+    aspect-ratio: 16 / 9;
     border-radius: 0.5rem;
     overflow: hidden;
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .featured-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .featured-media :global(iframe),
+  .featured-media :global(video) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .featured-media :global(iframe) {
+    border: none;
   }
 
   .modal-body {
@@ -364,9 +390,7 @@
       display: grid;
     }
 
-    .featured-image {
-      height: 200px;
-    }
+    /* Aspect ratio is maintained automatically for featured media */
 
     .project-title {
       font-size: 2rem;

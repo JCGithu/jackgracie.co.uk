@@ -1,0 +1,177 @@
+/* Shared markdown content styling for project pages */
+
+.project-content {
+  width: 100%;
+}
+
+.project-content :global(h1),
+.project-content :global(h2),
+.project-content :global(h3),
+.project-content :global(h4),
+.project-content :global(h5),
+.project-content :global(h6) {
+  font-family: "DM Serif Display", serif;
+  color: var(--project-accent, var(--sinon-red));
+  margin: 1.5rem 0 1rem 0;
+  line-height: 1.3;
+}
+
+.project-content :global(h1) {
+  font-size: 2rem;
+}
+
+.project-content :global(h2) {
+  font-size: 1.75rem;
+}
+
+.project-content :global(h3) {
+  font-size: 1.5rem;
+}
+
+.project-content :global(h4) {
+  font-size: 1.25rem;
+}
+
+.project-content :global(h5) {
+  font-size: 1.1rem;
+}
+
+.project-content :global(h6) {
+  font-size: 1rem;
+}
+
+.project-content :global(p) {
+  margin: 1rem 0;
+  line-height: 1.6;
+  color: var(--sinon-white);
+  opacity: 0.9;
+}
+
+.project-content :global(a) {
+  color: var(--project-accent, var(--sinon-red));
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.project-content :global(a:hover) {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.project-content :global(ul),
+.project-content :global(ol) {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.project-content :global(li) {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  color: var(--sinon-white);
+  opacity: 0.9;
+}
+
+.project-content :global(blockquote) {
+  border-left: 3px solid var(--project-accent, var(--sinon-red));
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--sinon-white);
+  opacity: 0.8;
+}
+
+.project-content :global(code) {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  color: var(--sinon-white);
+}
+
+.project-content :global(pre) {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-content :global(pre code) {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.project-content :global(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.project-content :global(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.project-content :global(th),
+.project-content :global(td) {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-content :global(th) {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  color: var(--project-accent, var(--sinon-red));
+}
+
+.project-content :global(td) {
+  color: var(--sinon-white);
+  opacity: 0.9;
+}
+
+.project-content :global(hr) {
+  border: none;
+  height: 1px;
+  background: var(--project-accent, var(--sinon-red));
+  opacity: 0.3;
+  margin: 2rem 0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .project-content :global(h1) {
+    font-size: 1.75rem;
+  }
+
+  .project-content :global(h2) {
+    font-size: 1.5rem;
+  }
+
+  .project-content :global(h3) {
+    font-size: 1.25rem;
+  }
+
+  .project-content :global(pre) {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .project-content :global(table) {
+    font-size: 0.9rem;
+  }
+
+  .project-content :global(th),
+  .project-content :global(td) {
+    padding: 0.5rem;
+  }
+}

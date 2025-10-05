@@ -10,6 +10,7 @@ export interface ProjectFeature {
   image?: string;
   embed?: boolean;
   video?: boolean;
+  youtube?: boolean;
 }
 
 export interface Project {

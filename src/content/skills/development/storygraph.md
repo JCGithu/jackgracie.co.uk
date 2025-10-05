@@ -9,7 +9,7 @@ poster: "/images/development/SGP_Banner.png"
 order: 2
 feature:
   url: "https://www.youtube.com/watch?v=sPQ0mVb8GBQ"
-  video: true
+  youtube: true
 links:
   - url: "https://chromewebstore.google.com/detail/storygraph-printer/piamaldolnicniajehjlgnmnlljnfcal"
     text: "Chrome Web Store"

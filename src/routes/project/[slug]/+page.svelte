@@ -1,6 +1,22 @@
 <script lang="ts">
+  import ProjectFeature from "$lib/components/ProjectFeature.svelte";
+  import { getToolIconUrl } from "$lib/utils/tools.js";
+  import "$lib/styles/markdown.css";
+
   let { data } = $props();
   let project = data.project;
+
+  // Convert hex to RGB for backdrop gradient
+  function hexToRgb(hex: string): string {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (result) {
+      const r = parseInt(result[1], 16);
+      const g = parseInt(result[2], 16);
+      const b = parseInt(result[3], 16);
+      return `${r}, ${g}, ${b}`;
+    }
+    return "191, 133, 246"; // fallback to purple
+  }
 </script>
 
 <svelte:head>
@@ -13,53 +29,65 @@
   {/if}
 </svelte:head>
 
-<div class="project-page">
-  <div class="project-header">
-    <h1>{project.title}</h1>
-    <p class="subtitle">{project.subtitle}</p>
-  </div>
-
+<div class="project-page" style="--project-accent: {project.accent}; --project-accent-rgb: {hexToRgb(project.accent)}">
   <div class="project-content">
     <div class="project-image">
-      {#if project.image}
+      {#if project.feature && (project.feature.video || project.feature.embed || project.feature.youtube)}
+        <ProjectFeature feature={project.feature} title={project.title} />
+      {:else if project.image}
         <img src={project.image} alt={project.title} />
       {:else}
         <img src={project.poster} alt={project.title} />
       {/if}
     </div>
 
-    <div class="project-details">
-      <div class="description">
-        {@html project.description}
-      </div>
+    <div class="project-header">
+      <h1>{project.title}</h1>
+    </div>
 
-      {#if project.client}
-        <p class="client">Client: {project.client}</p>
+    <div class="description">
+      {@html project.description}
+    </div>
+
+    <div class="project-content-body">
+      <project.content />
+    </div>
+  </div>
+
+  <div class="project-metadata">
+    <div class="metadata-left">
+      {#if project.subtitle}
+        <div class="metadata-item">
+          <span class="metadata-label">Project:</span>
+          <span class="metadata-value">{project.subtitle}</span>
+        </div>
       {/if}
 
-      <div class="project-tools">
-        <h3>Tools Used:</h3>
-        <div class="tools-list">
-          {#each project.tools as tool}
-            <span class="tool-tag" title={tool}>{tool}</span>
-          {/each}
+      {#if project.client}
+        <div class="metadata-item">
+          <span class="metadata-label">Client:</span>
+          <span class="metadata-value">{project.client}</span>
         </div>
-      </div>
+      {/if}
+    </div>
 
-      <div class="project-content">
-        <project.content />
+    <div class="metadata-right">
+      <div class="tools-list">
+        {#each project.tools as tool}
+          <div class="tool-item">
+            <img src={getToolIconUrl(tool)} alt={tool} class="tool-icon" title={tool} onerror={() => {}} />
+            <span class="tool-name">{tool}</span>
+          </div>
+        {/each}
       </div>
 
       {#if project.links && project.links.length > 0}
-        <div class="project-links">
-          <h3>Links:</h3>
-          <div class="links-list">
-            {#each project.links as link}
-              <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
-                {link.text}
-              </a>
-            {/each}
-          </div>
+        <div class="links-list">
+          {#each project.links as link}
+            <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
+              {link.text}
+            </a>
+          {/each}
         </div>
       {/if}
     </div>
@@ -68,87 +96,157 @@
 
 <style>
   .project-page {
-    padding: 2rem;
+    padding: 6rem 2rem 2rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
     color: var(--sinon-white);
     min-height: 100vh;
+    background: conic-gradient(from 180deg at 50% 110%, rgba(var(--project-accent-rgb), 0.1) 0%, rgba(var(--project-accent-rgb), 0.05) 25%, rgba(0, 0, 0, 0.8) 70%);
+    position: relative;
   }
 
   .project-header {
-    text-align: center;
-    margin-bottom: 3rem;
+    text-align: left;
+    margin-bottom: 2rem;
   }
 
   .project-header h1 {
     font-family: "DM Serif Display", serif;
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    color: var(--sinon-red);
-  }
-
-  .subtitle {
-    font-size: 1.2rem;
-    color: var(--sinon-white);
-    opacity: 0.8;
+    font-size: 2.5rem;
     margin: 0;
+    color: var(--project-accent);
   }
 
   .project-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 2rem;
+  }
+
+  .project-metadata {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    bottom: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2rem;
     align-items: start;
   }
 
-  .project-image {
-    width: 100%;
-  }
-
-  .project-image img {
-    width: 100%;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
-
-  .project-details {
+  .metadata-left {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
 
-  .description {
-    font-size: 1.1rem;
-    line-height: 1.6;
+  .metadata-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .metadata-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .metadata-label {
+    font-size: 0.9rem;
+    color: var(--project-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .metadata-value {
+    font-size: 1rem;
+    color: var(--sinon-white);
     opacity: 0.9;
   }
 
-  .client {
-    color: var(--sinon-red);
-    font-weight: 600;
-    margin: 0;
+  .project-image {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
   }
 
-  .project-tools h3,
-  .project-links h3 {
-    font-family: "DM Serif Display", serif;
-    font-size: 1.5rem;
-    margin: 0 0 1rem 0;
-    color: var(--sinon-red);
+  .project-image img,
+  .project-image :global(iframe),
+  .project-image :global(video) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+
+  .project-image :global(iframe) {
+    border: none;
+  }
+
+  .project-image :global(video) {
+    background: #000;
+  }
+
+  .description {
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.5;
+    font-size: 1rem;
   }
 
   .tools-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
   }
 
-  .tool-tag {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .tool-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .tool-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--project-accent);
+    transform: translateX(3px);
+  }
+
+  .tool-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px;
+    flex-shrink: 0;
+  }
+
+  .tool-name {
+    font-size: 0.85rem;
+    color: var(--sinon-white);
+    font-weight: 500;
   }
 
   .links-list {
@@ -160,22 +258,25 @@
   .project-link {
     color: var(--sinon-white);
     text-decoration: none;
-    padding: 0.75rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    padding: 0.875rem 1.5rem;
+    background: transparent;
     border-radius: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.2s ease;
+    border: 1px solid var(--project-accent);
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 600;
+    display: block;
   }
 
   .project-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--sinon-red);
-    transform: translateX(5px);
+    background: var(--project-accent);
+    color: var(--sinon-black);
+    transform: translateY(-1px);
   }
 
   @media screen and (max-width: 768px) {
     .project-page {
-      padding: 1rem;
+      padding: 6rem 1rem 1rem 1rem;
     }
 
     .project-header h1 {
@@ -183,8 +284,27 @@
     }
 
     .project-content {
+      gap: 1.5rem;
+    }
+
+    .project-metadata {
+      padding: 1.5rem;
+      position: relative;
+      bottom: auto;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 1.5rem;
+    }
+
+    .metadata-left {
+      gap: 1rem;
+    }
+
+    .metadata-right {
+      gap: 1rem;
+    }
+
+    .links-list {
+      flex-direction: column;
     }
   }
 </style>

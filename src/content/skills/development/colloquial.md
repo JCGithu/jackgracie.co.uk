@@ -7,9 +7,6 @@ accent: "#fe5f55"
 tools: ["Svelte", "Tailwind CSS", "TypeScript", "Vite"]
 poster: "/images/development/colloquial.png"
 order: 1
-feature:
-  url: "https://jackgracie.co.uk"
-  embed: true
 links:
   - url: "https://github.com/jcgithu/jackgracie-portfolio"
     text: "View Source Code"
