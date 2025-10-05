@@ -4,7 +4,7 @@ subtitle: "Showcase of Motion Graphics Work"
 description: "A compilation of motion graphics projects from 2020, featuring various animation styles and techniques."
 category: "motion"
 accent: "#97A3E3"
-tools: ["After Effects", "Cinema 4D", "Illustrator", "Photoshop"]
+tools: ["After Effects", "Illustrator", "Photoshop"]
 poster: "/images/motion/motionReel.jpg"
 order: 2
 feature:

@@ -1,6 +1,10 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import type { Project } from "$lib/utils/types.js";
+  import { fade, fly } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
+  import { getToolIconUrl } from "$lib/utils/tools.js";
+
   interface Props {
     project: Project;
     isOpen: boolean;
@@ -8,6 +12,18 @@
   }
 
   let { project, isOpen, closeModal }: Props = $props();
+
+  // Convert hex to RGB for backdrop gradient
+  function hexToRgb(hex: string): string {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (result) {
+      const r = parseInt(result[1], 16);
+      const g = parseInt(result[2], 16);
+      const b = parseInt(result[3], 16);
+      return `${r}, ${g}, ${b}`;
+    }
+    return "191, 133, 246"; // fallback to purple
+  }
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "Escape") {
@@ -25,41 +41,47 @@
 <svelte:window on:keydown={handleKeydown} />
 
 {#if isOpen && project}
-  <div class="modal-backdrop" onclick={handleBackdropClick} onkeydown={handleKeydown} role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
-    <div class="modal-content">
-      <button class="close-button" onclick={closeModal} aria-label="Close modal">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-
+  <div class="modal-backdrop" style="--project-accent: {project.accent}; --project-accent-rgb: {hexToRgb(project.accent)}" onclick={handleBackdropClick} onkeydown={handleKeydown} role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1" transition:fade={{ duration: 300, easing: quintOut }}>
+    <div class="modal-content" style="--project-accent: {project.accent}" transition:fly={{ y: 50, duration: 400, easing: quintOut }}>
+      <!-- Two Column Grid Layout -->
       <div class="modal-body">
-        <div class="project-image">
-          <img src={project.poster} alt={project.title} />
-        </div>
+        <button class="close-button" onclick={closeModal} aria-label="Close modal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <!-- Left Column: Content -->
+        <div class="content-column">
+          <div class="featured-image">
+            <img src={project.poster} alt={project.title} />
+          </div>
 
-        <div class="project-details">
-          <h2 id="modal-title" style="--accent: {project.accent}">{project.title}</h2>
-
-          <!-- <p class="subtitle">{project.subtitle}</p> -->
-
-          <!-- <div class="description">
-            {@html project.description}
-          </div> -->
-
-          {#if project.client}
-            <p class="client">Client: {project.client}</p>
-          {/if}
+          <h2 id="modal-title" class="project-title">{project.title}</h2>
 
           <div class="project-content">
             <project.content />
           </div>
+        </div>
 
-          <div class="project-tools">
+        <!-- Right Column: Metadata -->
+        <div class="metadata-column">
+          <div class="metadata-section">
+            {#if project.subtitle}
+              <p class="subtitle-text"><strong>{project.subtitle}</strong></p>
+            {/if}
+
+            {#if project.client}
+              <p class="client-text">Client: {project.client}</p>
+            {/if}
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="tools-section">
             <div class="tools-list">
               {#each project.tools as tool}
-                <span class="tool-tag" title={tool}>{tool}</span>
+                <img src={getToolIconUrl(tool)} alt={tool} class="tool-icon" title={tool} onerror={() => {}} />
               {/each}
             </div>
           </div>
@@ -82,6 +104,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
+    background-image: radial-gradient(circle at center, rgba(var(--project-accent-rgb), 0.1) 0%, rgba(0, 0, 0, 0.8) 70%);
     backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
@@ -94,13 +117,34 @@
   .modal-content {
     background: rgba(20, 20, 20, 0.95);
     border-radius: 1rem;
-    max-width: 900px;
+    max-width: 1000px;
     width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
+    height: 80vh;
+    max-height: 80vh;
+    overflow: hidden;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    /* Custom scrollbar styling */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .modal-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
   }
 
   .close-button {
@@ -117,7 +161,7 @@
     justify-content: center;
     cursor: pointer;
     color: white;
-    z-index: 1001;
+    z-index: 10;
     transition: background-color 0.2s ease;
   }
 
@@ -125,113 +169,180 @@
     background: rgba(255, 255, 255, 0.2);
   }
 
-  .modal-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    padding: 2rem;
-  }
-
-  .project-image {
+  .featured-image {
     width: 100%;
-    height: 300px;
+    height: 250px;
     border-radius: 0.5rem;
     overflow: hidden;
+    margin-bottom: 1.5rem;
   }
 
-  .project-image img {
+  .featured-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .project-details {
+  .modal-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    height: 100%;
+    padding: 2rem;
+    /* align-items: start; */
+    scrollbar-width: none;
+    min-width: 0;
+    position: relative;
+    /* flex: 1; */
+    /* overflow: hidden; */
+  }
+
+  .content-column {
     color: var(--sinon-white);
+    /* display: flex;
+    flex-direction: column; */
+    overflow-y: scroll !important;
+    /* gap: 1.5rem; */
+    padding-bottom: 2rem;
+    padding-right: 1rem;
+  }
+
+  /* Content column scrollbar styling - more specific selectors */
+  .modal-content .content-column::-webkit-scrollbar {
+    width: 8px !important;
+  }
+
+  .modal-content .content-column::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  .modal-content .content-column::-webkit-scrollbar-thumb {
+    background: var(--project-accent) !important;
+    border-radius: 4px !important;
+  }
+
+  .modal-content .content-column::-webkit-scrollbar-thumb:hover {
+    background: var(--project-accent) !important;
+    opacity: 0.8 !important;
+  }
+
+  /* Firefox scrollbar styling */
+  .modal-content .content-column {
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--project-accent) transparent !important;
+  }
+
+  .project-title {
+    font-family: "DM Serif Display", serif;
+    font-size: 2.5rem;
+    margin: 0;
+    color: var(--project-accent);
+  }
+
+  .metadata-column {
+    color: var(--sinon-white);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .metadata-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .subtitle-text {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--project-accent);
+    font-weight: 600;
+  }
+
+  .client-text {
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--project-accent);
+    opacity: 0.3;
+    margin: 0.5rem 0;
+  }
+
+  .tools-section {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  .project-details h2 {
-    font-family: "DM Serif Display", serif;
-    font-size: 2rem;
-    margin: 0;
-    color: var(--accent);
-  }
-
-  .subtitle {
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin: 0;
-  }
-
-  .description {
-    line-height: 1.6;
-    opacity: 0.9;
-  }
-
-  .client {
-    color: var(--accent);
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .project-tools h4 {
-    font-family: "DM Serif Display", serif;
-    font-size: 1.2rem;
-    margin: 0 0 0.5rem 0;
-    color: var(--sinon-red);
-  }
-
   .tools-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    align-items: center;
   }
 
-  .tool-tag {
+  .tool-icon {
+    width: 32px;
+    height: 32px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+  }
+
+  .tool-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
     background: rgba(255, 255, 255, 0.1);
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .modal-actions {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
-    margin-top: 1rem;
   }
 
   .primary-button {
-    background: var(--sinon-red);
-    color: white;
+    background: var(--project-accent);
+    color: var(--sinon-black);
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.875rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
+    text-align: center;
   }
 
   .primary-button:hover {
-    background: #d63031;
+    background: var(--project-accent);
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   .secondary-button {
     background: transparent;
     color: var(--sinon-white);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--project-accent);
+    padding: 0.875rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 600;
     cursor: pointer;
-    transition: border-color 0.2s ease;
+    transition: all 0.3s ease;
+    text-align: center;
   }
 
   .secondary-button:hover {
-    border-color: rgba(255, 255, 255, 0.6);
+    background: var(--project-accent);
+    color: var(--sinon-black);
+    transform: translateY(-1px);
   }
 
   @media screen and (max-width: 768px) {
@@ -239,18 +350,35 @@
       padding: 1rem;
     }
 
-    .modal-body {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem;
+    .modal-content {
+      /* height: 85vh; */
+      max-height: 85vh;
+      /* overflow-y: auto; */
+      /* overflow-x: hidden; */
     }
 
-    .project-image {
+    .modal-body {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 1.5rem;
+      display: grid;
+    }
+
+    .featured-image {
       height: 200px;
     }
 
-    .project-details h2 {
-      font-size: 1.5rem;
+    .project-title {
+      font-size: 2rem;
+    }
+
+    .metadata-column {
+      gap: 1.5rem;
+      order: 2;
+    }
+
+    .content-column {
+      order: 1;
     }
 
     .modal-actions {

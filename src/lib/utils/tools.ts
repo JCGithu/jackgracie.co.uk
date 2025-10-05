@@ -1,46 +1,18 @@
-// Tool configuration mapping tool names to their SVGL.app identifiers
+// Tool configuration mapping tool names to their local icon paths
 const TOOL_MAPPING: Record<string, string> = {
-  // Adobe Tools
-  'Adobe After Effects': 'aftereffects',
-  'Adobe Premiere': 'premiere',
-  'Adobe Photoshop': 'photoshop',
-  'Adobe Illustrator': 'illustrator',
-  'Adobe Audition': 'audition',
-
-  // 3D & Motion
-  'Cinema 4D': 'cinema4d',
-  'Blender': 'blender',
-
-  // Audio
-  'Ableton Live': 'ableton',
-  'iZotope RX': 'izotope',
-
-  // Web Development
-  'React': 'react',
-  'Svelte': 'svelte',
-  'JavaScript': 'javascript',
-  'TypeScript': 'typescript',
-  'Node.js': 'nodejs',
-  'HTML': 'html5',
-  'CSS': 'css3',
-  'Sass': 'sass',
-  'Tailwind CSS': 'tailwindcss',
-  'Bootstrap': 'bootstrap',
-
-  // Design
-  'Figma': 'figma',
-  'Sketch': 'sketch',
-
-  // Cloud & Hosting
-  'Netlify': 'netlify',
-  'Vercel': 'vercel',
-  'Firebase': 'firebase',
-
-  // Other Tools
-  'VS Code': 'vscode',
-  'Git': 'git',
-  'GitHub': 'github',
-  'Docker': 'docker'
+  'Svelte': '/icons/tools/svelte.svg',
+  'Tailwind CSS': '/icons/tools/tailwind-css.svg',
+  'TypeScript': '/icons/tools/typescript.svg',
+  'Vite': '/icons/tools/vite.svg',
+  'Node.js': '/icons/tools/nodejs.svg',
+  'After Effects': '/icons/tools/after-effects.svg',
+  'Premiere': '/icons/tools/premiere.svg',
+  'DaVinci Resolve': '/icons/tools/animate.svg',
+  'Audition': '/icons/tools/adobe.svg',
+  'Ableton Live': '/icons/tools/animate.svg',
+  'Izotope RX': '/icons/RX11.png',
+  'Illustrator': '/icons/tools/illustrator.svg',
+  'Photoshop': '/icons/tools/photoshop.svg'
 };
 
 export interface Tool {
@@ -51,39 +23,23 @@ export interface Tool {
 }
 
 /**
- * Get the SVG icon URL from SVGL.app for a given tool name
+ * Get the local icon path for a given tool name (supports SVG, PNG, etc.)
  */
 export function getToolIconUrl(toolName: string): string {
-  const slug = TOOL_MAPPING[toolName] || toolName.toLowerCase().replace(/\s+/g, '');
-  return `https://svgl.app/${slug}.svg`;
+  return TOOL_MAPPING[toolName] || '/icons/default.svg';
 }
 
 /**
- * Fetch SVG content from SVGL.app
+ * Get all tools used in the project
  */
-export async function fetchToolIcon(toolName: string): Promise<string> {
-  const iconUrl = getToolIconUrl(toolName);
-
-  try {
-    const response = await fetch(iconUrl);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch icon: ${response.statusText}`);
-    }
-    return await response.text();
-  } catch (error) {
-    console.warn(`Failed to fetch icon for ${toolName}:`, error);
-    // Return a fallback SVG
-    return `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
-      <text x="12" y="16" text-anchor="middle" font-size="8" fill="currentColor">?</text>
-    </svg>`;
-  }
+export function getProjectTools(): string[] {
+  return Object.keys(TOOL_MAPPING);
 }
 
 /**
- * Create a tool object with icon URL
+ * Create a tool object with icon URL and category
  */
-export function createTool(name: string, category: Tool['category']): Tool {
+function createTool(name: string, category: Tool['category']): Tool {
   return {
     name,
     slug: name.toLowerCase().replace(/\s+/g, '-'),
@@ -93,42 +49,31 @@ export function createTool(name: string, category: Tool['category']): Tool {
 }
 
 /**
- * Get all available tools with their icons
+ * Get all available tools with their icons and categories
  */
 export function getAllTools(): Tool[] {
   return [
-    // Motion Graphics Tools
-    createTool('Adobe After Effects', 'motion'),
-    createTool('Cinema 4D', 'motion'),
-    createTool('Blender', 'motion'),
-    createTool('Adobe Premiere', 'motion'),
-
-    // Design Tools
-    createTool('Adobe Photoshop', 'design'),
-    createTool('Adobe Illustrator', 'design'),
-    createTool('Figma', 'design'),
-
     // Development Tools
-    createTool('React', 'development'),
     createTool('Svelte', 'development'),
-    createTool('JavaScript', 'development'),
-    createTool('TypeScript', 'development'),
-    createTool('HTML', 'development'),
-    createTool('CSS', 'development'),
-    createTool('Sass', 'development'),
     createTool('Tailwind CSS', 'development'),
+    createTool('TypeScript', 'development'),
+    createTool('Vite', 'development'),
     createTool('Node.js', 'development'),
 
-    // Audio Tools
-    createTool('Ableton Live', 'audio'),
-    createTool('Adobe Audition', 'audio'),
+    // Motion Graphics Tools
+    createTool('After Effects', 'motion'),
+    createTool('Premiere', 'motion'),
+    createTool('DaVinci Resolve', 'motion'),
+    createTool('Cinema 4D', 'motion'),
 
-    // Other Tools
-    createTool('VS Code', 'other'),
-    createTool('Git', 'other'),
-    createTool('GitHub', 'other'),
-    createTool('Netlify', 'other'),
-    createTool('Vercel', 'other')
+    // Design Tools
+    createTool('Illustrator', 'design'),
+    createTool('Photoshop', 'design'),
+
+    // Audio Tools
+    createTool('Audition', 'audio'),
+    createTool('Ableton Live', 'audio'),
+    createTool('Izotope RX', 'audio')
   ];
 }
 
@@ -137,33 +82,4 @@ export function getAllTools(): Tool[] {
  */
 export function getToolsByCategory(category: Tool['category']): Tool[] {
   return getAllTools().filter(tool => tool.category === category);
-}
-
-/**
- * Search for a tool by name
- */
-export function findTool(toolName: string): Tool | undefined {
-  return getAllTools().find(tool =>
-    tool.name.toLowerCase().includes(toolName.toLowerCase()) ||
-    tool.slug.includes(toolName.toLowerCase())
-  );
-}
-
-/**
- * Batch fetch multiple tool icons
- */
-export async function fetchMultipleToolIcons(toolNames: string[]): Promise<Record<string, string>> {
-  const results: Record<string, string> = {};
-
-  const promises = toolNames.map(async (toolName) => {
-    try {
-      const iconContent = await fetchToolIcon(toolName);
-      results[toolName] = iconContent;
-    } catch (error) {
-      console.warn(`Failed to fetch icon for ${toolName}:`, error);
-    }
-  });
-
-  await Promise.all(promises);
-  return results;
 }

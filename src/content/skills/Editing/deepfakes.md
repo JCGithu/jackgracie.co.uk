@@ -5,7 +5,7 @@ description: A look into Deepfake technology. A mini-feature providing a simple 
 category: video
 client: Metro.co.uk
 accent: "#4472CA"
-tools: ["AdobeAE", "AdobePremiere"]
+tools: ["After Effects", "Premiere"]
 poster: "../images/editing/deep.jpg"
 feature:
   url: "https://www.youtube.com/embed/TFy594yTAns"

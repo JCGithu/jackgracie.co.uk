@@ -1,14 +1,14 @@
 import type { Project, Skill } from './types';
 import { error } from '@sveltejs/kit';
 
+export const prerender = true;
 
 let skillData: Record<string, Skill> = {
   editing: {
     name: "Editing",
     slug: "editing",
-    accent: "purple",
+    accent: "#379937",
     description: "Projects I've produced, shot, or edited. Details are included in the individual project cards.",
-    tools: ["Adobe Premiere", "After Effects", "Adobe Audition", "Ableton Live"],
     banner: [
       {
         url: "/images/editing/videoBanner.jpg",
@@ -22,7 +22,6 @@ let skillData: Record<string, Skill> = {
     slug: "motion",
     accent: "#ebc170",
     description: "Dynamic animations and motion graphics that bring ideas to life.",
-    tools: ["After Effects", "Cinema 4D", "Adobe Premiere", "Blender"],
     banner: [
       {
         url: "/images/motion/motion_foreground.png",
@@ -38,9 +37,8 @@ let skillData: Record<string, Skill> = {
   development: {
     name: "Development",
     slug: "development",
-    accent: "blue",
+    accent: "#bf85f6",
     description: "Modern, responsive web design and development.",
-    tools: ["HTML/CSS", "JavaScript", "React", "Svelte", "Tailwind CSS"],
     banner: [
       {
         url: "/images/development/Desk.png",
@@ -64,7 +62,7 @@ export async function loadProjectsAndSkills() {
     const slug = path.split('/').at(-1)?.replace('.md', '');
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
-      const { default: content, metadata } = await import(path);
+      const { default: content, metadata } = file as any;
       const project = { ...metadata, slug, path, content } satisfies Project
       projects.add(project);
       if (folderName && skillData[folderName]) {

@@ -5,7 +5,7 @@ description: A series of 11 mini-documentaries that followed users of the GPS tr
 category: video
 client: ViewRanger
 accent: "#138A40"
-tools: ["AdobeAE", "AdobePremiere", "AdobeAudition", "AbletonLive", "IzotopeRX8"]
+tools: ["After Effects", "Premiere", "Audition", "Ableton Live", "Izotope RX"]
 poster: "../images/editing/viewranger.jpg"
 feature:
   url: "https://www.youtube.com/embed/Cjf0rb3DTlc"

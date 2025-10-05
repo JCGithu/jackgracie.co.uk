@@ -1,10 +1,10 @@
 ---
 title: "Headspace"
-subtitle: "Meditation App Animation"
-description: "A calming animation for the Headspace meditation app, featuring soothing transitions and peaceful imagery."
+subtitle: "Meditation Animations"
+description: "A series of calming 10-minute looping animations to pair with audio from Headspace."
 category: "motion"
 accent: "#97A3E3"
-tools: ["After Effects", "Cinema 4D", "Illustrator"]
+tools: ["After Effects", "Illustrator"]
 client: "Headspace"
 poster: "/images/motion/headspace_thumb.jpg"
 image: "/images/motion/headspace_thumb.jpg"
@@ -17,21 +17,6 @@ links:
     text: "Visit Headspace"
 ---
 
-# Headspace Animation Project
-
-This project involved creating a series of calming animations for the Headspace meditation app. The goal was to create visuals that would help users relax and focus during their meditation sessions.
-
-## Key Features
-
-- **Smooth Transitions**: Carefully crafted easing curves for natural movement
-- **Calming Colors**: Soft blues and purples to promote relaxation
-- **Minimalist Design**: Clean, uncluttered visuals that don't distract from meditation
-- **Brand Consistency**: Maintained Headspace's visual identity throughout
-
-## Technical Approach
-
-The animation was created using Adobe After Effects with Cinema 4D for 3D elements. The color palette was carefully chosen to evoke feelings of peace and tranquility, using gradients and soft lighting effects.
-
-## Results
-
-The animations were well-received by users and helped increase engagement with the meditation features of the app. The project demonstrated the importance of understanding the emotional impact of motion graphics in user experience design.
+During my time at Metro we were approached to create a series of promotional pieces for Headspace. These would need to be looping animations of calm peaceful scenes that would be captivating enough to grab attention on the feed — but not distracting.
+<br/>
+Each week I pitched and created a scene with characters in-line with Headspaces classic imagery, tying in with the themes of the audio.

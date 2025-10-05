@@ -4,7 +4,7 @@ subtitle: Personal Work
 description: I originally worked on this to try and get a blend between realistic and cartoonish water. This included experimenting with combining grain and gradients, generating random reactive shapes for the as well as displacement tools for ripples.
 category: motion
 accent: "#138A40"
-tools: ["AdobeAE", "AdobePhotoshop"]
+tools: ["After Effects", "Photoshop"]
 video: "/webm/frog.webm"
 poster: "../images/motion/frog.jpg"
 feature:

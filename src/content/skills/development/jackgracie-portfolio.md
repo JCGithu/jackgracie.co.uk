@@ -3,8 +3,8 @@ title: "JackGracie.co.uk"
 subtitle: "You're here!"
 description: "A modern, responsive portfolio website built with SvelteKit and Tailwind CSS, showcasing creative work and professional experience."
 category: "webdesign"
-accent: "#519872"
-tools: ["SvelteKit", "Tailwind CSS", "TypeScript", "Vite"]
+accent: "#bf85f6"
+tools: ["Svelte", "Tailwind CSS", "TypeScript", "Vite"]
 poster: "/images/development/portfolio.png"
 order: 1
 feature:

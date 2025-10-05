@@ -35,7 +35,6 @@ export interface Skill {
   slug: string;
   accent: string;
   description: string;
-  tools: string[];
   banner: Array<{
     url: string;
     alt: string;

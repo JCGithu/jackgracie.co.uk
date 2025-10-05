@@ -4,7 +4,7 @@ subtitle: "Music Video Compilation"
 description: "A curated selection of music videos featuring creative editing techniques and visual storytelling."
 category: "video"
 accent: "#fbcb71"
-tools: ["Adobe Premiere", "After Effects", "DaVinci Resolve"]
+tools: ["Premiere", "After Effects", "DaVinci Resolve"]
 poster: "/images/editing/playlist.png"
 order: 1
 feature:

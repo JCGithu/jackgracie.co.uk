@@ -1,21 +1,27 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  //import anime from "animejs";
   import Backdrop from "$lib/components/Backdrop.svelte";
   import SplitText from "$lib/components/SplitText.svelte";
 
   onMount(() => {
-    // Animation for the underline
+    // Animation for the underline using anime.js
     const underline = document.querySelector(".underline") as HTMLElement;
     if (underline) {
+      // Set initial state
       underline.style.width = "0";
       underline.style.opacity = "0";
+      underline.style.background = "white";
 
-      setTimeout(() => {
-        underline.style.transition = "width 2s ease-out, opacity 2s ease-out";
-        underline.style.width = "17rem";
-        underline.style.opacity = "1";
-        underline.style.background = "linear-gradient(90deg, #ffffff 30%, #bdbdbd 39%, #ffffff 48%)";
-      }, 500);
+      // Animate with anime.js to match the original
+      // anime({
+      //   targets: underline,
+      //   width: ["0", "17rem"],
+      //   opacity: [0, 1],
+      //   background: ["white", "linear-gradient(90deg, #ffffff 30%, #bdbdbd 39%, #ffffff 48% )"],
+      //   easing: "easeOutCirc",
+      //   duration: 2000,
+      // });
     }
   });
 </script>
@@ -32,7 +38,7 @@
       <h1 class="DMserif">
         <SplitText copy="jack gracie" />
       </h1>
-      <div class="underline"></div>
+      <!-- <div class="underline"></div> -->
       <p class="mini">contact@jackgracie.co.uk</p>
     </div>
   </div>

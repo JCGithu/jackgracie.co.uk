@@ -15,9 +15,15 @@ links:
     text: "Chrome Web Store"
 ---
 
-This tool was built out of my own want to transfer my Storygraph data quickly to another platform.
+This tool was built out of my own want to transfer my Storygraph data quickly to another platform. It lets you copy out the books in your lists into easy to manage text blocks. Please see the video for an example.
+<br/>
 
 ## Features
 
 - Extracts 'To Read' information from Storygraph.
-- Currently works on your "To Read", "Owned", "Recently Read", "5 Star Reads", and "Currently Read" lists.
+- Works for the following lists:
+  - _To Read_
+  - _Owned_
+  - _Recently Read_
+  - _5 Star Reads_
+  - _Currently Read_

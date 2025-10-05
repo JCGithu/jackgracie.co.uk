@@ -4,7 +4,7 @@ subtitle: "Streaming Tools"
 description: "A collection of games and tools for small streamers"
 category: "webdesign"
 accent: "#fe5f55"
-tools: ["SvelteKit", "Tailwind CSS", "TypeScript", "Vite"]
+tools: ["Svelte", "Tailwind CSS", "TypeScript", "Vite"]
 poster: "/images/development/colloquial.png"
 order: 1
 feature:

@@ -1,10 +1,10 @@
 ---
 title: "My Odd Job"
-subtitle: "Character Animation Series"
+subtitle: "Series Ident"
 description: "A series of character animations showcasing various odd jobs and professions with humorous storytelling."
 category: "motion"
 accent: "#fbb256"
-tools: ["After Effects", "Character Animator", "Illustrator"]
+tools: ["After Effects", "Illustrator"]
 client: "Personal Project"
 poster: "/images/motion/oddjob.jpg"
 order: 3

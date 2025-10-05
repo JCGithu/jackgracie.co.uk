@@ -1,24 +1,47 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import anime from 'animejs';
+  import { onMount } from "svelte";
 
-	export let copy = '';
+  import { waapi, splitText, stagger, spring } from "animejs";
+  export let copy: string;
+  let container: HTMLElement;
 
-	let textContainer: HTMLElement;
+  let easing = spring({
+    bounce: 0.4,
+    duration: 500,
+  });
 
-	onMount(() => {
-		anime({
-			targets: textContainer.children,
-			opacity: [0, 1],
-			easing: 'easeInOutSine',
-			duration: 2250,
-			delay: (el, i) => 150 * (i + 1),
-		});
-	});
+  onMount(() => {
+    const split = splitText(container, { chars: true });
+    console.log(split);
+    waapi.animate(split.chars, {
+      x: ["-50px", "0px"],
+      opacity: [0, 0, 1],
+      delay: stagger(60),
+      ease: easing,
+    });
+    waapi.animate(".underline", {
+      width: ["0%", "90%"],
+      ease: "outCirc",
+      duration: 1500,
+    });
+  });
 </script>
 
-<div bind:this={textContainer}>
-	{#each copy.split('') as char, index}
-		<span aria-hidden="true">{char}</span>
-	{/each}
-</div>
+<span bind:this={container}>
+  {copy}
+  <div class="underline"></div>
+</span>
+
+<style>
+  span {
+    position: relative;
+  }
+  .underline {
+    position: absolute;
+    bottom: 17%;
+    left: 8%;
+    width: 90%;
+    height: 2px;
+    background-color: white;
+  }
+</style>

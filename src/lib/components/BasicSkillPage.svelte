@@ -1,6 +1,7 @@
 <script lang="ts">
   import ProjectModal from "./ProjectModal.svelte";
   import type { Skill, Project } from "$lib/utils/types.js";
+  import { onMount, onDestroy } from "svelte";
 
   export let skillData: Skill;
   export let projects: Project[];
@@ -16,6 +17,58 @@
   function closeModal() {
     isModalOpen = false;
   }
+
+  // Prevent scrolling when modal is open, but allow scrolling within modal
+  function preventScroll(event: Event) {
+    if (isModalOpen) {
+      // Check if the event target is within the modal
+      const target = event.target as Element;
+      const modal = document.querySelector(".modal-backdrop");
+
+      // If the event is not within the modal, prevent it
+      if (modal && !modal.contains(target)) {
+        event.preventDefault();
+      }
+    }
+  }
+
+  // Add/remove scroll prevention based on modal state
+  $: if (isModalOpen) {
+    if (typeof window !== "undefined") {
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+      window.addEventListener("keydown", preventKeyScroll, { passive: false });
+    }
+  } else {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventKeyScroll);
+    }
+  }
+
+  // Prevent keyboard scrolling (arrow keys, page up/down, space, etc.)
+  function preventKeyScroll(event: KeyboardEvent) {
+    if (isModalOpen && ["ArrowUp", "ArrowDown", "PageUp", "PageDown", " ", "Home", "End"].includes(event.key)) {
+      // Check if the event target is within the modal
+      const target = event.target as Element;
+      const modal = document.querySelector(".modal-backdrop");
+
+      // If the event is not within the modal, prevent it
+      if (modal && !modal.contains(target)) {
+        event.preventDefault();
+      }
+    }
+  }
+
+  // Cleanup on component destroy
+  onDestroy(() => {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventKeyScroll);
+    }
+  });
 </script>
 
 <svelte:head>
@@ -30,19 +83,9 @@
     {/each}
   </div>
 
-  <div class="skill-content">
+  <div class="skill-content" style="--skill-accent: {skillData.accent}">
     <h1>{skillData.name}</h1>
     <p class="skill-description">{@html skillData.description}</p>
-    <!-- 
-    <div class="tools-used">
-      <h3>Tools Used</h3>
-      <div class="tools-list">
-        {#each skillData.tools as tool}
-          <span class="tool-tag">{tool}</span>
-        {/each}
-      </div>
-    </div> -->
-
     <div class="projects-grid">
       {#each projects as project, projectIndex}
         <div class="project-card" style="--accent: {project.accent}" role="button" tabindex="0" on:click={() => openModal(project)} on:keydown={(e) => e.key === "Enter" && openModal(project)}>
@@ -56,11 +99,6 @@
             {#if project.client}
               <p class="client">Client: {project.client}</p>
             {/if}
-            <!-- <div class="project-tools">
-              {#each project.tools as tool}
-                <span class="tool" title={tool}>{tool}</span>
-              {/each}
-            </div> -->
           </div>
         </div>
       {/each}
@@ -74,6 +112,7 @@
   .skill-page {
     min-height: 100vh;
     color: var(--sinon-white);
+    position: relative;
   }
 
   .skill-banner {
@@ -81,6 +120,7 @@
     height: 50vh;
     overflow: hidden;
     position: relative;
+    z-index: 1;
   }
 
   .banner-layer {
@@ -96,44 +136,24 @@
     padding: 3rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
   .skill-content h1 {
     font-family: "DM Serif Display", serif;
     font-size: 4rem;
     margin-bottom: 1rem;
-    color: var(--sinon-red);
+    color: var(--skill-accent);
   }
 
   .skill-description {
     font-size: 1.2rem;
     margin-bottom: 3rem;
     opacity: 0.9;
-  }
-
-  .tools-used {
-    margin-bottom: 3rem;
-  }
-
-  .tools-used h3 {
-    font-family: "DM Serif Display", serif;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--sinon-red);
-  }
-
-  .tools-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tool-tag {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    padding-left: 1rem;
+    border-left: 3px solid var(--skill-accent);
   }
 
   .projects-grid {
@@ -154,7 +174,7 @@
   }
 
   .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     border-color: var(--accent);
   }
 
@@ -203,20 +223,6 @@
     font-weight: 600;
     margin-bottom: 1rem;
     font-size: 0.9rem;
-  }
-
-  .project-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-  }
-
-  .tool {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   @media screen and (max-width: 768px) {
