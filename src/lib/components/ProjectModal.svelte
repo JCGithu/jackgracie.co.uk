@@ -20,7 +20,7 @@
 
   function openProjectPage() {
     if (project) {
-      goto(`/projects/${project.slug}`);
+      goto(`/project/${project.slug}`);
       closeModal();
     }
   }

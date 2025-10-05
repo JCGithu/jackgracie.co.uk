@@ -1,33 +1,15 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { loadSkillCategories } from "$lib/utils/content.js";
-  import ProjectModal from "$lib/components/ProjectModal.svelte";
-  import type { SkillCategory, Project } from "$lib/utils/types.js";
+  import ProjectModal from "./ProjectModal.svelte";
+  import type { Skill, Project } from "$lib/utils/types.js";
 
-  let category: SkillCategory | null = null;
-  let skillCategories: SkillCategory[] = [];
-  let selectedProject: Project | null = null;
+  export let skillData: Skill;
+  export let projects: Project[];
+
+  console.log(skillData);
+  console.log(projects);
+
+  let selectedProject: Project = projects[0];
   let isModalOpen = false;
-
-  const skillNames = {
-    motion: "Motion Graphics",
-    video: "Video",
-    webdesign: "Web Design",
-  } as const;
-
-  $: skill = $page.params.skill as keyof typeof skillNames;
-  $: if (skill) {
-    category = skillCategories.find((cat: SkillCategory) => cat.path === `/${skill}`) || null;
-  }
-
-  // Load skill categories on mount
-  loadSkillCategories().then((categories) => {
-    skillCategories = categories;
-    if ($page.params.skill) {
-      const skill = $page.params.skill as keyof typeof skillNames;
-      category = skillCategories.find((cat: SkillCategory) => cat.path === `/${skill}`) || null;
-    }
-  });
 
   function openModal(project: Project) {
     selectedProject = project;
@@ -36,63 +18,58 @@
 
   function closeModal() {
     isModalOpen = false;
-    selectedProject = null;
   }
 </script>
 
 <svelte:head>
-  <title>{skillNames[skill] || skill} - Jack Gracie</title>
-  <meta name="description" content="{skillNames[skill] || skill} projects by Jack Gracie" />
+  <title>{skillData.name} - Jack Gracie</title>
+  <meta name="description" content="{skillData.name} projects by Jack Gracie" />
 </svelte:head>
 
-{#if category}
-  <div class="skill-page">
-    <div class="skill-banner">
-      <img src={category.banner[0].url} alt={category.banner[0].alt} />
-    </div>
+<div class="skill-page">
+  <div class="skill-banner">
+    {#each skillData.banner as banner, index}
+      <img src={banner.url} alt={banner.alt} class="banner-layer" style="z-index: {skillData.banner.length - index};" />
+    {/each}
+  </div>
 
-    <div class="skill-content">
-      <h1>{category.name}</h1>
-      <p class="skill-description">{@html category.description}</p>
+  <div class="skill-content">
+    <h1>{skillData.name}</h1>
+    <p class="skill-description">{@html skillData.description}</p>
 
-      <div class="tools-used">
-        <h3>Tools Used</h3>
-        <div class="tools-list">
-          {#each category.tools as tool}
-            <span class="tool-tag">{tool}</span>
-          {/each}
-        </div>
-      </div>
-
-      <div class="projects-grid">
-        {#each category.posts as project}
-          <div class="project-card" style="--accent: {project.accent}" role="button" tabindex="0" on:click={() => openModal(project)} on:keydown={(e) => e.key === "Enter" && openModal(project)}>
-            <div class="project-image">
-              <img src={project.poster} alt={project.title} />
-            </div>
-            <div class="project-info">
-              <h3>{project.title}</h3>
-              <p class="subtitle">{project.subtitle}</p>
-              <p class="description">{project.description}</p>
-              {#if project.client}
-                <p class="client">Client: {project.client}</p>
-              {/if}
-              <div class="project-tools">
-                {#each project.tools as tool}
-                  <span class="tool" title={tool}>{tool}</span>
-                {/each}
-              </div>
-            </div>
-          </div>
+    <div class="tools-used">
+      <h3>Tools Used</h3>
+      <div class="tools-list">
+        {#each skillData.tools as tool}
+          <span class="tool-tag">{tool}</span>
         {/each}
       </div>
     </div>
+
+    <div class="projects-grid">
+      {#each projects as project, projectIndex}
+        <div class="project-card" style="--accent: {project.accent}" role="button" tabindex="0" on:click={() => openModal(project)} on:keydown={(e) => e.key === "Enter" && openModal(project)}>
+          <div class="project-image">
+            <img src={project.poster} alt={project.title} />
+          </div>
+          <div class="project-info">
+            <h3>{project.title}</h3>
+            <p class="subtitle">{project.subtitle}</p>
+            <p class="description">{project.description}</p>
+            {#if project.client}
+              <p class="client">Client: {project.client}</p>
+            {/if}
+            <div class="project-tools">
+              {#each project.tools as tool}
+                <span class="tool" title={tool}>{tool}</span>
+              {/each}
+            </div>
+          </div>
+        </div>
+      {/each}
+    </div>
   </div>
-{:else}
-  <div class="skill-page">
-    <h1>Category not found</h1>
-  </div>
-{/if}
+</div>
 
 <ProjectModal project={selectedProject} isOpen={isModalOpen} on:close={closeModal} />
 
@@ -109,7 +86,10 @@
     position: relative;
   }
 
-  .skill-banner img {
+  .banner-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;

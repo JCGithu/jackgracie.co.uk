@@ -5,7 +5,7 @@ description: "A compilation of motion graphics projects from 2020, featuring var
 category: "motion"
 accent: "#97A3E3"
 tools: ["After Effects", "Cinema 4D", "Illustrator", "Photoshop"]
-poster: "/images/projects/motion-reel-poster.jpg"
+poster: "/images/motion/motionReel.jpg"
 order: 2
 feature:
   url: "/videos/motion-reel-2020.mp4"

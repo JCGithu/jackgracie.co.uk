@@ -22,7 +22,7 @@ export interface Project {
   }>;
 }
 
-export interface SkillCategory {
+export interface Skill {
   name: string;
   path: string;
   description: string;
@@ -36,7 +36,7 @@ export interface SkillCategory {
   posts: Project[];
 }
 
-export const skillCategories: SkillCategory[] = [
+export const skillCategories: Skill[] = [
   {
     name: "Motion Graphics",
     path: "/motion",

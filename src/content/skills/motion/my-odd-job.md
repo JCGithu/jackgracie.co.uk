@@ -3,7 +3,7 @@ title: "My Odd Job"
 subtitle: "Character Animation Series"
 description: "A series of character animations showcasing various odd jobs and professions with humorous storytelling."
 category: "motion"
-accent: "#97A3E3"
+accent: "#fbb256"
 tools: ["After Effects", "Character Animator", "Illustrator"]
 client: "Personal Project"
 poster: "/images/oddjob.jpg"
@@ -12,8 +12,6 @@ feature:
   url: "/videos/odd-job-demo.mp4"
   video: true
 ---
-
-# My Odd Job Animation Series
 
 A creative animation series exploring various unusual professions through character-driven storytelling and humor.
 

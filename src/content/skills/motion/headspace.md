@@ -6,8 +6,8 @@ category: "motion"
 accent: "#97A3E3"
 tools: ["After Effects", "Cinema 4D", "Illustrator"]
 client: "Headspace"
-poster: "/images/projects/headspace-poster.jpg"
-image: "/images/projects/headspace-feature.jpg"
+poster: "/images/motion/headspace_thumb.jpg"
+image: "/images/motion/headspace_thumb.jpg"
 order: 1
 feature:
   url: "/videos/headspace-demo.mp4"

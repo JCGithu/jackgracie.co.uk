@@ -1,4 +1,5 @@
 import type { Project } from './types';
+import { error } from '@sveltejs/kit';
 
 export async function loadProjectsAndSkills() {
   let projects = new Set<Project>();
@@ -15,8 +16,8 @@ export async function loadProjectsAndSkills() {
     if (folderName && !folders.has(folderName)) folders.set(folderName, [])
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
-      const metadata = file.metadata as Omit<Project, 'slug'>
-      const project = { ...metadata, slug } satisfies Project
+      const { default: content, metadata } = await import(path);
+      const project = { ...metadata, slug, path, content } satisfies Project
       projects.add(project);
       if (folderName && folders.get(folderName)) {
         folders.get(folderName)!.push(project);
@@ -45,10 +46,19 @@ export async function loadSkills(): Promise<Record<string, Project[]>> {
 
 export async function loadProjectsBySkill(skill: string): Promise<Project[]> {
   const { skills } = await loadProjectsAndSkills();
-  return skills[skill] || [];
+  if (!skills[skill]) {
+    error(404, 'Skill not found');
+  }
+  return skills[skill];
 }
 
-export async function loadProject(slug: string): Promise<Project | null> {
+export async function loadProject(slug: string): Promise<Project> {
   const { projects } = await loadProjectsAndSkills();
-  return projects.find(project => project.slug === slug) || null;
+  const project = projects.find(project => project.slug === slug);
+
+  if (!project) {
+    error(404, 'Project not found');
+  }
+
+  return project;
 }

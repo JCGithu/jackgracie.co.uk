@@ -1,14 +1,48 @@
 <script lang="ts">
-  import { loadSkillCategories } from "$lib/utils/content.js";
   import { goto } from "$app/navigation";
-  import type { SkillCategory } from "$lib/utils/types.js";
+  import type { Skill } from "$lib/utils/types.js";
 
-  let skillCategories: SkillCategory[] = [];
-
-  // Load skill categories on mount
-  loadSkillCategories().then((categories) => {
-    skillCategories = categories;
-  });
+  const skillCategories: Skill[] = [
+    {
+      name: "Motion Graphics",
+      path: "/motion",
+      description: "Dynamic animations and motion graphics that bring ideas to life.",
+      tools: ["After Effects", "Cinema 4D", "Adobe Premiere", "Blender"],
+      banner: [
+        {
+          url: "/images/motion-banner.jpg",
+          alt: "Motion Graphics Banner",
+        },
+      ],
+      posts: [],
+    },
+    {
+      name: "Video",
+      path: "/video",
+      description: "Professional video editing and post-production services.",
+      tools: ["Adobe Premiere", "Final Cut Pro", "DaVinci Resolve", "After Effects"],
+      banner: [
+        {
+          url: "/images/video-banner.jpg",
+          alt: "Video Production Banner",
+        },
+      ],
+      posts: [],
+    },
+    {
+      name: "Web Design",
+      path: "/webdesign",
+      description: "Modern, responsive web design and development.",
+      tools: ["HTML/CSS", "JavaScript", "React", "Svelte", "Tailwind CSS"],
+      banner: [
+        {
+          url: "/images/webdesign-banner.jpg",
+          alt: "Web Design Banner",
+        },
+      ],
+      posts: [],
+    },
+  ];
 </script>
 
 <div class="content_grid">

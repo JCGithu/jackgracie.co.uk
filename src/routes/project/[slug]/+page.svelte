@@ -1,74 +1,68 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
-
-  export let data: PageData;
+  let { data } = $props();
+  console.log(data.project);
 </script>
 
 <svelte:head>
   {#if data.project}
-    <title>{data.project.title} - Jack Gracie</title>
+    <title>{data.project.title} - Jack</title>
     <meta name="description" content={data.project.description} />
   {:else}
-    <title>Project - Jack Gracie</title>
+    <title>Jack Gracie</title>
     <meta name="description" content="Project page" />
   {/if}
 </svelte:head>
 
-{#if data.project}
-  <div class="project-page">
-    <div class="project-header">
-      <h1>{data.project.title}</h1>
-      <p class="subtitle">{data.project.subtitle}</p>
+<div class="project-page">
+  <div class="project-header">
+    <h1>{data.project.title}</h1>
+    <p class="subtitle">{data.project.subtitle}</p>
+  </div>
+
+  <div class="project-content">
+    <div class="project-image">
+      {#if data.project.image}
+        <img src={data.project.image} alt={data.project.title} />
+      {:else}
+        <img src={data.project.poster} alt={data.project.title} />
+      {/if}
     </div>
 
-    <div class="project-content">
-      <div class="project-image">
-        {#if data.project.image}
-          <img src={data.project.image} alt={data.project.title} />
-        {:else}
-          <img src={data.project.poster} alt={data.project.title} />
-        {/if}
+    <div class="project-details">
+      <div class="description">
+        {@html data.project.description}
       </div>
 
-      <div class="project-details">
-        <div class="description">
-          {@html data.project.description}
+      {#if data.project.client}
+        <p class="client">Client: {data.project.client}</p>
+      {/if}
+
+      <div class="project-tools">
+        <h3>Tools Used:</h3>
+        <div class="tools-list">
+          {#each data.project.tools as tool}
+            <span class="tool-tag" title={tool}>{tool}</span>
+          {/each}
         </div>
+      </div>
 
-        {#if data.project.client}
-          <p class="client">Client: {data.project.client}</p>
-        {/if}
+      <data.project.content />
 
-        <div class="project-tools">
-          <h3>Tools Used:</h3>
-          <div class="tools-list">
-            {#each data.project.tools as tool}
-              <span class="tool-tag" title={tool}>{tool}</span>
+      {#if data.project.links && data.project.links.length > 0}
+        <div class="project-links">
+          <h3>Links:</h3>
+          <div class="links-list">
+            {#each data.project.links as link}
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
+                {link.text}
+              </a>
             {/each}
           </div>
         </div>
-
-        {#if data.project.links && data.project.links.length > 0}
-          <div class="project-links">
-            <h3>Links:</h3>
-            <div class="links-list">
-              {#each data.project.links as link}
-                <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
-                  {link.text}
-                </a>
-              {/each}
-            </div>
-          </div>
-        {/if}
-      </div>
+      {/if}
     </div>
   </div>
-{:else}
-  <div class="project-page">
-    <h1>Project not found</h1>
-    <p>The project you're looking for doesn't exist or has been removed.</p>
-  </div>
-{/if}
+</div>
 
 <style>
   .project-page {

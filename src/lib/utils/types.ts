@@ -1,3 +1,17 @@
+import type { Component } from 'svelte';
+
+export interface ProjectLinks {
+  url: string;
+  text: string;
+}
+
+export interface ProjectFeature {
+  url?: string;
+  image?: string;
+  embed?: boolean;
+  video?: boolean;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -9,20 +23,14 @@ export interface Project {
   video?: string;
   poster: string;
   image?: string;
+  content: Component;
   order: number;
-  feature: {
-    url?: string;
-    image?: string;
-    embed?: boolean;
-    video?: boolean;
-  };
-  links?: Array<{
-    url: string;
-    text: string;
-  }>;
+  path: string;
+  feature: ProjectFeature;
+  links?: ProjectLinks[];
 }
 
-export interface SkillCategory {
+export interface Skill {
   name: string;
   path: string;
   description: string;
@@ -31,5 +39,4 @@ export interface SkillCategory {
     url: string;
     alt: string;
   }>;
-  posts: Project[];
 }
