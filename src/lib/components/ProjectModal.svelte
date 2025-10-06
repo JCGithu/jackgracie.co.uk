@@ -245,6 +245,7 @@
     height: 100%;
     padding: 2rem;
     scrollbar-width: none;
+    overflow: hidden;
     min-width: 0;
     position: relative;
   }

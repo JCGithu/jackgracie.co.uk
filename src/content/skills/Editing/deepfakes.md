@@ -4,7 +4,7 @@ subtitle: Journalism Feature
 description: A look into Deepfake technology. A mini-feature providing a simple explanation of nerual networks, their applications, and how this has manifested into Deep Fake technology.
 category: video
 client: Metro.co.uk
-order: 5
+order: 10
 accent: "#4472CA"
 tools: ["After Effects", "Premiere"]
 poster: "../images/editing/deep.jpg"

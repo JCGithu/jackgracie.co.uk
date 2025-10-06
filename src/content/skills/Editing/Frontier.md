@@ -1,15 +1,15 @@
 ---
-title: Frontier
-subtitle: Directing, Editing, Capture
-description: "I worked as a Video Artist at Frontier for 2 years covering Jurassic World Evolution, Planet Zoo, Stranded Alien Dawn, and Warhammer 40,000: Chaos Gate"
+title: Frontier - Reel
+subtitle: 2 years, summarised
+description: "This reel covers most of my projects at Frontier. All footage included is captured by me and originally featured in trailers I edited. The VO is adapted from the JWE2 Malta Expansion, written by me for DeWanda Wise's character Kayla and performed by DeWanda Wise."
 category: video
-accent: "#4472CA"
-order: 1
+accent: "#ff6800"
+order: 6
 tools: ["After Effects", "Premiere"]
 feature:
-  url: "https://www.youtube.com/watch?v=GM1dctHM1EM"
+  url: "https://www.youtube.com/watch?v=gvzm4KSNp6s"
   youtube: true
 poster: "../images/editing/deep.jpg"
 ---
 
-Test
+This reel covers most of my projects at Frontier. All footage included is captured by me and originally featured in trailers I edited. The VO is adapted from the JWE2 Malta Expansion, written by me for DeWanda Wise's character Kayla and performed by DeWanda Wise.

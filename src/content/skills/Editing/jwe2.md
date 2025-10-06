@@ -1,0 +1,73 @@
+---
+title: Jurassic World Evolution 2
+subtitle: One of the most iconic film series of all time.
+description: "I worked on JWE2 exclusively for my first year at Frontier; from it's initial release to the first five DLCs. Getting to work with such iconic imagery felt like becoming a part of a series I'd loved since childhood."
+category: video
+accent: "#DC8519"
+order: 3
+tools: ["After Effects", "Premiere"]
+feature:
+  url: "https://www.youtube.com/watch?v=bcv_RQB1Rlk"
+  youtube: true
+poster: "../images/editing/play2.jpg"
+---
+
+I worked on JWE2 exclusively for my first year at Frontier; from it's initial release to the first five DLCs. Getting to work with such iconic imagery felt like becoming a part of a series I'd loved since childhood.
+
+## Dominion: Malta Expansion
+
+My largest project for JWE2, doubling the shot count. The addition of a first person camera system at the tailend of DLC4 opened up the game to much more dynamic shots. Previously shots would need to have a set trajectory and speed but this now allowed for sweeping and eased movement. This is showcased best in the whip-pan face-off scene and the Fury Road style jeep chasing sequence.
+
+**Role:** Scripted, Edited, Directed, Capture
+
+**Videos:**
+
+- [Malta Expansion Trailer](https://www.youtube.com/watch?v=bcv_RQB1Rlk)
+- [Malta Expansion Gameplay](https://www.youtube.com/watch?v=ZwD3YaPV7-o)
+
+## Late Cretaceous Pack
+
+This was the first pack to include any first person camera shots and the inclusion of Nvidea's Ansel game filters, allowing depth of field for the first time. Squeezed inbetween two larger story DLCs this was smaller in scope and timeframe.
+
+**Role:** Scripted, Edited, Directed, Capture
+
+**Videos:**
+
+- [Late Cretaceous Pack Trailer](https://www.youtube.com/watch?v=Y0BTMaakHLk)
+- [Late Cretaceous Pack Gameplay](https://www.youtube.com/watch?v=vsEjnSl0oWQ)
+- [Late Cretaceous Pack Species Showcase](https://www.youtube.com/watch?v=ShJ06OSd8lE)
+
+## Dominion: BioSyn Expansion
+
+The first large-scale DLC for the game. For these I worked on the supplimentary trailers such as the Species Field Guides and the Park Management Guide gameplay trailer.
+
+**Role:** Scripted, Edited, Directed, All Capture
+
+**Videos:**
+
+- [BioSyn Expansion Trailer](https://www.youtube.com/watch?v=AJXxjzBw5x0)
+- [BioSyn Expansion Gameplay](https://www.youtube.com/watch?v=gUrRHlW9Rio)
+- [BioSyn Species Field Guide](https://www.youtube.com/watch?v=8N5ZAWEW2JE)
+- [BioSyn Park Management Guide](https://www.youtube.com/watch?v=3UCNT7voFJI)
+
+## Camp Cretaceous Pack
+
+Tied in with the Netflix series this DLC was quite different from the others. Scripting was completed for character VO that tied into the series, but was sadly dropped mid-production. The horror elements of the Scorpios Rex in this pack are rare for Frontier games, and so it was exciting getting to showcase the darker elements of the game and lean more on the sense of threat that is so iconic in the film series.
+
+**Role:** Scripted, Edited, Directed, Capture
+
+**Videos:**
+
+- [Camp Cretaceous Pack Trailer](https://www.youtube.com/watch?v=4X-NN_UaQkU)
+- [Camp Cretaceous Pack Gameplay](https://www.youtube.com/watch?v=4xTy-z87idU)
+
+## Early Cretaceous Pack
+
+My first gameplay trailers for Frontier. The majority of the effort on this was establishing the structure for ongoing DLC releases, as well as getting to grips with the organisation and Cobra engine.
+
+**Role:** Scripted, Edited, Directed, Capture
+
+**Videos:**
+
+- [Early Cretaceous Pack Trailer](https://www.youtube.com/watch?v=G2tgq0Dmaqs)
+- [Early Cretaceous Pack Gameplay](https://www.youtube.com/watch?v=bW1UnZDzcd0)

@@ -6,6 +6,8 @@ export const prerender = true;
 export const load: LayoutLoad = async () => {
   const skills = await loadSkills();
 
+  console.log(skills);
+
   return {
     ...skills
   };

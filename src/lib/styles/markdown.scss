@@ -4,44 +4,39 @@
   width: 100%;
 
   // Headings
-  :global(h1),
-  :global(h2),
-  :global(h3),
-  :global(h4),
-  :global(h5),
-  :global(h6) {
+  h1,h2,h3,h4,h5,h6 {
     font-family: "DM Serif Display", serif;
     color: var(--project-accent, var(--sinon-red));
     margin: 1.5rem 0 1rem 0;
     line-height: 1.3;
   }
 
-  :global(h1) {
+  h1 {
     font-size: 2rem;
   }
 
-  :global(h2) {
+  h2 {
     font-size: 1.75rem;
   }
 
-  :global(h3) {
+  h3 {
     font-size: 1.5rem;
   }
 
-  :global(h4) {
+  h4 {
     font-size: 1.25rem;
   }
 
-  :global(h5) {
+  h5 {
     font-size: 1.1rem;
   }
 
-  :global(h6) {
+  h6 {
     font-size: 1rem;
   }
 
   // Paragraphs
-  :global(p) {
+  p {
     margin: 1rem 0 0.5rem 0;
     line-height: 1.6;
     color: var(--sinon-white);
@@ -49,7 +44,7 @@
   }
 
   // Links
-  :global(a) {
+  a {
     color: var(--project-accent, var(--sinon-red));
     text-decoration: none;
     transition: all 0.2s ease;
@@ -61,8 +56,7 @@
   }
 
   // Lists
-  :global(ul),
-  :global(ol) {
+  ul, ol {
     margin: 1rem 0;
     padding-left: 2rem;
 
@@ -75,7 +69,7 @@
   }
 
   // Blockquotes
-  :global(blockquote) {
+  blockquote {
     border-left: 3px solid var(--project-accent, var(--sinon-red));
     padding-left: 1rem;
     margin: 1.5rem 0;
@@ -85,7 +79,7 @@
   }
 
   // Code
-  :global(code) {
+  code {
     background: rgba(255, 255, 255, 0.1);
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
@@ -95,7 +89,7 @@
   }
 
   // Code blocks
-  :global(pre) {
+  pre {
     background: rgba(255, 255, 255, 0.05);
     padding: 1rem;
     border-radius: 0.5rem;
@@ -125,7 +119,7 @@
   }
 
   // Tables
-  :global(table) {
+  table {
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
@@ -152,35 +146,26 @@
     }
   }
 
-  // Horizontal rules
-  :global(hr) {
-    border: none;
-    height: 1px;
-    background: var(--project-accent, var(--sinon-red));
-    opacity: 0.3;
-    margin: 2rem 0;
-  }
-
   // Responsive adjustments
   @media screen and (max-width: 768px) {
-    :global(h1) {
+    h1 {
       font-size: 1.75rem;
     }
 
-    :global(h2) {
+    h2 {
       font-size: 1.5rem;
     }
 
-    :global(h3) {
+    h3 {
       font-size: 1.25rem;
     }
 
-    :global(pre) {
+    pre {
       padding: 0.75rem;
       font-size: 0.9rem;
     }
 
-    :global(table) {
+    table {
       font-size: 0.9rem;
 
       th,
