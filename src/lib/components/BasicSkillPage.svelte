@@ -108,7 +108,7 @@
 
 <ProjectModal project={selectedProject} isOpen={isModalOpen} {closeModal} />
 
-<style>
+<style lang="scss">
   .skill-page {
     min-height: 100vh;
     color: var(--sinon-white);
@@ -138,13 +138,13 @@
     margin: 0 auto;
     position: relative;
     z-index: 1;
-  }
 
-  .skill-content h1 {
-    font-family: "DM Serif Display", serif;
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    color: var(--skill-accent);
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: var(--skill-accent);
+    }
   }
 
   .skill-description {
@@ -171,16 +171,16 @@
       border-color 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-  }
 
-  .project-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent);
-  }
+    &:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
 
-  .project-card:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    &:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
   }
 
   .project-image {
@@ -190,23 +190,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
 
-  .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .project-info {
     padding: 1.5rem;
-  }
 
-  .project-info h3 {
-    font-family: "DM Serif Display", serif;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--sinon-white);
+    h3 {
+      font-family: "DM Serif Display", serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--sinon-white);
+    }
   }
 
   .subtitle {
@@ -228,13 +228,14 @@
     font-size: 0.9rem;
   }
 
+  // Mobile responsive styles
   @media screen and (max-width: 768px) {
     .skill-content {
       padding: 2rem 1rem;
-    }
 
-    .skill-content h1 {
-      font-size: 2.5rem;
+      h1 {
+        font-size: 2.5rem;
+      }
     }
 
     .projects-grid {

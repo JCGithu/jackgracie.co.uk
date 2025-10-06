@@ -1,7 +1,7 @@
 ---
 title: "My Odd Job"
 subtitle: "Series Ident"
-description: "A series of character animations showcasing various odd jobs and professions with humorous storytelling."
+description: "A intro stinger for a Metro feature series."
 category: "motion"
 accent: "#fbb256"
 tools: ["After Effects", "Illustrator"]
@@ -9,7 +9,7 @@ client: "Personal Project"
 poster: "/images/motion/oddjob.jpg"
 order: 3
 feature:
-  url: "/videos/odd-job-demo.mp4"
+  url: "/webm/OddJob.webm"
   video: true
 ---
 

@@ -4,6 +4,7 @@ subtitle: Mini-Documentary Series
 description: A series of 11 mini-documentaries that followed users of the GPS tracking app ViewRanger. After the series I also edited a trailer for the app using the footage collected from the shoots alongside additional graphics.
 category: video
 client: ViewRanger
+order: 4
 accent: "#138A40"
 tools: ["After Effects", "Premiere", "Audition", "Ableton Live", "Izotope RX"]
 poster: "../images/editing/viewranger.jpg"

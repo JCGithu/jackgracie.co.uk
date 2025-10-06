@@ -5,7 +5,7 @@
   import { quintOut } from "svelte/easing";
   import { getToolIconUrl } from "$lib/utils/tools.js";
   import ProjectFeature from "./ProjectFeature.svelte";
-  import "$lib/styles/markdown.css";
+  import "$lib/styles/markdown.scss";
 
   interface Props {
     project: Project;
@@ -57,7 +57,7 @@
         <div class="content-column">
           {#if project.feature && (project.feature.video || project.feature.embed || project.feature.youtube)}
             <div class="featured-media">
-              <ProjectFeature feature={project.feature} title={project.title} />
+              <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
             </div>
           {:else}
             <div class="featured-image">
@@ -108,7 +108,7 @@
   </div>
 {/if}
 
-<style>
+<style lang="scss">
   .modal-backdrop {
     position: fixed;
     top: 0;
@@ -136,26 +136,51 @@
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    /* Custom scrollbar styling */
     display: flex;
     flex-direction: column;
-  }
 
-  .modal-content::-webkit-scrollbar {
-    width: 8px;
-  }
+    // Custom scrollbar styling
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
 
-  .modal-content::-webkit-scrollbar-track {
-    background: transparent;
-  }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-  .modal-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-  }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
 
-  .modal-content::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+      &:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    // Content column scrollbar styling
+    .content-column {
+      &::-webkit-scrollbar {
+        width: 8px !important;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent !important;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--project-accent) !important;
+        border-radius: 4px !important;
+
+        &:hover {
+          background: var(--project-accent) !important;
+          opacity: 0.8 !important;
+        }
+      }
+
+      // Firefox scrollbar styling
+      scrollbar-width: thin !important;
+      scrollbar-color: var(--project-accent) transparent !important;
+    }
   }
 
   .close-button {
@@ -174,10 +199,10 @@
     color: white;
     z-index: 10;
     transition: background-color 0.2s ease;
-  }
 
-  .close-button:hover {
-    background: rgba(255, 255, 255, 0.2);
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
   }
 
   .featured-image,
@@ -192,21 +217,25 @@
     justify-content: center;
   }
 
-  .featured-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .featured-image {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
-  .featured-media :global(iframe),
-  .featured-media :global(video) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .featured-media {
+    :global(iframe),
+    :global(video) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-  .featured-media :global(iframe) {
-    border: none;
+    :global(iframe) {
+      border: none;
+    }
   }
 
   .modal-body {
@@ -215,47 +244,16 @@
     gap: 2rem;
     height: 100%;
     padding: 2rem;
-    /* align-items: start; */
     scrollbar-width: none;
     min-width: 0;
     position: relative;
-    /* flex: 1; */
-    /* overflow: hidden; */
   }
 
   .content-column {
     color: var(--sinon-white);
-    /* display: flex;
-    flex-direction: column; */
     overflow-y: scroll !important;
-    /* gap: 1.5rem; */
     padding-bottom: 2rem;
     padding-right: 1rem;
-  }
-
-  /* Content column scrollbar styling - more specific selectors */
-  .modal-content .content-column::-webkit-scrollbar {
-    width: 8px !important;
-  }
-
-  .modal-content .content-column::-webkit-scrollbar-track {
-    background: transparent !important;
-  }
-
-  .modal-content .content-column::-webkit-scrollbar-thumb {
-    background: var(--project-accent) !important;
-    border-radius: 4px !important;
-  }
-
-  .modal-content .content-column::-webkit-scrollbar-thumb:hover {
-    background: var(--project-accent) !important;
-    opacity: 0.8 !important;
-  }
-
-  /* Firefox scrollbar styling */
-  .modal-content .content-column {
-    scrollbar-width: thin !important;
-    scrollbar-color: var(--project-accent) transparent !important;
   }
 
   .project-title {
@@ -320,12 +318,12 @@
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.05);
     padding: 4px;
-  }
 
-  .tool-icon:hover {
-    opacity: 1;
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.1);
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
 
   .modal-actions {
@@ -344,13 +342,13 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
-  }
 
-  .primary-button:hover {
-    background: var(--project-accent);
-    opacity: 0.9;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    &:hover {
+      background: var(--project-accent);
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
   }
 
   .secondary-button {
@@ -363,24 +361,22 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
+
+    &:hover {
+      background: var(--project-accent);
+      color: var(--sinon-black);
+      transform: translateY(-1px);
+    }
   }
 
-  .secondary-button:hover {
-    background: var(--project-accent);
-    color: var(--sinon-black);
-    transform: translateY(-1px);
-  }
-
+  // Mobile responsive styles
   @media screen and (max-width: 768px) {
     .modal-backdrop {
       padding: 1rem;
     }
 
     .modal-content {
-      /* height: 85vh; */
       max-height: 85vh;
-      /* overflow-y: auto; */
-      /* overflow-x: hidden; */
     }
 
     .modal-body {
@@ -389,8 +385,6 @@
       padding: 1.5rem;
       display: grid;
     }
-
-    /* Aspect ratio is maintained automatically for featured media */
 
     .project-title {
       font-size: 2rem;

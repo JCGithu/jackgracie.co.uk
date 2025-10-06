@@ -1,16 +1,15 @@
 ---
-title: The Future of... Deepfakes
-subtitle: Journalism Feature
-description: A look into Deepfake technology. A mini-feature providing a simple explanation of nerual networks, their applications, and how this has manifested into Deep Fake technology.
+title: "The Great War: Western Front"
+subtitle: BTS Featurette
+description: Edited and graded this BTS for the scoring of the game The Great War Western Front
 category: video
-client: Metro.co.uk
-order: 5
 accent: "#4472CA"
-tools: ["After Effects", "Premiere"]
-poster: "../images/editing/deep.jpg"
+order: 2
+tools: ["After Effects", "Premiere", "DaVinci Resolve"]
+poster: "https://img.youtube.com/vi/ja72bw5IfRA/maxresdefault.jpg"
 feature:
-  url: "https://www.youtube.com/embed/TFy594yTAns"
-  embed: true
+  url: "https://www.youtube.com/watch?v=ja72bw5IfRA&t=7s"
+  youtube: true
 ---
 
 # Deepfakes

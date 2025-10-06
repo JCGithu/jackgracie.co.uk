@@ -1,7 +1,9 @@
 <script lang="ts">
   import ProjectFeature from "$lib/components/ProjectFeature.svelte";
   import { getToolIconUrl } from "$lib/utils/tools.js";
-  import "$lib/styles/markdown.css";
+  import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
+  import "$lib/styles/markdown.scss";
 
   let { data } = $props();
   let project = data.project;
@@ -17,6 +19,27 @@
     }
     return "191, 133, 246"; // fallback to purple
   }
+
+  // Get skill from project path
+  function getSkillFromPath(path: string): string {
+    const pathParts = path.split("/");
+    const skillIndex = pathParts.findIndex((part) => part === "skills");
+    return skillIndex !== -1 && pathParts[skillIndex + 1] ? pathParts[skillIndex + 1] : "development";
+  }
+
+  const skillSlug = getSkillFromPath(project.path);
+
+  // Apply gradient to body on mount
+  onMount(() => {
+    const body = document.body;
+    const rgb = hexToRgb(project.accent);
+    body.style.background = `conic-gradient(from 180deg at 50% 110%, rgba(${rgb}, 0.1) 0%, rgba(${rgb}, 0.05) 25%, rgba(0, 0, 0, 0.8) 70%)`;
+
+    return () => {
+      // Reset body background on cleanup
+      body.style.background = "";
+    };
+  });
 </script>
 
 <svelte:head>
@@ -30,10 +53,19 @@
 </svelte:head>
 
 <div class="project-page" style="--project-accent: {project.accent}; --project-accent-rgb: {hexToRgb(project.accent)}">
+  <div class="back-button-container">
+    <button class="back-button" onclick={() => goto(`/${skillSlug}`)}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      Back to {skillSlug}
+    </button>
+  </div>
+
   <div class="project-content">
     <div class="project-image">
       {#if project.feature && (project.feature.video || project.feature.embed || project.feature.youtube)}
-        <ProjectFeature feature={project.feature} title={project.title} />
+        <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
       {:else if project.image}
         <img src={project.image} alt={project.title} />
       {:else}
@@ -94,33 +126,66 @@
   </div>
 </div>
 
-<style>
+<style lang="scss">
   .project-page {
     padding: 6rem 2rem 2rem 2rem;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     color: var(--sinon-white);
     min-height: 100vh;
-    background: conic-gradient(from 180deg at 50% 110%, rgba(var(--project-accent-rgb), 0.1) 0%, rgba(var(--project-accent-rgb), 0.05) 25%, rgba(0, 0, 0, 0.8) 70%);
     position: relative;
   }
 
-  .project-header {
-    text-align: left;
-    margin-bottom: 2rem;
+  .back-button-container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1002;
   }
 
-  .project-header h1 {
-    font-family: "DM Serif Display", serif;
-    font-size: 2.5rem;
-    margin: 0;
-    color: var(--project-accent);
+  .back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--sinon-white);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--project-accent);
+      transform: translateY(-1px);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .project-header {
+    text-align: center;
+    margin-bottom: 1rem;
+
+    h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: 2.5rem;
+      margin: 0;
+      color: var(--project-accent);
+    }
   }
 
   .project-content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: start;
     margin-bottom: 2rem;
   }
@@ -139,12 +204,7 @@
     align-items: start;
   }
 
-  .metadata-left {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
+  .metadata-left,
   .metadata-right {
     display: flex;
     flex-direction: column;
@@ -182,23 +242,23 @@
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     margin: 0 auto;
-  }
 
-  .project-image img,
-  .project-image :global(iframe),
-  .project-image :global(video) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 1rem;
-  }
+    img,
+    :global(iframe),
+    :global(video) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
 
-  .project-image :global(iframe) {
-    border: none;
-  }
+    :global(iframe) {
+      border: none;
+    }
 
-  .project-image :global(video) {
-    background: #000;
+    :global(video) {
+      background: #000;
+    }
   }
 
   .description {
@@ -224,12 +284,12 @@
     border-radius: 0.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-  }
 
-  .tool-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--project-accent);
-    transform: translateX(3px);
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--project-accent);
+      transform: translateX(3px);
+    }
   }
 
   .tool-icon {
@@ -266,17 +326,33 @@
     text-align: center;
     font-weight: 600;
     display: block;
+
+    &:hover {
+      background: var(--project-accent);
+      color: var(--sinon-black);
+      transform: translateY(-1px);
+    }
   }
 
-  .project-link:hover {
-    background: var(--project-accent);
-    color: var(--sinon-black);
-    transform: translateY(-1px);
-  }
-
+  // Mobile responsive styles
   @media screen and (max-width: 768px) {
     .project-page {
       padding: 6rem 1rem 1rem 1rem;
+    }
+
+    .back-button-container {
+      top: 1rem;
+      left: 1rem;
+    }
+
+    .back-button {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+
+      svg {
+        width: 14px;
+        height: 14px;
+      }
     }
 
     .project-header h1 {
@@ -295,10 +371,7 @@
       gap: 1.5rem;
     }
 
-    .metadata-left {
-      gap: 1rem;
-    }
-
+    .metadata-left,
     .metadata-right {
       gap: 1rem;
     }

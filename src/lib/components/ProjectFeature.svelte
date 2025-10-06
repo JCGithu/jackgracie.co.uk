@@ -4,9 +4,10 @@
   interface Props {
     feature: ProjectFeature;
     title: string;
+    poster: string;
   }
 
-  let { feature, title }: Props = $props();
+  let { feature, title, poster }: Props = $props();
 
   // Check if URL is a YouTube link
   function isYouTubeUrl(url: string): boolean {
@@ -50,7 +51,7 @@
   {:else if feature.video}
     <!-- Video file (mp4, webm, etc.) -->
     <div class="feature-video">
-      <video controls loop autoplay preload="metadata" poster="" {title}>
+      <video controls loop autoplay preload="metadata" {poster} {title}>
         <source src={feature.url} type={isWebmUrl(feature.url) ? "video/webm" : "video/mp4"} />
         <track kind="captions" src="" label="No captions available" />
         Your browser does not support the video tag.
@@ -64,7 +65,7 @@
   {/if}
 {/if}
 
-<style>
+<style lang="scss">
   .feature-embed,
   .feature-video,
   .feature-image {
@@ -78,20 +79,32 @@
     justify-content: center;
   }
 
-  .feature-embed iframe,
-  .feature-video video,
-  .feature-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  .feature-embed {
+    iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border: none;
+    }
   }
 
-  .feature-embed iframe {
-    border: none;
+  .feature-video {
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
   }
 
-  .feature-video video {
-    background: #000;
+  .feature-image {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   }
 </style>

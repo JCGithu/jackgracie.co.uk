@@ -60,14 +60,19 @@ export async function loadProjectsAndSkills() {
     const folderName = splitPath[splitPath.length - 2];
     const file = paths[path]
     const slug = path.split('/').at(-1)?.replace('.md', '');
+    console.log(slug, typeof file);
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
+      // console.log(file);
       const { default: content, metadata } = file as any;
-      const project = { ...metadata, slug, path, content } satisfies Project
+      const project = { ...metadata, slug, path, content } satisfies Project;
+      // console.log(project);
       projects.add(project);
       if (folderName && skillData[folderName]) {
         skillData[folderName].projects.push(project);
       }
+    } else {
+      console.log(file, typeof file, file.metadata);
     }
   }
 

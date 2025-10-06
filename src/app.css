@@ -664,6 +664,7 @@ body.modal-open {
 	padding: 0 2rem;
 	background: transparent;
 	transition: background 0.5s ease;
+	pointer-events: none;
 }
 
 .navBar_black {
@@ -678,6 +679,7 @@ body.modal-open {
 	font-weight: bold;
 	font-family: 'Poppins', sans-serif;
 	cursor: pointer;
+	pointer-events: auto;
 }
 
 .hamburger {
@@ -690,6 +692,7 @@ body.modal-open {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	pointer-events: auto;
 }
 
 .hamburger img {

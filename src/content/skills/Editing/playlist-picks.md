@@ -6,7 +6,7 @@ category: "video"
 accent: "#fbcb71"
 tools: ["Premiere", "After Effects", "DaVinci Resolve"]
 poster: "/images/editing/playlist.png"
-order: 1
+order: 3
 ---
 
 # Playlist Picks
