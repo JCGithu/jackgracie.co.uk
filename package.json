@@ -37,7 +37,8 @@
   "dependencies": {
     "animejs": "^4.2.1",
     "lottie-web": "^5.13.0",
-    "poline": "^0.11.0"
+    "poline": "^0.11.0",
+    "zod": "^4.1.12"
   },
   "type": "module"
 }

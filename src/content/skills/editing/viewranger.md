@@ -4,11 +4,10 @@ subtitle: Mini documentaries
 description: "Viewranger Stories is a series of 11 mini-documentaries I produced that followed users of the GPS tracking app ViewRanger across the UK."
 category: video
 accent: "#25AC7D"
-order: 8
-tools: ["After Effects", "Premiere"]
-feature:
-  url: "https://www.youtube.com/watch?v=Cjf0rb3DTlc"
-  youtube: true
+skill: ["editing"]
+order: 6
+tools: ["After Effects", "Premiere", "Izotope RX"]
+feature: "https://www.youtube.com/watch?v=Cjf0rb3DTlc"
 poster: "../images/editing/viewranger.jpg"
 ---
 

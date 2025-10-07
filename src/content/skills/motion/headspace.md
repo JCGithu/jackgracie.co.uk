@@ -5,13 +5,11 @@ description: "A series of calming 10-minute looping animations to pair with audi
 category: "motion"
 accent: "#97A3E3"
 tools: ["After Effects", "Illustrator"]
+skill: ["motion"]
 client: "Headspace"
 poster: "/images/motion/headspace_thumb.jpg"
-image: "/images/motion/headspace_thumb.jpg"
-order: 1
-feature:
-  url: "/webm/headspace.webm"
-  video: true
+order: 2
+feature: "/webm/headspace.webm"
 links:
   - url: "https://headspace.com"
     text: "Visit Headspace"

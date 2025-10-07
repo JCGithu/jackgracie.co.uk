@@ -1,14 +1,12 @@
 ---
 title: Jurassic World Evolution 2
-subtitle: One of the most iconic film series of all time.
-description: "I worked on JWE2 exclusively for my first year at Frontier; from it's initial release to the first five DLCs. Getting to work with such iconic imagery felt like becoming a part of a series I'd loved since childhood."
-category: video
+subtitle: "DLC Trailers"
+description: "Directed, shot, and edited multiple DLC trailers"
+skill: ["editing", "capture"]
 accent: "#DC8519"
-order: 3
+order: 1
 tools: ["After Effects", "Premiere"]
-feature:
-  url: "https://www.youtube.com/watch?v=bcv_RQB1Rlk"
-  youtube: true
+feature: "https://www.youtube.com/watch?v=bcv_RQB1Rlk"
 poster: "../images/editing/play2.jpg"
 ---
 

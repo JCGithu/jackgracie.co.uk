@@ -2,14 +2,12 @@
 title: "Storygraph Printer"
 subtitle: "Chrome Extension"
 description: "A simple extension for users of the booklogging site Storygraph."
-category: "webdesign"
+skill: ["webdesign"]
 accent: "#2cb1bc"
 tools: ["Svelte", "Vite", "Node.js"]
 poster: "/images/development/SGP_Banner.png"
 order: 2
-feature:
-  url: "https://www.youtube.com/watch?v=sPQ0mVb8GBQ"
-  youtube: true
+feature: "https://www.youtube.com/watch?v=sPQ0mVb8GBQ"
 links:
   - url: "https://chromewebstore.google.com/detail/storygraph-printer/piamaldolnicniajehjlgnmnlljnfcal"
     text: "Chrome Web Store"

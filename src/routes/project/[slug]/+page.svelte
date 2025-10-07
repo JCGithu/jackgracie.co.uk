@@ -64,13 +64,7 @@
 
   <div class="project-content">
     <div class="project-image">
-      {#if project.feature && (project.feature.video || project.feature.embed || project.feature.youtube)}
-        <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
-      {:else if project.image}
-        <img src={project.image} alt={project.title} />
-      {:else}
-        <img src={project.poster} alt={project.title} />
-      {/if}
+      <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
     </div>
 
     <div class="project-header">
@@ -243,20 +237,11 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     margin: 0 auto;
 
-    img,
-    :global(iframe),
-    :global(video) {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 1rem;
-    }
-
-    :global(iframe) {
+    iframe {
       border: none;
     }
 
-    :global(video) {
+    video {
       background: #000;
     }
   }

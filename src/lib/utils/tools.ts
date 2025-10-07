@@ -7,9 +7,9 @@ const TOOL_MAPPING: Record<string, string> = {
   'Node.js': '/icons/tools/nodejs.svg',
   'After Effects': '/icons/tools/after-effects.svg',
   'Premiere': '/icons/tools/premiere.svg',
-  'DaVinci Resolve': '/icons/tools/animate.svg',
+  'DaVinci Resolve': '/icons/davinci.png',
   'Audition': '/icons/tools/adobe.svg',
-  'Ableton Live': '/icons/tools/animate.svg',
+  'Ableton Live': '/icons/ableton.png',
   'Izotope RX': '/icons/RX11.png',
   'Illustrator': '/icons/tools/illustrator.svg',
   'Photoshop': '/icons/tools/photoshop.svg'

@@ -1,14 +1,12 @@
 ---
 title: "Stranded: Alien Dawn"
-subtitle: LOST. In space.
-description: "All my previous Frontier projects had been building on established properties - so working on this through early access was a different experience. Seeing it's gameplay and building improve, and suggestions implimented, was very satisying. Think early Sims with survival gameplay."
-category: video
+subtitle: "Release Trailer"
+description: "Directing, Capturing, Editing"
+skill: ["capture", "editing"]
 accent: "#2FB684"
 order: 4
 tools: ["After Effects", "Premiere"]
-feature:
-  url: "https://www.youtube.com/watch?v=NTKYIu4nRz4"
-  youtube: true
+feature: "https://www.youtube.com/watch?v=NTKYIu4nRz4"
 poster: "../images/editing/deep.jpg"
 ---
 

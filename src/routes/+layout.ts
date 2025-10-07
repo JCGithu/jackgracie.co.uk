@@ -3,12 +3,11 @@ import { loadSkills } from '$lib/utils/projects';
 
 export const prerender = true;
 
-export const load: LayoutLoad = async () => {
+export const load: LayoutLoad = async ({ url }) => {
   const skills = await loadSkills();
 
-  console.log(skills);
-
   return {
-    ...skills
+    skills,
+    url: url.pathname
   };
 };

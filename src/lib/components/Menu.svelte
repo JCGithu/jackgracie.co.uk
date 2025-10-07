@@ -3,9 +3,10 @@
   import hamburgerIcon from "../../images/hamburger.svg";
   import type { Skill } from "$lib/utils/types.js";
   interface Props {
-    skills: Record<string, Skill>;
+    data: { skills: Record<string, Skill> };
   }
-  let { skills }: Props = $props();
+  let { data }: Props = $props();
+  let skills = data.skills;
   let menuOpen = $state(false);
 
   function toggleMenu() {

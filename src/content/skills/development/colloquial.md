@@ -2,10 +2,11 @@
 title: "Colloquial.Studio"
 subtitle: "Streaming Tools"
 description: "A collection of games and tools for small streamers"
-category: "webdesign"
+skill: ["webdesign"]
 accent: "#fe5f55"
 tools: ["Svelte", "Tailwind CSS", "TypeScript", "Vite"]
 poster: "/images/development/colloquial.png"
+feature: "/images/development/colloquial.png"
 order: 1
 links:
   - url: "https://github.com/jcgithu/jackgracie-portfolio"

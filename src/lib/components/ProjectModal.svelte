@@ -55,15 +55,9 @@
         </button>
         <!-- Left Column: Content -->
         <div class="content-column">
-          {#if project.feature && (project.feature.video || project.feature.embed || project.feature.youtube)}
-            <div class="featured-media">
-              <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
-            </div>
-          {:else}
-            <div class="featured-image">
-              <img src={project.poster} alt={project.title} />
-            </div>
-          {/if}
+          <div class="featured-media">
+            <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
+          </div>
 
           <h2 id="modal-title" class="project-title">{project.title}</h2>
 
@@ -205,7 +199,6 @@
     }
   }
 
-  .featured-image,
   .featured-media {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -215,25 +208,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .featured-image {
-    img {
+    iframe,
+    video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-  }
-
-  .featured-media {
-    :global(iframe),
-    :global(video) {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    :global(iframe) {
+    iframe {
       border: none;
     }
   }

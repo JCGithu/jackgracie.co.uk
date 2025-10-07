@@ -14,6 +14,9 @@ const config = {
 		vitePreprocess(),
 		mdsvex(mdsvexOptions)
 	],
+	vitePlugin: {
+		inspector: true,
+	},
 
 	kit: {
 		adapter: adapter({

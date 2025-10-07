@@ -8,20 +8,9 @@
     // Animation for the underline using anime.js
     const underline = document.querySelector(".underline") as HTMLElement;
     if (underline) {
-      // Set initial state
       underline.style.width = "0";
       underline.style.opacity = "0";
       underline.style.background = "white";
-
-      // Animate with anime.js to match the original
-      // anime({
-      //   targets: underline,
-      //   width: ["0", "17rem"],
-      //   opacity: [0, 1],
-      //   background: ["white", "linear-gradient(90deg, #ffffff 30%, #bdbdbd 39%, #ffffff 48% )"],
-      //   easing: "easeOutCirc",
-      //   duration: 2000,
-      // });
     }
   });
 </script>

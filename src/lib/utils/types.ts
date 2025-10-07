@@ -1,44 +1,45 @@
+import { z } from 'zod';
 import type { Component } from 'svelte';
 
-export interface ProjectLinks {
-  url: string;
-  text: string;
-}
+const ProjectLinks = z.object({
+  url: z.string(),
+  text: z.string(),
+});
 
-export interface ProjectFeature {
-  url?: string;
-  image?: string;
-  embed?: boolean;
-  video?: boolean;
-  youtube?: boolean;
-}
+const ProjectMetadata = z.object({
+  title: z.string(),
+  subtitle: z.string(),
+  description: z.string(),
+  accent: z.string(),
+  tools: z.array(z.string()),
+  skill: z.array(z.string()).min(1, "At least one skill is required"),
+  client: z.string().optional(),
+  video: z.string().optional(),
+  poster: z.string(),
+  order: z.number(),
+  feature: z.string(),
+  links: z.array(ProjectLinks).optional(),
+});
 
-export interface Project {
-  slug: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  accent: string;
-  tools: string[];
-  client?: string;
-  video?: string;
-  poster: string;
-  image?: string;
-  content: Component;
-  order: number;
-  path: string;
-  feature: ProjectFeature;
-  links?: ProjectLinks[];
-}
+const FullProject = z.intersection(ProjectMetadata, z.object({
+  slug: z.string(),
+  path: z.string(),
+  content: z.custom<Component>(),
+}));
 
-export interface Skill {
-  name: string;
-  slug: string;
-  accent: string;
-  description: string;
-  banner: Array<{
-    url: string;
-    alt: string;
-  }>;
-  projects: Project[];
-}
+const SkillSchema = z.object({
+  name: z.string(),
+  slug: z.string(),
+  accent: z.string(),
+  description: z.string(),
+  banner: z.array(z.object({
+    url: z.string(),
+    alt: z.string(),
+  })),
+  projects: z.array(FullProject),
+});
+
+export type ProjectLinks = z.infer<typeof ProjectLinks>;
+export type Project = z.infer<typeof FullProject>;
+export type Skill = z.infer<typeof SkillSchema>;
+export { ProjectLinks, ProjectMetadata, SkillSchema, FullProject };

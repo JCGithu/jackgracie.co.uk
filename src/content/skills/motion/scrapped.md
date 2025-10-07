@@ -5,11 +5,11 @@ description: Originally was being developed as an intro to a series, but continu
 category: motion
 accent: "#E04E4E"
 tools: ["After Effects", "Photoshop"]
+skill: ["motion"]
 video: "/webm/scrapped.webm"
 poster: "../images/motion/girl.jpg"
-feature:
-  url: "/webm/scrapped.webm"
-  video: true
+order: 5
+feature: "/webm/scrapped.webm"
 ---
 
 # Scrapped

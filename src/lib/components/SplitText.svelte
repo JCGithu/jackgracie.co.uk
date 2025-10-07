@@ -12,7 +12,6 @@
 
   onMount(() => {
     const split = splitText(container, { chars: true });
-    console.log(split);
     waapi.animate(split.chars, {
       x: ["-50px", "0px"],
       opacity: [0, 0, 1],

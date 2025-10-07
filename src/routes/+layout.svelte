@@ -3,12 +3,15 @@
   import Navigation from "$lib/components/Navigation.svelte";
   import Menu from "$lib/components/Menu.svelte";
   import type { LayoutProps } from "./$types";
+  import PageTransition from "./transition.svelte";
   let { data, children }: LayoutProps = $props();
 </script>
 
 <Navigation />
-<Menu skills={data} />
+<Menu {data} />
 
 <main>
-  {@render children()}
+  <PageTransition url={data.url}>
+    {@render children()}
+  </PageTransition>
 </main>

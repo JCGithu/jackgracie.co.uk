@@ -6,10 +6,10 @@ category: motion
 accent: "#138A40"
 tools: ["After Effects", "Photoshop"]
 video: "/webm/frog.webm"
+skill: ["motion"]
 poster: "../images/motion/frog.jpg"
-feature:
-  url: "/webm/frog.webm"
-  video: true
+order: 4
+feature: "/webm/frog.webm"
 ---
 
 # Pond Time

@@ -1,6 +1,8 @@
-import type { Project, Skill } from './types';
 import { error } from '@sveltejs/kit';
-
+import type { Project, Skill } from './types';
+import { ProjectMetadata } from './types';
+import { validateOrThrow } from './validation';
+import { render } from 'svelte/server';
 export const prerender = true;
 
 let skillData: Record<string, Skill> = {
@@ -13,6 +15,19 @@ let skillData: Record<string, Skill> = {
       {
         url: "/images/editing/videoBanner.jpg",
         alt: "Video Banner",
+      },
+    ],
+    projects: [],
+  },
+  capture: {
+    name: "Game Capture",
+    slug: "capture",
+    accent: "#bf85f6",
+    description: "Modern, responsive web design and development.",
+    banner: [
+      {
+        url: "/images/development/Desk.png",
+        alt: "Web Design Banner",
       },
     ],
     projects: [],
@@ -51,25 +66,27 @@ let skillData: Record<string, Skill> = {
 
 
 export async function loadProjectsAndSkills() {
-  let projects = new Set<Project>();
-
   const paths = import.meta.glob('/src/content/skills/*/*.md', { eager: true })
+  const projects = new Set<Project>();
 
   for (const path in paths) {
-    const splitPath = path.split('/');
-    const folderName = splitPath[splitPath.length - 2];
     const file = paths[path]
-    const slug = path.split('/').at(-1)?.replace('.md', '');
+    const slug = path.split('/').at(-1)!.replace('.md', '');
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
       const { default: content, metadata } = file as any;
-      const project = { ...metadata, slug, path, content } satisfies Project;
+      const validMetadata = validateOrThrow(ProjectMetadata, metadata, slug);
+      const project = { ...validMetadata, slug, path, content } satisfies Project;
       projects.add(project);
-      if (folderName && skillData[folderName]) {
-        skillData[folderName].projects.push(project);
+
+      for (const skill of project.skill) {
+        if (skillData[skill]) {
+          skillData[skill].projects.push(project);
+          skillData[skill].projects.sort((a, b) => a.order - b.order);
+        }
       }
     } else {
-      console.log(slug + "is failing");
+      console.error(`${slug} is failing`);
     }
   }
 

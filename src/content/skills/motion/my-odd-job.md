@@ -5,12 +5,11 @@ description: "A intro stinger for a Metro feature series."
 category: "motion"
 accent: "#fbb256"
 tools: ["After Effects", "Illustrator"]
+skill: ["motion"]
 client: "Personal Project"
 poster: "/images/motion/oddjob.jpg"
 order: 3
-feature:
-  url: "/webm/OddJob.webm"
-  video: true
+feature: "/webm/OddJob.webm"
 ---
 
 A creative animation series exploring various unusual professions through character-driven storytelling and humor.

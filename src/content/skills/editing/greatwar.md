@@ -2,40 +2,12 @@
 title: "The Great War: Western Front"
 subtitle: BTS Featurette
 description: Edited and graded this BTS for the scoring of the game The Great War Western Front
-category: video
-accent: "#4472CA"
-order: 2
+skill: ["editing", "grading"]
+accent: "#EC4E34"
+order: 3
 tools: ["After Effects", "Premiere", "DaVinci Resolve"]
 poster: "https://img.youtube.com/vi/ja72bw5IfRA/maxresdefault.jpg"
-feature:
-  url: "https://www.youtube.com/watch?v=ja72bw5IfRA&t=7s"
-  youtube: true
+feature: "https://www.youtube.com/watch?v=ja72bw5IfRA"
 ---
 
-# Deepfakes
-
-A look into Deepfake technology. The piece includes a simple explanation of neural networks, their applications, and how this has manifested into Deep Fake videos.
-
-## Content Overview
-
-This journalism feature explores the rapidly evolving world of deepfake technology, providing viewers with an accessible explanation of how these technologies work and their implications.
-
-## Educational Elements
-
-- Simple explanation of neural networks
-- Applications of deepfake technology
-- Evolution from research to practical use
-- Impact on media and society
-
-## Production Approach
-
-The piece combines clear explanatory graphics with real-world examples to make complex AI technology accessible to a general audience.
-
-## Client
-
-Metro.co.uk
-
-## Tools Used
-
-- Adobe After Effects
-- Adobe Premiere Pro
+As someone with absolutely no musical talent I've always watched scoring featurettes for film and games with awe - so getting the chance to work on one was an exciting challenge. It was a large undertaking given the sheer amount of footage to catalogue at first, and later synchronising. Being a fan of these videos I wanted to make sure that the footage of the players was properly synchronised to the final score, as so many seem to just use general B-Roll over whatever track is playing. This was a feat which I'm proud to say was achieved -- and well worth having this stuck in my head for months after.
