@@ -3,7 +3,7 @@
   import Navigation from "$lib/components/Navigation.svelte";
   import Menu from "$lib/components/Menu.svelte";
   import type { LayoutProps } from "./$types";
-  import PageTransition from "./transition.svelte";
+  import PageTransition from "$lib/transition.svelte";
   let { data, children }: LayoutProps = $props();
 </script>
 
