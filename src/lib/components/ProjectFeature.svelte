@@ -1,8 +1,6 @@
 <script lang="ts">
   let { feature, title, poster }: { feature: string; title: string; poster: string } = $props();
 
-  console.log(feature);
-
   let url = feature.includes("http");
   let youtube = feature.includes("youtube.com") || feature.includes("youtu.be");
   let video = feature.includes("webm");
