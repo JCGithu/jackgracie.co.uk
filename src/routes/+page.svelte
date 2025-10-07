@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  //import anime from "animejs";
   import Backdrop from "$lib/components/Backdrop.svelte";
   import SplitText from "$lib/components/SplitText.svelte";
 
