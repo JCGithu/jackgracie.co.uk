@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import type { Component } from 'svelte';
 
+const Skill = z.enum(["motion", "editing", "development", "capture"]);
+
 const ProjectLinks = z.object({
   url: z.string(),
   text: z.string(),
@@ -12,7 +14,7 @@ const ProjectMetadata = z.object({
   description: z.string(),
   accent: z.string(),
   tools: z.array(z.string()),
-  skill: z.array(z.string()).min(1, "At least one skill is required"),
+  skill: z.array(Skill).min(1, "At least one skill is required"),
   client: z.string().optional(),
   video: z.string().optional(),
   poster: z.string(),

@@ -2,7 +2,7 @@
 title: "Colloquial.Studio"
 subtitle: "Streaming Tools"
 description: "A collection of games and tools for small streamers"
-skill: ["webdesign"]
+skill: ["development"]
 accent: "#fe5f55"
 tools: ["Svelte", "Tailwind CSS", "TypeScript", "Vite"]
 poster: "/images/development/colloquial.png"

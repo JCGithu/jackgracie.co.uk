@@ -2,7 +2,7 @@
 title: "The Great War: Western Front"
 subtitle: BTS Featurette
 description: Edited and graded this BTS for the scoring of the game The Great War Western Front
-skill: ["editing", "grading"]
+skill: ["editing"]
 accent: "#EC4E34"
 order: 3
 tools: ["After Effects", "Premiere", "DaVinci Resolve"]
