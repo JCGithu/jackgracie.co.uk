@@ -44,4 +44,5 @@ const SkillSchema = z.object({
 export type ProjectLinks = z.infer<typeof ProjectLinks>;
 export type Project = z.infer<typeof FullProject>;
 export type Skill = z.infer<typeof SkillSchema>;
+export type SkillNames = z.infer<typeof Skill>;
 export { ProjectLinks, ProjectMetadata, SkillSchema, FullProject };

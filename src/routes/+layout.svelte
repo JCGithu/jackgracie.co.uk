@@ -4,6 +4,8 @@
   import Menu from "$lib/components/Menu.svelte";
   import type { LayoutProps } from "./$types";
   import PageTransition from "$lib/transition.svelte";
+  import { page } from "$app/stores";
+  import type { SkillNames } from "$lib/utils/types";
   let { data, children }: LayoutProps = $props();
 
   const colours = new Map();
@@ -13,9 +15,23 @@
       colours.set(project.slug, project.accent);
     }
   }
+
+  let currentSkill = $state({
+    name: "",
+    showing: false,
+  });
+  $effect(() => {
+    let slug = $page.url.pathname.split("/").pop()!;
+    if (Object.values(data.skills).some((skill) => skill.slug === slug)) {
+      currentSkill.name = slug;
+      currentSkill.showing = false;
+    } else {
+      currentSkill.showing = slug.length > 1;
+    }
+  });
 </script>
 
-<Navigation />
+<Navigation {currentSkill} />
 <Menu {data} />
 
 <main>

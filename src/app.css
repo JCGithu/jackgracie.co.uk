@@ -664,14 +664,15 @@ body.modal-open {
 	padding: 0 2rem;
 	background: transparent;
 	transition: background 0.5s ease;
-	pointer-events: none;
 }
 
-.navBar_black {
+.navbarFill {
 	background: var(--sinon-black);
+	opacity: 1;
 }
 
-.monogram {
+#monogram {
+	align-self: baseline;
 	background: none;
 	border: none;
 	color: white;

@@ -1,7 +1,6 @@
 <script lang="ts">
   import ProjectFeature from "$lib/components/ProjectFeature.svelte";
   import { getToolIconUrl } from "$lib/utils/tools.js";
-  import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import "$lib/styles/markdown.scss";
 
@@ -19,15 +18,6 @@
     }
     return "191, 133, 246"; // fallback to purple
   }
-
-  // Get skill from project path
-  function getSkillFromPath(path: string): string {
-    const pathParts = path.split("/");
-    const skillIndex = pathParts.findIndex((part) => part === "skills");
-    return skillIndex !== -1 && pathParts[skillIndex + 1] ? pathParts[skillIndex + 1] : "development";
-  }
-
-  const skillSlug = getSkillFromPath(project.path);
 
   // Apply gradient to body on mount
   onMount(() => {
@@ -53,15 +43,6 @@
 </svelte:head>
 
 <div class="project-page" style="--project-accent: {project.accent}; --project-accent-rgb: {hexToRgb(project.accent)}">
-  <div class="back-button-container">
-    <button class="back-button" onclick={() => goto(`/${skillSlug}`)}>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M19 12H5M12 19l-7-7 7-7" />
-      </svg>
-      Back to {skillSlug}
-    </button>
-  </div>
-
   <div class="project-content">
     <div class="project-image">
       <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
@@ -128,40 +109,6 @@
     color: var(--sinon-white);
     min-height: 100vh;
     position: relative;
-  }
-
-  .back-button-container {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    z-index: 1002;
-  }
-
-  .back-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
-    color: var(--sinon-white);
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: capitalize;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: var(--project-accent);
-      transform: translateY(-1px);
-    }
-
-    svg {
-      width: 16px;
-      height: 16px;
-    }
   }
 
   .project-header {
@@ -236,14 +183,6 @@
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     margin: 0 auto;
-
-    iframe {
-      border: none;
-    }
-
-    video {
-      background: #000;
-    }
   }
 
   .description {
@@ -323,21 +262,6 @@
   @media screen and (max-width: 768px) {
     .project-page {
       padding: 6rem 1rem 1rem 1rem;
-    }
-
-    .back-button-container {
-      top: 1rem;
-      left: 1rem;
-    }
-
-    .back-button {
-      padding: 0.5rem 0.75rem;
-      font-size: 0.8rem;
-
-      svg {
-        width: 14px;
-        height: 14px;
-      }
     }
 
     .project-header h1 {
