@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
+import redirects from './src/lib/redirects.ts';
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
@@ -26,6 +27,9 @@ const config = {
 			strict: true
 		}),
 		prerender: {
+			entries: ['*',
+				...Object.keys(redirects)
+			],
 			handleHttpError: 'warn',
 			handleUnseenRoutes: 'ignore'
 		}
