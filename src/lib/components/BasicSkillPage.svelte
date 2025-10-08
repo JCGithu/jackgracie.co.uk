@@ -3,11 +3,11 @@
   import type { Skill, Project } from "$lib/utils/types.js";
   import { onMount, onDestroy } from "svelte";
 
-  export let skillData: Skill;
-  export let projects: Project[];
+  let { skillData }: { skillData: Skill } = $props();
 
-  let selectedProject: Project = projects[0];
-  let isModalOpen = false;
+  let projects = skillData.projects;
+  let selectedProject: Project = $state(projects[0]);
+  let isModalOpen = $state(false);
 
   function openModal(project: Project) {
     selectedProject = project;
@@ -17,58 +17,6 @@
   function closeModal() {
     isModalOpen = false;
   }
-
-  // Prevent scrolling when modal is open, but allow scrolling within modal
-  function preventScroll(event: Event) {
-    if (isModalOpen) {
-      // Check if the event target is within the modal
-      const target = event.target as Element;
-      const modal = document.querySelector(".modal-backdrop");
-
-      // If the event is not within the modal, prevent it
-      if (modal && !modal.contains(target)) {
-        event.preventDefault();
-      }
-    }
-  }
-
-  // Add/remove scroll prevention based on modal state
-  $: if (isModalOpen) {
-    if (typeof window !== "undefined") {
-      window.addEventListener("wheel", preventScroll, { passive: false });
-      window.addEventListener("touchmove", preventScroll, { passive: false });
-      window.addEventListener("keydown", preventKeyScroll, { passive: false });
-    }
-  } else {
-    if (typeof window !== "undefined") {
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("touchmove", preventScroll);
-      window.removeEventListener("keydown", preventKeyScroll);
-    }
-  }
-
-  // Prevent keyboard scrolling (arrow keys, page up/down, space, etc.)
-  function preventKeyScroll(event: KeyboardEvent) {
-    if (isModalOpen && ["ArrowUp", "ArrowDown", "PageUp", "PageDown", " ", "Home", "End"].includes(event.key)) {
-      // Check if the event target is within the modal
-      const target = event.target as Element;
-      const modal = document.querySelector(".modal-backdrop");
-
-      // If the event is not within the modal, prevent it
-      if (modal && !modal.contains(target)) {
-        event.preventDefault();
-      }
-    }
-  }
-
-  // Cleanup on component destroy
-  onDestroy(() => {
-    if (typeof window !== "undefined") {
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("touchmove", preventScroll);
-      window.removeEventListener("keydown", preventKeyScroll);
-    }
-  });
 </script>
 
 <svelte:head>
@@ -76,7 +24,7 @@
   <meta name="description" content="{skillData.name} projects by Jack Gracie" />
 </svelte:head>
 
-<div class="skill-page">
+<div class="skill-page" class:modal-open={isModalOpen}>
   <div class="skill-banner">
     {#each skillData.banner as banner, index}
       <img src={banner.url} alt={banner.alt} class="banner-layer" style="z-index: {skillData.banner.length - index};" />
@@ -88,7 +36,7 @@
     <p class="skill-description">{@html skillData.description}</p>
     <div class="projects-grid">
       {#each projects as project, projectIndex}
-        <div class="project-card" style="--accent: {project.accent}" role="button" tabindex="0" on:click={() => openModal(project)} on:keydown={(e) => e.key === "Enter" && openModal(project)}>
+        <div class="project-card" style="--accent: {project.accent}" role="button" tabindex="0" onclick={() => openModal(project)} onkeydown={(e) => e.key === "Enter" && openModal(project)}>
           <div class="project-image">
             <img src={project.poster} alt={project.title} />
           </div>
@@ -113,6 +61,11 @@
     min-height: 100vh;
     color: var(--sinon-white);
     position: relative;
+
+    &.modal-open {
+      overflow: hidden;
+      //position: fixed;
+    }
   }
 
   .skill-banner {
