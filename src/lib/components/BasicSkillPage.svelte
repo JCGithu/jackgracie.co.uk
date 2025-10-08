@@ -61,6 +61,9 @@
     min-height: 100vh;
     color: var(--sinon-white);
     position: relative;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
 
     &.modal-open {
       overflow: hidden;
@@ -69,11 +72,14 @@
   }
 
   .skill-banner {
-    width: 100%;
-    height: 50vh;
+    width: 30rem;
+    flex-shrink: 0;
     overflow: hidden;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1;
+    height: 100vh;
   }
 
   .banner-layer {
@@ -86,11 +92,13 @@
   }
 
   .skill-content {
+    flex: 1;
     padding: 3rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin-left: 30rem;
     position: relative;
     z-index: 1;
+    overflow-y: auto;
+    height: 100vh;
 
     h1 {
       font-family: "DM Serif Display", serif;
@@ -182,9 +190,30 @@
   }
 
   // Mobile responsive styles
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
+    .skill-page {
+      flex-direction: column;
+    }
+
+    .skill-banner {
+      width: 100%;
+      height: auto;
+      min-height: auto;
+    }
+
+    .banner-layer {
+      position: relative;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
     .skill-content {
+      max-width: 100%;
+      margin-left: 0;
       padding: 2rem 1rem;
+      height: auto;
+      overflow-y: visible;
 
       h1 {
         font-size: 2.5rem;
@@ -194,5 +223,29 @@
     .projects-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  // Custom scrollbar styling for skill content
+  .skill-content::-webkit-scrollbar {
+    width: 8px !important;
+  }
+
+  .skill-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 4px !important;
+  }
+
+  .skill-content::-webkit-scrollbar-thumb {
+    background: var(--skill-accent) !important;
+    border-radius: 4px !important;
+  }
+
+  .skill-content::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--skill-accent) 80%, white) !important;
+  }
+
+  .skill-content {
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--skill-accent) rgba(255, 255, 255, 0.1) !important;
   }
 </style>
