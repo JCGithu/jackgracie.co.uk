@@ -34,7 +34,7 @@
 </script>
 
 {#key url}
-  <div transition:fade={{ duration: 1000 }}>
+  <div transition:fade={{ duration: 300, delay: 600 }}>
     {@render children()}
   </div>
   <div id="transition-container" bind:this={wipeElement} class:wipe-active={isTransitioning} class:showTransition={isTransitioning} class:hideTopTransition={!isTransitioning} style="--time: {time}ms;">
