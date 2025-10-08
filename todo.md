@@ -18,3 +18,6 @@ Use your physics simulations from emote drop
 ## Final Polish
 
 404 page
+
+- Add a 404 page
+- Add content back to the RSS feed

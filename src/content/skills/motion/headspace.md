@@ -21,4 +21,4 @@ These would need to be looping animations of calm peaceful scenes that would be 
 
 Each week I pitched and created a scene with characters in-line with Headspaces classic imagery, tying in with the themes of the audio.
 
-<img src='../images/motion/head4.jpg'/>
+<img src='../images/motion/head4.jpg' alt="Headspace"/>
