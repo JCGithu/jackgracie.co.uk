@@ -1,21 +1,9 @@
 import { loadAllProjects } from '$lib/utils/projects';
-import { render } from 'svelte/server';
 
 export const prerender = true;
 
 export async function GET({ fetch }) {
 	const projects = await loadAllProjects();
-	let contentSet = new Map<string, string>();
-	for (const project of projects) {
-		try {
-			let contentImport = await import(project.path);
-			let { html, head } = await render(contentImport.default);
-			contentSet.set(project.slug, html);
-		} catch (error) {
-			console.error(`Failed to render content for project ${project.slug}:`, error);
-			contentSet.set(project.slug, `<p>Content unavailable for ${project.title}</p>`);
-		}
-	}
 
 	const headers = { 'Content-Type': 'application/xml' }
 
@@ -35,9 +23,6 @@ export async function GET({ fetch }) {
 							<link>https://jackgracie.co.uk/${project.slug}</link>
 							<guid isPermaLink="true">https://jackgracie.co.uk/${project.slug}</guid>
 							<author>Jack Gracie</author>
-              <body>
-                ${contentSet.get(project.slug)}
-              </body>
 						</item>
 					`
 			)

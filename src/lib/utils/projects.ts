@@ -2,72 +2,74 @@ import { error } from '@sveltejs/kit';
 import type { Project, Skill } from './types';
 import { ProjectMetadata } from './types';
 import { validateOrThrow } from './validation';
-import { render } from 'svelte/server';
 export const prerender = true;
 
-let skillData: Record<string, Skill> = {
-  editing: {
-    name: "Editing",
-    slug: "editing",
-    accent: "#379937",
-    description: "Projects I've produced, shot, or edited. Details are included in the individual project cards.",
-    banner: [
-      {
-        url: "/images/editing/videoBanner.jpg",
-        alt: "Video Banner",
-      },
-    ],
-    projects: [],
-  },
-  capture: {
-    name: "Game Capture",
-    slug: "capture",
-    accent: "#bf85f6",
-    description: "Modern, responsive web design and development.",
-    banner: [
-      {
-        url: "/images/development/Desk.png",
-        alt: "Web Design Banner",
-      },
-    ],
-    projects: [],
-  },
-  motion: {
-    name: "Motion Graphics",
-    slug: "motion",
-    accent: "#ebc170",
-    description: "Dynamic animations and motion graphics that bring ideas to life.",
-    banner: [
-      {
-        url: "/images/motion/motion_foreground.png",
-        alt: "Motion Graphics Banner",
-      },
-      {
-        url: "/images/motion/motion_background.png",
-        alt: "Motion Graphics Banner",
-      },
-    ],
-    projects: [],
-  },
-  development: {
-    name: "Development",
-    slug: "development",
-    accent: "#bf85f6",
-    description: "Modern, responsive web design and development.",
-    banner: [
-      {
-        url: "/images/development/Desk.png",
-        alt: "Web Design Banner",
-      },
-    ],
-    projects: [],
-  },
+function createSkillData(): Record<string, Skill> {
+  return {
+    editing: {
+      name: "Editing",
+      slug: "editing",
+      accent: "#379937",
+      description: "Projects I've produced, shot, or edited. Details are included in the individual project cards.",
+      banner: [
+        {
+          url: "/images/editing/videoBanner.jpg",
+          alt: "Video Banner",
+        },
+      ],
+      projects: [],
+    },
+    capture: {
+      name: "Game Capture",
+      slug: "capture",
+      accent: "#bf85f6",
+      description: "Modern, responsive web design and development.",
+      banner: [
+        {
+          url: "/images/development/Desk.png",
+          alt: "Web Design Banner",
+        },
+      ],
+      projects: [],
+    },
+    motion: {
+      name: "Motion Graphics",
+      slug: "motion",
+      accent: "#ebc170",
+      description: "Dynamic animations and motion graphics that bring ideas to life.",
+      banner: [
+        {
+          url: "/images/motion/motion_foreground.png",
+          alt: "Motion Graphics Banner",
+        },
+        {
+          url: "/images/motion/motion_background.png",
+          alt: "Motion Graphics Banner",
+        },
+      ],
+      projects: [],
+    },
+    development: {
+      name: "Development",
+      slug: "development",
+      accent: "#bf85f6",
+      description: "Modern, responsive web design and development.",
+      banner: [
+        {
+          url: "/images/development/Desk.png",
+          alt: "Web Design Banner",
+        },
+      ],
+      projects: [],
+    },
+  }
 }
 
 
 export async function loadProjectsAndSkills() {
   const paths = import.meta.glob('/src/content/skills/*/*.md', { eager: true })
   const projects = new Set<Project>();
+  const skillData = createSkillData(); // Create fresh skill data for each call
 
   for (const path in paths) {
     const file = paths[path]
