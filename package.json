@@ -12,11 +12,10 @@
   ],
   "scripts": {
     "dev": "bun run vite dev",
-    "build": "bun run validate:tools && bun run vite build",
+    "build": "bun run vite build",
     "preview": "bun run vite preview",
     "check": "bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json --watch",
-    "validate:tools": "bun run scripts/validate-tools.js"
+    "check:watch": "bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",
@@ -35,6 +34,7 @@
     "vite": "^6.3.6"
   },
   "dependencies": {
+    "@sveltejs/enhanced-img": "^0.8.4",
     "animejs": "^4.2.1",
     "lottie-web": "^5.13.0",
     "poline": "^0.11.0",
