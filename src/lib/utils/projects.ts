@@ -9,8 +9,8 @@ function createSkillData(): Record<string, Skill> {
     editing: {
       name: "Editing",
       slug: "editing",
-      accent: "#379937",
-      description: "Projects I've produced, shot, or edited. Details are included in the individual project cards.",
+      accent: "#25AC7D",
+      description: "I've been editing for 13 years, ever since I downloaded Premiere CS5 and couldn't watch my edits until rendered them. I've edited in several industries, videography, journalism, social media, and gaming.",
       banner: [
         {
           url: "/images/editing/videoBanner.jpg",
@@ -23,13 +23,18 @@ function createSkillData(): Record<string, Skill> {
       name: "Game Capture",
       slug: "capture",
       accent: "#bf85f6",
-      description: "Modern, responsive web design and development.",
+      description: "In my time as a Video Artist at Frontier I captured across multiple titles and engines. Taking my knowledge of editing and in-person videography into the digital world, where the only limit is your software, is so fun and freeing. ",
       banner: [
         {
-          url: "/images/development/Desk.png",
+          url: "/images/capture/CamPath_02.png",
           alt: "Web Design Banner",
         },
       ],
+      reel: {
+        video: "https://www.youtube.com/watch?v=gvzm4KSNp6s",
+        title: "Game Capture Reel",
+        link: "/project/frontier",
+      },
       projects: [],
     },
     motion: {
@@ -39,13 +44,13 @@ function createSkillData(): Record<string, Skill> {
       description: "Dynamic animations and motion graphics that bring ideas to life.",
       banner: [
         {
-          url: "/images/motion/motion_foreground.png",
+          url: "/images/motion/motion_combo.png",
           alt: "Motion Graphics Banner",
         },
-        {
-          url: "/images/motion/motion_background.png",
-          alt: "Motion Graphics Banner",
-        },
+        // {
+        //   url: "/images/motion/motion_background.png",
+        //   alt: "Motion Graphics Banner",
+        // },
       ],
       projects: [],
     },
@@ -81,10 +86,12 @@ export async function loadProjectsAndSkills() {
       const project = { ...validMetadata, slug, path, content } satisfies Project;
       projects.add(project);
 
-      for (const skill of project.skill) {
-        if (skillData[skill]) {
-          skillData[skill].projects.push(project);
-          skillData[skill].projects.sort((a, b) => a.order - b.order);
+      if (project.skill) {
+        for (const skill of project.skill) {
+          if (skillData[skill]) {
+            skillData[skill].projects.push(project);
+            skillData[skill].projects.sort((a, b) => a.order - b.order);
+          }
         }
       }
     } else {

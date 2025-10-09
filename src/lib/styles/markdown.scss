@@ -39,7 +39,8 @@
   p {
     margin: 1rem 0 0.5rem 0;
     line-height: 1.6;
-    color: var(--sinon-white);
+    //color: var(--sinon-white);
+    color: var(--sinon-black);
     opacity: 0.9;
   }
 
@@ -63,7 +64,8 @@
     li {
       margin: 0.5rem 0;
       line-height: 1.5;
-      color: var(--sinon-white);
+      //color: var(--sinon-white);
+      color: var(--sinon-black);
       opacity: 0.9;
     }
   }

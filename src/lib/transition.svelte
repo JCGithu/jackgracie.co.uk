@@ -13,7 +13,7 @@
   let isTransitioning = $state(false);
   let previousUrl = $state(url);
 
-  let time = $state(700);
+  let time = $state(500);
 
   let viewBox = "0 0 1440 320";
   let xmlns = "http://www.w3.org/2000/svg";
@@ -34,7 +34,7 @@
 </script>
 
 {#key url}
-  <div transition:fade={{ duration: 300, delay: 600 }}>
+  <div transition:fade={{ duration: 200, delay: 500 }}>
     {@render children()}
   </div>
   <div id="transition-container" bind:this={wipeElement} class:wipe-active={isTransitioning} class:showTransition={isTransitioning} class:hideTopTransition={!isTransitioning} style="--time: {time}ms;">
@@ -58,14 +58,14 @@
 
 <style lang="scss">
   #transition-container {
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     width: 200vw;
     bottom: -100%;
     transform: rotate(20deg);
     left: -40%;
     pointer-events: none;
-    --wipe-time: var(--time) cubic-bezier(0, 0.5, 0, 0.6);
+    --wipe-time: var(--time) cubic-bezier(0, 0.4, 0, 0.4);
   }
 
   #transitionTop {
@@ -80,12 +80,12 @@
   }
   @keyframes hideTopTransition {
     0% {
-      bottom: -120%;
+      bottom: -50%;
       left: -40%;
     }
     to {
-      bottom: 100%;
-      left: 40%;
+      bottom: 110%;
+      left: -10%;
     }
   }
   .showTransition {

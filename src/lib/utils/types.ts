@@ -8,19 +8,28 @@ const ProjectLinks = z.object({
   text: z.string(),
 });
 
+const Reel = z.object({
+  video: z.string(),
+  title: z.string(),
+  link: z.string(),
+});
+
 const ProjectMetadata = z.object({
   title: z.string(),
   subtitle: z.string(),
   description: z.string(),
   accent: z.string(),
   tools: z.array(z.string()),
-  skill: z.array(Skill).min(1, "At least one skill is required"),
+  skill: z.array(Skill).optional(),
+  role: z.string().optional(),
   client: z.string().optional(),
   video: z.string().optional(),
   poster: z.string(),
   order: z.number(),
   feature: z.string(),
   links: z.array(ProjectLinks).optional(),
+  category: z.string().optional(),
+  related: z.array(z.string()).optional(),
 });
 
 const FullProject = z.intersection(ProjectMetadata, z.object({
@@ -38,6 +47,7 @@ const SkillSchema = z.object({
     url: z.string(),
     alt: z.string(),
   })),
+  reel: Reel.optional(),
   projects: z.array(FullProject),
 });
 

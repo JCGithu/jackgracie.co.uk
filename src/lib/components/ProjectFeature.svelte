@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { feature, title, poster }: { feature: string; title: string; poster: string } = $props();
+  let { feature, title, poster, compact = false }: { feature: string; title: string; poster: string; compact?: boolean } = $props();
 
   let url = feature.includes("http");
   let youtube = feature.includes("youtube.com") || feature.includes("youtu.be");
@@ -17,12 +17,12 @@
 {#if url}
   {#if youtube}
     <!-- YouTube embeds -->
-    <div class="feature-embed">
+    <div class="feature-embed" style="--aspect-ratio: {compact ? '21 / 9' : '16 / 9'};">
       <iframe src={feature} {title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
     </div>
   {/if}
 {:else if video}
-  <div class="feature-video">
+  <div class="feature-video" style="--aspect-ratio: {compact ? '21 / 9' : '16 / 9'};">
     <video controls loop autoplay preload="metadata" {poster} {title}>
       <source src={feature} type="video/webm" />
       <track kind="captions" src="" label="No captions available" />
@@ -30,7 +30,7 @@
     </video>
   </div>
 {:else}
-  <div class="feature-image">
+  <div class="feature-image" style="--aspect-ratio: {compact ? '21 / 9' : '16 / 9'};">
     <img src={feature} alt={title} />
   </div>
 {/if}
@@ -40,7 +40,7 @@
   .feature-video,
   .feature-image {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: var(--aspect-ratio, 16 / 9);
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);

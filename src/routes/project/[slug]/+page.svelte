@@ -1,36 +1,18 @@
 <script lang="ts">
   import ProjectFeature from "$lib/components/ProjectFeature.svelte";
-  import { getToolIconUrl } from "$lib/utils/tools.js";
-  import { onMount } from "svelte";
+  import DynamicBackground from "$lib/components/DynamicBackground.svelte";
+  import ToolIcon from "$lib/components/ToolIcon.svelte";
   import "$lib/styles/markdown.scss";
-
+  import ProjectCard from "$lib/components/ProjectCard.svelte";
+  import { goto } from "$app/navigation";
+  import { horizontalScroll } from "$lib/utils/horizontalScroll.js";
   let { data } = $props();
+
   let project = data.project;
-
-  // Convert hex to RGB for backdrop gradient
-  function hexToRgb(hex: string): string {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (result) {
-      const r = parseInt(result[1], 16);
-      const g = parseInt(result[2], 16);
-      const b = parseInt(result[3], 16);
-      return `${r}, ${g}, ${b}`;
-    }
-    return "191, 133, 246"; // fallback to purple
-  }
-
-  // Apply gradient to body on mount
-  onMount(() => {
-    const body = document.body;
-    const rgb = hexToRgb(project.accent);
-    body.style.background = `conic-gradient(from 180deg at 50% 110%, rgba(${rgb}, 0.1) 0%, rgba(${rgb}, 0.05) 25%, rgba(0, 0, 0, 0.8) 70%)`;
-
-    return () => {
-      // Reset body background on cleanup
-      body.style.background = "";
-    };
-  });
+  let relatedProjects = data.relatedProjects;
 </script>
+
+<DynamicBackground accent={project.accent} scrollable={true} />
 
 <svelte:head>
   {#if project}
@@ -42,7 +24,7 @@
   {/if}
 </svelte:head>
 
-<div class="project-page" style="--project-accent: {project.accent}; --project-accent-rgb: {hexToRgb(project.accent)}">
+<div class="project-page" style="--project-accent: {project.accent}">
   <div class="project-content">
     <div class="project-image">
       <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
@@ -82,7 +64,7 @@
       <div class="tools-list">
         {#each project.tools as tool}
           <div class="tool-item">
-            <img src={getToolIconUrl(tool)} alt={tool} class="tool-icon" title={tool} onerror={() => {}} />
+            <ToolIcon toolName={tool} />
             <span class="tool-name">{tool}</span>
           </div>
         {/each}
@@ -99,14 +81,31 @@
       {/if}
     </div>
   </div>
+
+  {#if relatedProjects.length}
+    <div class="projects-horizontal-scroll" use:horizontalScroll>
+      {#each relatedProjects as related}
+        <ProjectCard
+          project={related}
+          onProjectClick={() => {
+            goto(`/project/${related.slug}`);
+          }}
+        />
+      {/each}
+    </div>
+  {/if}
 </div>
 
 <style lang="scss">
+  @use "$lib/styles/projects.scss" as projectStyles;
+  @include projectStyles.projects-horizontal-scroll;
+
   .project-page {
     padding: 6rem 2rem 2rem 2rem;
     max-width: 900px;
     margin: 0 auto;
-    color: var(--sinon-white);
+    //color: var(--sinon-white);
+    color: var(--sinon-black);
     min-height: 100vh;
     position: relative;
   }
@@ -116,7 +115,7 @@
     margin-bottom: 1rem;
 
     h1 {
-      font-family: "DM Serif Display", serif;
+      font-family: var(--font-pimento);
       font-size: 2.5rem;
       margin: 0;
       color: var(--project-accent);
@@ -214,17 +213,6 @@
       border-color: var(--project-accent);
       transform: translateX(3px);
     }
-  }
-
-  .tool-icon {
-    width: 20px;
-    height: 20px;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2px;
-    flex-shrink: 0;
   }
 
   .tool-name {

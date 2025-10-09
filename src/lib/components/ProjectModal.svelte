@@ -3,9 +3,9 @@
   import type { Project } from "$lib/utils/types.js";
   import { fade, fly } from "svelte/transition";
   import { quintOut } from "svelte/easing";
-  import { getToolIconUrl } from "$lib/utils/tools.js";
   import ProjectFeature from "./ProjectFeature.svelte";
   import "$lib/styles/markdown.scss";
+  import ToolIcon from "./ToolIcon.svelte";
 
   interface Props {
     project: Project;
@@ -87,7 +87,7 @@
           <div class="tools-section">
             <div class="tools-list">
               {#each project.tools as tool}
-                <img src={getToolIconUrl(tool)} alt={tool} class="tool-icon" title={tool} onerror={() => {}} />
+                <ToolIcon toolName={tool} />
               {/each}
             </div>
           </div>
