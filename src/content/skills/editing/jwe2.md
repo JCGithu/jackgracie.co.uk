@@ -1,16 +1,22 @@
 ---
 title: Jurassic World Evolution 2
-subtitle: "DLC Trailers"
-description: "Directed, shot, and edited multiple DLC trailers"
+subtitle: "DLC Trailers & Featurettes"
+description: "Directed, shot, and edited multiple DLC trailers. I worked on JWE2 across it's initial release and first five DLCs."
 skill: ["editing", "capture"]
 accent: "#DC8519"
 order: 1
+category: Frontier
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=bcv_RQB1Rlk"
-poster: "../images/editing/play2.jpg"
+poster: "/images/editing/TRex_Med.png"
+related: ["campCretaceous"]
 ---
 
-I worked on JWE2 exclusively for my first year at Frontier; from it's initial release to the first five DLCs. Getting to work with such iconic imagery felt like becoming a part of a series I'd loved since childhood.
+Getting to work on a series with such iconic imagery (and scoring) felt like becoming a part of a series I'd loved since childhood.
+
+During my time on JWE2 I worked on social content.
+
+If you're interested in any particular DLC they have seperate pages below, or you can click a link to get to a playlist of all my trailers.
 
 ## Dominion: Malta Expansion
 

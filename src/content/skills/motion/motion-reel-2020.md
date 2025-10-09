@@ -2,7 +2,6 @@
 title: "Motion Reel 2020"
 subtitle: "Showcase of Motion Graphics Work"
 description: "A compilation of motion graphics projects from 2020, featuring various animation styles and techniques."
-category: "motion"
 accent: "#f1c4eb"
 tools: ["After Effects", "Illustrator", "Photoshop"]
 skill: ["motion"]

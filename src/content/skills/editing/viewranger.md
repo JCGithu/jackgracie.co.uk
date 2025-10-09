@@ -2,7 +2,6 @@
 title: Viewranger Stories
 subtitle: Mini documentaries
 description: "Viewranger Stories is a series of 11 mini-documentaries I produced that followed users of the GPS tracking app ViewRanger across the UK."
-category: video
 accent: "#25AC7D"
 skill: ["editing"]
 order: 6

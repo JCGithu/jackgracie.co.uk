@@ -2,7 +2,6 @@
 title: Scrapped
 subtitle: Personal Work
 description: Originally was being developed as an intro to a series, but continued once it was scrapped. The girl's animation is mostly frame-by-frame, reconstructed with additional tweening in After Effects.
-category: motion
 accent: "#E04E4E"
 tools: ["After Effects", "Photoshop"]
 skill: ["motion"]

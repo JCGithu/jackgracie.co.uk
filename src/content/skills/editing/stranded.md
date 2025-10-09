@@ -1,26 +1,21 @@
 ---
 title: "Stranded: Alien Dawn"
-subtitle: "Release Trailer"
+subtitle: "Release & DLC Trailer"
 description: "Directing, Capturing, Editing"
 skill: ["capture", "editing"]
 accent: "#2FB684"
+category: Frontier
 order: 4
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=NTKYIu4nRz4"
-poster: "../images/editing/deep.jpg"
+poster: "../images/editing/stranded.jpg"
 ---
 
-All my previous Frontier projects had been building on established properties - so working on this through early access was a different experience. Seeing it's gameplay and building improve, and suggestions implimented, was very satisying. Think early Sims with survival gameplay.
+All my previous Frontier projects had been building on established properties — so working on _Stranded_ leaving early access was a very different experience. It's gameplay and toolset were constantly improving, and our workflow had to adapt alongside.
 
-## Robots and Guardians DLC
+Plotted camera moves needed to be completed through their Lua-based modding system, which allowed acces to environmental controls such as atmosphere and lighting.
 
-Stranded's first DLC was a very tight project, and a massive expansion to the core gameplay and story. The difficulty of Stranded was how to convey both narrative and game loop visually, as a majority of it's key moments happen entirely in UI. This meant adapting existing game animations, aligning characters, and basically trying to squeeze moments out where we can.
-
-**Role:** Scripted, Edited, Directed, Capture
-
-**Videos:**
-
-- [Robots and Guardians DLC Trailer](https://www.youtube.com/watch?v=NTKYIu4nRz4)
+Given the game is so focused on building and expanding your base we needed to make the bases in the trailers depicted the quintesential _Stranded_ experience. This involved in-game 'location scouting' to hand-pick interesting spots for dwellings, such as a crashsite or an overlook, and taking the time to playthrough hours of the game — ensuring that the base was fully usable and achievable.
 
 ## Stranded: Alien Dawn Launch
 
