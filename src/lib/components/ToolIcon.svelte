@@ -1,38 +1,15 @@
 <script lang="ts">
-  import { getToolIconUrl } from "$lib/utils/tools.js";
+  import { toolMap } from "$lib/utils/icons.js";
+  let { toolName }: { toolName: string } = $props();
 
-  export let toolName: string;
-  export let size: number = 24;
-  export let className: string = "";
-  export let fallbackColor: string = "#ffffff";
-
-  // Get the icon URL for the tool
-  $: iconUrl = getToolIconUrl(toolName);
-
-  // Fallback icon for when loading fails
-  const fallbackIcon = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${fallbackColor}">
-    <rect x="2" y="2" width="20" height="20" rx="2" stroke="${fallbackColor}" stroke-width="2" fill="none"/>
-    <text x="12" y="16" text-anchor="middle" font-size="8" fill="${fallbackColor}">?</text>
-  </svg>`;
+  let size = 24;
 </script>
 
-<div class="tool-icon {className}" style="width: {size}px; height: {size}px;">
-  <img
-    src={iconUrl}
-    alt={toolName}
-    title={toolName}
-    style="width: 100%; height: 100%; object-fit: contain;"
-    onerror={(e) => {
-      const img = e.currentTarget as HTMLImageElement;
-      const fallback = img.nextElementSibling as HTMLElement;
-      img.style.display = "none";
-      if (fallback) fallback.style.display = "block";
-    }}
-  />
-  <div style="display: none; width: 100%; height: 100%;" class="fallback-icon">
-    {@html fallbackIcon}
+{#if toolMap.has(toolName)}
+  <div class="tool-icon {toolName}" style="width: {size}px; height: {size}px;">
+    <img src={toolMap.get(toolName)} alt={toolName} title={toolName} />
   </div>
-</div>
+{/if}
 
 <style>
   .tool-icon {
