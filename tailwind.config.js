@@ -27,6 +27,7 @@ export default {
 			fontFamily: {
 				'serif': ['DM Serif Display', 'serif'],
 				'sans': ['Poppins', 'sans-serif'],
+				'pimento': ['Pimento', 'serif'],
 			},
 		},
 	},

@@ -1,6 +1,9 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* Import Custom Fonts */
+@import './pimento.css';
+
 @import 'tailwindcss';
 
 @plugin '@tailwindcss/typography';
@@ -25,6 +28,7 @@
 
   --font-serif: DM Serif Display, serif;
   --font-sans: Poppins, sans-serif;
+  --font-pimento: Pimento, serif;
 }
 
 /*
@@ -50,6 +54,7 @@
 	--sinon-red: #fe5f55;
 	--sinon-black: rgba(38, 45, 54, 1);
 	--sinon-white: #f7f7ff;
+	--off-white: #fee4d1;
 	--notion-black: #2f3437;
 	--pastel1: #fcb69f;
 	--pastel2: #ffac99;
@@ -63,6 +68,13 @@
 	--bg-magnifier: #525be1;
 	--maroon: #b14844;
 	--yellow: #fbcb71;
+}
+
+/* Global font scaling for large screens */
+@media screen and (min-width: 1800px) {
+	html {
+		font-size: 18px; /* Increase base font size from default 16px to 18px */
+	}
 }
 
 /* Global Styles */
@@ -161,6 +173,7 @@ h1 {
 	position: relative;
 	background-color: var(--notion-black);
 	background: linear-gradient(to top right, #803cff, rgb(47, 35, 49));
+	/* background-color: #fee4d1 !important; */
 }
 
 .backdrop {
