@@ -4,4 +4,4 @@
   let { data } = $props();
 </script>
 
-<BasicSkillPage skillData={data.skills.development} projects={data.skills.development.projects} />
+<BasicSkillPage skillData={data.skills.development} />

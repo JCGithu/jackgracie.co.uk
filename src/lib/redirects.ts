@@ -4,7 +4,6 @@ export default {
   "/capturereel": "/project/frontier",
   "/mographreel": "https://www.youtube.com/watch?v=ak7QmAedl2k",
   "/cv": "/data/CV.pdf",
-  "/notionclock": "/pages/notionclock",
-  "/pages/notionclock": "./src/projects/notionclock.jsx",
-  "/projects/notionclock": "./src/projects/notionclock.jsx"
+  "/pages/notionclock": "/notionclock",
+  "/projects/notionclock": "/notionclock"
 };

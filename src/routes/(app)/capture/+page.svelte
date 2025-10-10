@@ -1,6 +1,7 @@
 <script lang="ts">
   import BasicSkillPage from "$lib/components/BasicSkillPage.svelte";
   let { data } = $props();
+  let page = "capture";
 </script>
 
-<BasicSkillPage skillData={data.skills.editing} projects={data.skills.editing.projects} />
+<BasicSkillPage skillData={data.skills[page]} />

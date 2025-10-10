@@ -28,6 +28,7 @@ const config = {
 		}),
 		prerender: {
 			entries: ['*',
+				'/notionclock',
 				...Object.keys(redirects)
 			],
 			handleHttpError: 'warn',

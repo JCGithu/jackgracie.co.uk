@@ -1,8 +1,16 @@
-Add all the old redirects
-Add in new content
-Add the old side pages like notionclock
+- Colourful full screen menu
+- menu at bottom of home page if scroll.
+- Arrow Button, add more options and finalise style.
+  - Replace the arrow button in the project page
+- Add in new content
+- Add the old side pages like notionclock
+- Add a 404 page
 
-Use poline for better gradient generation
+Nice to have:
+
+- Get enhanced images to work
+
+Future:
 
 # ideas for pages
 
@@ -15,9 +23,14 @@ Using the swapy to make an interactive editing timeline
 A small code sandbox maybe
 Use your physics simulations from emote drop
 
+## ProjectCards
+
+- Stack up in horizontal
+- Animated when window change size
+- Hover shimy like for FunHaus
+
 ## Final Polish
 
 404 page
 
-- Add a 404 page
 - Add content back to the RSS feed
