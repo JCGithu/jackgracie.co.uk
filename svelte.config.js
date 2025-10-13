@@ -28,11 +28,11 @@ const config = {
 		}),
 		prerender: {
 			entries: ['*',
+				...Object.keys(redirects),
 				'/notionclock',
-				...Object.keys(redirects)
 			],
-			handleHttpError: 'warn',
-			handleUnseenRoutes: 'ignore'
+			handleHttpError: 'fail',
+			handleUnseenRoutes: 'warn'
 		}
 	}
 };
