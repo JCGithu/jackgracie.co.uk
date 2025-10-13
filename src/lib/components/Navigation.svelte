@@ -3,14 +3,20 @@
   import { fly } from "svelte/transition";
   import { ScrollState } from "runed";
   import ArrowButton from "$lib/components/ArrowButton.svelte";
+  import Hamburger from "./Hamburger.svelte";
+  import type { Skill } from "$lib/utils/types.js";
+
   interface Props {
     currentSkill: {
       name: string;
       showing: boolean;
     };
+    data: { skills: Record<string, Skill> };
   }
 
-  let { currentSkill }: Props = $props();
+  let { currentSkill, data }: Props = $props();
+  let skills = data.skills;
+  let menuOpen = $state(false);
 
   const scroll = new ScrollState({
     element: () => window,
@@ -24,11 +30,35 @@
   function goBackToSkill() {
     currentSkill.name ? goto(`/${currentSkill.name}`) : goHome();
   }
+
+  function navigateToSkill(skill: string) {
+    goto(`/${skill}`);
+    setTimeout(() => {
+      menuOpen = false;
+    }, 300);
+  }
+
+  function handleHamburgerClick() {
+    menuOpen = !menuOpen;
+  }
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (event.key === "Escape" && menuOpen) {
+      menuOpen = false;
+    }
+  }
+
+  let hamburgerColour = $derived.by(() => {
+    if (menuOpen) return "white";
+    return currentSkill.showing && !navBarShow ? "var(--sinon-black)" : "white";
+  });
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <nav class="navBar" class:navbarFill={navBarShow}>
   <div class="nav-left">
-    <button id="monogram" onclick={goHome}>jg</button>
+    <button id="monogram" class:skillpage={currentSkill.showing && !navBarShow} onclick={goHome}>jg</button>
     {#if currentSkill.showing && currentSkill.name}
       <ArrowButton onclick={goBackToSkill} direction="left" colour="black" fade={false} right={false} hover={"black"} fill={false} lightMode={navBarShow}>
         Back to {currentSkill.name}
@@ -36,6 +66,18 @@
     {/if}
   </div>
 </nav>
+
+<button class="hamburger" class:skillpage={currentSkill.showing && !navBarShow} aria-label="Toggle menu" onclick={handleHamburgerClick}>
+  <Hamburger menu={menuOpen} colour={hamburgerColour} />
+</button>
+
+{#if menuOpen}
+  <div id="menu" role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="0">
+    {#each Object.keys(skills) as skill, index (skill)}
+      <button transition:fly|global={{ x: 100, delay: index * 100, duration: 300 }} class="menu_item" style="--accent-color: {skills[skill].accent}" onclick={() => navigateToSkill(skills[skill].slug)}> {skills[skill].name} </button>
+    {/each}
+  </div>
+{/if}
 
 <style lang="scss">
   @use "$lib/styles/_breakpoints" as *;
@@ -69,19 +111,23 @@
     border: none;
     color: white;
     font-size: 1.5rem;
+    margin-top: -0.2rem;
     font-weight: bold;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
     pointer-events: auto;
   }
 
+  .skillpage {
+    color: var(--sinon-black) !important;
+  }
+
   .navbarFill {
     background: var(--sinon-black);
     opacity: 1;
-  }
-
-  #monogram {
-    margin-top: -0.2rem;
+    #monogram {
+      color: white;
+    }
   }
 
   @keyframes fadeIn {
@@ -97,5 +143,53 @@
     .nav-left {
       gap: 0.75rem;
     }
+  }
+
+  /* Menu Styles */
+  .hamburger {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    z-index: 1001;
+    width: 2rem;
+    height: 2rem;
+    background: none;
+    border: none;
+  }
+
+  #menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    button {
+      font-family: "Pimento";
+      height: 100%;
+      background: var(--accent-color);
+    }
+  }
+
+  .menu_item {
+    list-style: none;
+    color: white;
+    font-size: 2rem;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 1rem;
+    transition: color 0.3s ease;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
   }
 </style>
