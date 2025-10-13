@@ -93,6 +93,7 @@
   </div>
 
   {#if relatedProjects.length}
+    <h3>Related Projects</h3>
     <div class="projects-horizontal-scroll" use:horizontalScroll>
       {#each relatedProjects as related}
         <ProjectCard

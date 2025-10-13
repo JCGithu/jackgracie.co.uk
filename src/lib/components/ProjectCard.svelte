@@ -94,12 +94,12 @@
     justify-content: space-between;
 
     h3 {
-      font-family: inherit;
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
       margin: 0.5rem 0;
       color: var(--sinon-white);
       line-height: 1.3;
+      line-break: loose;
       font-weight: 600;
       font-family: var(--font-pimento);
     }
