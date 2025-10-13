@@ -1,7 +1,6 @@
 <script lang="ts">
   import "../../app.scss";
   import Navigation from "$lib/components/Navigation.svelte";
-  import Menu from "$lib/components/Menu.svelte";
   import type { LayoutProps } from "./$types";
   import PageTransition from "$lib/transition.svelte";
   import { page } from "$app/stores";
@@ -38,8 +37,7 @@
   });
 </script>
 
-<Navigation {currentSkill} />
-<Menu {data} />
+<Navigation {currentSkill} {data} />
 
 <main>
   <PageTransition url={data.url} {colours}>
