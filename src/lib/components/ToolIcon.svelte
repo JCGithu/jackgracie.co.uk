@@ -1,14 +1,17 @@
 <script lang="ts">
   import { toolMap } from "$lib/utils/icons.js";
+  import ToolTip from "./ToolTip.svelte";
   let { toolName }: { toolName: string } = $props();
 
-  let size = 24;
+  let size = 30;
 </script>
 
 {#if toolMap.has(toolName)}
-  <div class="tool-icon {toolName}" style="width: {size}px; height: {size}px;">
-    <img src={toolMap.get(toolName)} alt={toolName} title={toolName} />
-  </div>
+  <ToolTip content={toolName}>
+    <div class="tool-icon {toolName}" style="width: {size}px; height: {size}px;">
+      <img src={toolMap.get(toolName)} alt={toolName} />
+    </div>
+  </ToolTip>
 {/if}
 
 <style>
