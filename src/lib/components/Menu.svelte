@@ -1,6 +1,5 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import hamburgerIcon from "../../images/hamburger.svg";
   import type { Skill } from "$lib/utils/types.js";
   import { fly } from "svelte/transition";
   import Hamburger from "./hamburger.svelte";
