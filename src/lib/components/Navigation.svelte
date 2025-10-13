@@ -4,6 +4,7 @@
   import { ScrollState } from "runed";
   import ArrowButton from "$lib/components/ArrowButton.svelte";
   import Hamburger from "./Hamburger.svelte";
+  import Menu from "./Menu.svelte";
   import type { Skill } from "$lib/utils/types.js";
 
   interface Props {
@@ -72,15 +73,20 @@
 </button>
 
 {#if menuOpen}
-  <div id="menu" role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="0">
-    {#each Object.keys(skills) as skill, index (skill)}
-      <button transition:fly|global={{ x: 100, delay: index * 100, duration: 300 }} class="menu_item" style="--accent-color: {skills[skill].accent}" onclick={() => navigateToSkill(skills[skill].slug)}> {skills[skill].name} </button>
-    {/each}
+  <div class="menu" role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="0">
+    <Menu {skills} onNavigate={navigateToSkill} />
   </div>
 {/if}
 
 <style lang="scss">
   @use "$lib/styles/_breakpoints" as *;
+  @use "$lib/styles/menu" as *;
+
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 
   .nav-left {
     display: flex;
@@ -155,41 +161,5 @@
     height: 2rem;
     background: none;
     border: none;
-  }
-
-  #menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0);
-    z-index: 1000;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    justify-content: center;
-    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-    button {
-      font-family: "Pimento";
-      height: 100%;
-      background: var(--accent-color);
-    }
-  }
-
-  .menu_item {
-    list-style: none;
-    color: white;
-    font-size: 2rem;
-    font-family: "Poppins", sans-serif;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 1rem;
-    transition: color 0.3s ease;
-    text-align: center;
-    width: 100%;
-    display: inline-block;
   }
 </style>
