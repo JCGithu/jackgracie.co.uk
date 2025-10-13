@@ -5,14 +5,29 @@
   import "$lib/styles/markdown.scss";
   import ProjectCard from "$lib/components/ProjectCard.svelte";
   import { goto } from "$app/navigation";
+  import { fade, fly } from "svelte/transition";
+  import { ScrollState, ElementSize } from "runed";
+  import { onMount } from "svelte";
   import { horizontalScroll } from "$lib/utils/horizontalScroll.js";
   let { data } = $props();
 
   let project = data.project;
   let relatedProjects = data.relatedProjects;
-</script>
 
-<DynamicBackground accent={project.accent} scrollable={true} />
+  const scroll = new ScrollState({
+    element: () => window,
+  });
+
+  let showMetadata = $derived(scroll.y > 50);
+  onMount(() => {
+    let scrollHeight = document.documentElement.scrollHeight;
+    let windowHeight = window.innerHeight;
+    console.log(scrollHeight, windowHeight);
+    if (scrollHeight <= windowHeight) {
+      showMetadata = true;
+    }
+  });
+</script>
 
 <svelte:head>
   {#if project}
@@ -25,61 +40,56 @@
 </svelte:head>
 
 <div class="project-page" style="--project-accent: {project.accent}">
-  <div class="project-content">
-    <div class="project-image">
+  <div class="title-container">
+    <div class="feature-container">
       <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
     </div>
-
-    <div class="project-header">
-      <h1>{project.title}</h1>
-    </div>
-
-    <div class="description">
-      {@html project.description}
-    </div>
-
-    <div class="project-content-body">
-      <project.content />
-    </div>
+    <h1>{project.title}</h1>
   </div>
 
-  <div class="project-metadata">
-    <div class="metadata-left">
-      {#if project.subtitle}
-        <div class="metadata-item">
-          <span class="metadata-label">Project:</span>
-          <span class="metadata-value">{project.subtitle}</span>
-        </div>
-      {/if}
-
-      {#if project.client}
-        <div class="metadata-item">
-          <span class="metadata-label">Client:</span>
-          <span class="metadata-value">{project.client}</span>
-        </div>
-      {/if}
+  <div class="project-body">
+    <div class="content">
+      <project.content />
     </div>
+    <aside class="sidebar">
+      {#if showMetadata}
+        <div class="metadata" transition:fly={{ x: -200 }}>
+          <div class="metadata-inner">
+            {#if project.subtitle}
+              <div class="metadata-item">
+                <span class="metadata-value">{project.subtitle}</span>
+              </div>
+            {/if}
+            <div class="description">
+              {@html project.description}
+            </div>
 
-    <div class="metadata-right">
-      <div class="tools-list">
-        {#each project.tools as tool}
-          <div class="tool-item">
-            <ToolIcon toolName={tool} />
-            <span class="tool-name">{tool}</span>
+            {#if project.client}
+              <div class="metadata-item">
+                <span class="metadata-label">Client:</span>
+                <span class="metadata-value">{project.client}</span>
+              </div>
+            {/if}
+
+            <div class="tools-list">
+              {#each project.tools as tool}
+                <ToolIcon toolName={tool} />
+              {/each}
+
+              {#if project.links && project.links.length > 0}
+                <div class="links-list">
+                  {#each project.links as link}
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
+                      {link.text}
+                    </a>
+                  {/each}
+                </div>
+              {/if}
+            </div>
           </div>
-        {/each}
-      </div>
-
-      {#if project.links && project.links.length > 0}
-        <div class="links-list">
-          {#each project.links as link}
-            <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
-              {link.text}
-            </a>
-          {/each}
         </div>
       {/if}
-    </div>
+    </aside>
   </div>
 
   {#if relatedProjects.length}
@@ -87,6 +97,7 @@
       {#each relatedProjects as related}
         <ProjectCard
           project={related}
+          horizontal={true}
           onProjectClick={() => {
             goto(`/project/${related.slug}`);
           }}
@@ -96,59 +107,80 @@
   {/if}
 </div>
 
+<DynamicBackground />
+
 <style lang="scss">
   @use "$lib/styles/projects.scss" as projectStyles;
+  @use "$lib/styles/_breakpoints" as *;
+  @use "$lib/styles/_scrollbars.scss" as *;
   @include projectStyles.projects-horizontal-scroll;
+
+  :global(html) {
+    --project-accent: var(--project-accent);
+    //@include custom-scrollbar($thumb-color: var(--project-accent), $track-color: var(--off-white), $width: 12px, $border-radius: 6px, $hover-mix: 80);
+  }
 
   .project-page {
     padding: 6rem 2rem 2rem 2rem;
     max-width: 900px;
+    position: fixed;
     margin: 0 auto;
-    //color: var(--sinon-white);
     color: var(--sinon-black);
-    min-height: 100vh;
-    position: relative;
+    position: static;
+
+    gap: 2rem;
   }
 
-  .project-header {
+  .title-container {
     text-align: center;
     margin-bottom: 1rem;
 
     h1 {
       font-family: var(--font-pimento);
       font-size: 2.5rem;
-      margin: 0;
+      margin: 2rem 0;
       color: var(--project-accent);
     }
   }
 
-  .project-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: start;
-    margin-bottom: 2rem;
-  }
-
-  .project-metadata {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 1rem;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    bottom: 2rem;
+  .project-body {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
+    grid-template-columns: 1fr 0.3fr;
+    grid-gap: 2rem;
+    align-items: baseline !important;
   }
 
-  .metadata-left,
-  .metadata-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  .content {
+    //min-height: 100vh;
+    margin-bottom: 2rem;
+    background-color: var(--off-white);
+    z-index: 3;
+    background-repeat: repeat;
+    background-image: var(--grain);
+  }
+
+  .sidebar {
+    position: sticky !important;
+    top: 5rem;
+    align-self: start;
+  }
+
+  @keyframes skew {
+    from {
+      transform: skew(-20deg);
+    }
+    to {
+      transform: skew(0deg);
+    }
+  }
+
+  .metadata-inner {
+    background: var(--project-accent);
+    border-radius: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem !important;
+    animation: skew 0.4s ease-out;
   }
 
   .metadata-item {
@@ -158,20 +190,17 @@
   }
 
   .metadata-label {
-    font-size: 0.9rem;
-    color: var(--project-accent);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   .metadata-value {
-    font-size: 1rem;
     color: var(--sinon-white);
     opacity: 0.9;
   }
 
-  .project-image {
+  .feature-container {
     width: 100%;
     max-width: 800px;
     aspect-ratio: 16 / 9;
@@ -188,37 +217,14 @@
     margin: 0;
     opacity: 0.9;
     line-height: 1.5;
-    font-size: 1rem;
+    //font-size: 1rem;
   }
 
   .tools-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.75rem;
     margin-top: 0.5rem;
-  }
-
-  .tool-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--project-accent);
-      transform: translateX(3px);
-    }
-  }
-
-  .tool-name {
-    font-size: 0.85rem;
-    color: var(--sinon-white);
-    font-weight: 500;
   }
 
   .links-list {
@@ -246,31 +252,49 @@
     }
   }
 
+  @media screen and (max-width: $bp-mobile-small) {
+    .project-page {
+      padding: 6rem 0.5rem 0.5rem 0.5rem;
+    }
+  }
+
   // Mobile responsive styles
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $bp-mobile) {
     .project-page {
       padding: 6rem 1rem 1rem 1rem;
+      flex-direction: column;
+      gap: 2rem;
     }
 
-    .project-header h1 {
+    .project-body {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      margin-bottom: 1rem;
+    }
+
+    .title-container {
+      flex: none;
+    }
+
+    .title-container h1 {
       font-size: 2rem;
     }
 
-    .project-content {
+    .content {
       gap: 1.5rem;
     }
 
-    .project-metadata {
+    .metadata {
+      position: static; // Remove sticky on mobile
+      top: auto;
+    }
+
+    .metadata-inner {
       padding: 1.5rem;
-      position: relative;
-      bottom: auto;
       grid-template-columns: 1fr;
       gap: 1.5rem;
-    }
-
-    .metadata-left,
-    .metadata-right {
-      gap: 1rem;
     }
 
     .links-list {

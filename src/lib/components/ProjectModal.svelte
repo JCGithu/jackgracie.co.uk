@@ -15,18 +15,6 @@
 
   let { project, isOpen, closeModal }: Props = $props();
 
-  // Convert hex to RGB for backdrop gradient
-  function hexToRgb(hex: string): string {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (result) {
-      const r = parseInt(result[1], 16);
-      const g = parseInt(result[2], 16);
-      const b = parseInt(result[3], 16);
-      return `${r}, ${g}, ${b}`;
-    }
-    return "191, 133, 246"; // fallback to purple
-  }
-
   function handleKeydown(event: KeyboardEvent) {
     if (event.key === "Escape") {
       closeModal();
@@ -43,8 +31,8 @@
 <svelte:window on:keydown={handleKeydown} />
 
 {#if isOpen && project}
-  <div class="modal-backdrop" style="--project-accent: {project.accent}; --project-accent-rgb: {hexToRgb(project.accent)}" onclick={handleBackdropClick} onkeydown={handleKeydown} role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1" transition:fade={{ duration: 300, easing: quintOut }}>
-    <div class="modal-content" style="--project-accent: {project.accent}" transition:fly={{ y: 50, duration: 400, easing: quintOut }}>
+  <div class="modal-backdrop" style="--project-accent: {project.accent}" onclick={handleBackdropClick} onkeydown={handleKeydown} role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1" transition:fade={{ duration: 300, easing: quintOut }}>
+    <div class="modal-content" style="--project-accent: {project.accent}">
       <!-- Two Column Grid Layout -->
       <div class="modal-body">
         <button class="close-button" onclick={closeModal} aria-label="Close modal">
@@ -103,13 +91,29 @@
 {/if}
 
 <style lang="scss">
+  @use "$lib/styles/_breakpoints" as *;
+  @use "$lib/styles/_scrollbars" as *;
+
+  .modal-body {
+    display: grid;
+    background-color: var(--off-white);
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    height: 100%;
+    padding: 2rem;
+    scrollbar-width: none;
+    overflow: hidden;
+    min-width: 0;
+    position: relative;
+  }
+
   .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: color-mix(in srgb, var(--sinon-black) 50%, transparent);
     background-image: radial-gradient(circle at center, rgba(var(--project-accent-rgb), 0.1) 0%, rgba(0, 0, 0, 0.8) 70%);
     backdrop-filter: blur(4px);
     display: flex;
@@ -120,7 +124,17 @@
     box-sizing: border-box;
   }
 
+  @keyframes flyIn {
+    from {
+      transform: translateY(200px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
   .modal-content {
+    color: var(--sinon-white);
     background: rgba(20, 20, 20, 0.95);
     border-radius: 1rem;
     max-width: 1000px;
@@ -132,48 +146,13 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
+    animation: flyIn 0.4s cubic-bezier(0.29, 1.64, 0.45, 1);
+    // Custom scrollbar styling for main modal using mixin
+    @include modal-scrollbar;
 
-    // Custom scrollbar styling
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.5);
-      }
-    }
-
-    // Content column scrollbar styling
+    // Content column scrollbar styling using mixin
     .content-column {
-      &::-webkit-scrollbar {
-        width: 8px !important;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: transparent !important;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: var(--project-accent) !important;
-        border-radius: 4px !important;
-
-        &:hover {
-          background: var(--project-accent) !important;
-          opacity: 0.8 !important;
-        }
-      }
-
-      // Firefox scrollbar styling
-      scrollbar-width: thin !important;
-      scrollbar-color: var(--project-accent) transparent !important;
+      @include project-scrollbar;
     }
   }
 
@@ -181,7 +160,8 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: rgba(255, 255, 255, 0.1);
+    //background: rgba(255, 255, 255, 0.1);
+    background: var(--project-accent);
     border: none;
     border-radius: 50%;
     width: 40px;
@@ -195,8 +175,13 @@
     transition: background-color 0.2s ease;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: var(--sinon-black);
     }
+  }
+
+  .description-text {
+    //margin: 0;
+    margin-bottom: -1rem;
   }
 
   .featured-media {
@@ -210,34 +195,23 @@
     justify-content: center;
   }
 
-  .modal-body {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    height: 100%;
-    padding: 2rem;
-    scrollbar-width: none;
-    overflow: hidden;
-    min-width: 0;
-    position: relative;
-  }
-
   .content-column {
-    color: var(--sinon-white);
-    overflow-y: scroll !important;
+    //color: var(--sinon-white);
+    overflow-y: auto;
     padding-bottom: 2rem;
     padding-right: 1rem;
   }
 
   .project-title {
-    font-family: "DM Serif Display", serif;
+    font-family: "Pimento", serif;
     font-size: 2.5rem;
     margin: 0;
     color: var(--project-accent);
   }
 
   .metadata-column {
-    color: var(--sinon-white);
+    //color: var(--sinon-white);
+    color: var(--sinon-black);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -283,26 +257,14 @@
     align-items: center;
   }
 
-  .tool-icon {
-    width: 32px;
-    height: 32px;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 4px;
-
-    &:hover {
-      opacity: 1;
-      transform: scale(1.1);
-      background: rgba(255, 255, 255, 0.1);
-    }
-  }
-
   .modal-actions {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  button {
+    font-family: "Poppins", sans-serif;
   }
 
   .primary-button {
@@ -326,7 +288,7 @@
 
   .secondary-button {
     background: transparent;
-    color: var(--sinon-white);
+    //color: var(--sinon-white);
     border: 1px solid var(--project-accent);
     padding: 0.875rem 1.5rem;
     border-radius: 0.5rem;
@@ -343,7 +305,7 @@
   }
 
   // Mobile responsive styles
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $bp-mobile) {
     .modal-backdrop {
       padding: 1rem;
     }

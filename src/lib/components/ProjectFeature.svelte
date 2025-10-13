@@ -1,24 +1,18 @@
 <script lang="ts">
   let { feature, title, poster, compact = false }: { feature: string; title: string; poster: string; compact?: boolean } = $props();
 
+  import YouTube from "$lib/components/YouTube.svelte";
+
   let url = feature.includes("http");
   let youtube = feature.includes("youtube.com") || feature.includes("youtu.be");
   let video = feature.includes("webm");
   let image = feature.includes("jpg") || feature.includes("jpeg") || feature.includes("png") || feature.includes("gif");
-
-  if (youtube) {
-    const videoId = feature.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/)?.[1];
-    if (videoId) {
-      feature = `https://www.youtube.com/embed/${videoId}`;
-    }
-  }
 </script>
 
 {#if url}
   {#if youtube}
-    <!-- YouTube embeds -->
-    <div class="feature-embed" style="--aspect-ratio: {compact ? '21 / 9' : '16 / 9'};">
-      <iframe src={feature} {title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    <div class="feature-video" style="--aspect-ratio: {compact ? '21 / 9' : '16 / 9'};">
+      <YouTube url={feature} {title} />
     </div>
   {/if}
 {:else if video}
@@ -36,7 +30,6 @@
 {/if}
 
 <style lang="scss">
-  .feature-embed,
   .feature-video,
   .feature-image {
     width: 100%;
@@ -47,16 +40,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .feature-embed {
-    iframe {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border: none;
-    }
   }
 
   .feature-video {

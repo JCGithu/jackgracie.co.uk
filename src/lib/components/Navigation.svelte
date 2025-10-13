@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import { fly } from "svelte/transition";
   import { ScrollState } from "runed";
+  import ArrowButton from "$lib/components/ArrowButton.svelte";
   interface Props {
     currentSkill: {
       name: string;
@@ -11,11 +11,11 @@
   }
 
   let { currentSkill }: Props = $props();
-  // let el = $state<HTMLElement>();
+
   const scroll = new ScrollState({
     element: () => window,
   });
-  let navBarBlack = $derived(scroll.y > 50);
+  let navBarShow = $derived(scroll.y > 50);
 
   function goHome() {
     goto("/");
@@ -26,27 +26,58 @@
   }
 </script>
 
-<nav class="navBar" class:navbarFill={navBarBlack}>
+<nav class="navBar" class:navbarFill={navBarShow}>
   <div class="nav-left">
     <button id="monogram" onclick={goHome}>jg</button>
     {#if currentSkill.showing && currentSkill.name}
-      <button id="back-button" out:fly={{ x: -150 }} onclick={goBackToSkill}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        </svg>
+      <ArrowButton onclick={goBackToSkill} direction="left" colour="black" fade={false} right={false} hover={"black"} fill={false} lightMode={navBarShow}>
         Back to {currentSkill.name}
-      </button>
+      </ArrowButton>
     {/if}
   </div>
 </nav>
 
-<style>
+<style lang="scss">
+  @use "$lib/styles/_breakpoints" as *;
+
   .nav-left {
     display: flex;
     align-items: center;
     gap: 1rem;
     /* pointer-events: auto; */
     flex: 1;
+  }
+  /* Navigation Styles */
+  .navBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 4rem;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    background: transparent;
+    transition: background 0.5s ease;
+  }
+
+  #monogram {
+    align-self: baseline;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .navbarFill {
+    background: var(--sinon-black);
+    opacity: 1;
   }
 
   #monogram {
@@ -62,52 +93,9 @@
     }
   }
 
-  #back-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    margin-left: 0.35rem;
-    color: var(--sinon-white);
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: capitalize;
-    font-family: "Poppins", sans-serif;
-    pointer-events: auto;
-    opacity: 0;
-    transition: all 0.3s ease;
-    animation: fadeIn 2s 1s ease forwards;
-  }
-
-  #back-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: var(--sinon-white);
-    margin-left: 0.2rem;
-  }
-
-  #back-button svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $bp-mobile) {
     .nav-left {
       gap: 0.75rem;
-    }
-
-    #back-button {
-      padding: 0.4rem 0.6rem;
-      font-size: 0.75rem;
-    }
-
-    #back-button svg {
-      width: 14px;
-      height: 14px;
     }
   }
 </style>

@@ -64,7 +64,7 @@
   <meta name="description" content="{skillData.name} projects by Jack Gracie" />
 </svelte:head>
 
-<DynamicBackground accent={skillData.accent} scrollable={true} />
+<DynamicBackground />
 
 <div class="skill-page" class:modal-open={isModalOpen}>
   <div class="skill-banner">
@@ -82,7 +82,7 @@
         </div>
         {#if skillData.reel}
           <div class="reel-toggle-button-container">
-            <ArrowButton onclick={toggleReel} direction={isReelExpanded ? "up" : "down"} color={skillData.accent} right={true} fill={true} fade={false}>
+            <ArrowButton onclick={toggleReel} direction={isReelExpanded ? "up" : "down"} colour={skillData.accent} hover={"black"} right={true} fill={true} fade={false}>
               {isReelExpanded ? "Hide" : "Reel"}
             </ArrowButton>
           </div>
@@ -95,7 +95,7 @@
             <ProjectFeature feature={skillData.reel.video} title={skillData.reel.title} poster={skillData.reel.title} compact={true} />
           </div>
           <div class="reel-info">
-            <ArrowButton onclick={() => goto(skillData.reel?.link || "/")} color="var(--sinon-black)" fill={true} fade={false}>Read More</ArrowButton>
+            <ArrowButton onclick={() => goto(skillData.reel?.link || "/")} direction="right" right={true} colour="var(--sinon-black)" fill={true} fade={false}>Read More</ArrowButton>
           </div>
         </div>
       {/if}
@@ -132,6 +132,9 @@
 
 <style lang="scss">
   @use "$lib/styles/projects.scss" as projectStyles;
+  @use "$lib/styles/_breakpoints" as *;
+  @use "$lib/styles/_scrollbars" as *;
+
   @include projectStyles.projects-horizontal-scroll;
   @include projectStyles.projects-flex;
 
@@ -279,7 +282,7 @@
   }
 
   // Mobile responsive styles
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: $bp-desktop) {
     .skill-page {
       flex-direction: column !important;
       overflow: visible !important;
@@ -350,27 +353,8 @@
     }
   }
 
-  // Custom scrollbar styling for skill content
+  // Custom scrollbar styling for skill content using mixin
   .skill-content {
-    scrollbar-width: auto !important;
-    scrollbar-color: var(--skill-accent) rgba(255, 255, 255, 0.1) !important;
-
-    &::-webkit-scrollbar {
-      width: 12px !important;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.1) !important;
-      border-radius: 6px !important;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--skill-accent) !important;
-      border-radius: 6px !important;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: color-mix(in srgb, var(--skill-accent) 80%, white) !important;
-    }
+    @include custom-scrollbar($thumb-color: var(--skill-accent), $track-color: transparent, $width: 12px, $border-radius: 6px, $hover-mix: 80);
   }
 </style>

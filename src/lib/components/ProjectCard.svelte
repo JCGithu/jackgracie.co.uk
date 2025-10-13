@@ -9,7 +9,6 @@
 
   let { project, horizontal = false, onProjectClick }: Props = $props();
   let imgSrc = import.meta.glob("/images/editing/playlist.png");
-  console.log(project.poster);
 </script>
 
 <div class="project-card" class:horizontal style="--accent: {project.accent}" role="button" tabindex="0" onclick={() => onProjectClick(project)} onkeydown={(e) => e.key === "Enter" && onProjectClick(project)}>
@@ -30,9 +29,12 @@
 </div>
 
 <style lang="scss">
+  @use "$lib/styles/_breakpoints" as *;
   // Card width variable - 300px for wide, 240px for mobile
   .project-card {
     --cardWidth: 300px;
+
+    --cardRatio: 2.5 / 3.5;
 
     background: rgba(255, 255, 255, 0.05);
     background-color: var(--accent);
@@ -40,30 +42,22 @@
     overflow: hidden;
     transition:
       transform 0.3s ease,
-      border-color 0.3s ease;
-    //border: 1px solid rgba(255, 255, 255, 0.1);
-    border: 2px solid transparent inset;
+      outline 0.3s ease;
+    //border: 2px solid rgba(255, 255, 255, 0);
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    outline: 2px solid transparent;
+    outline-offset: -2px;
 
-    // Playing card aspect ratio (2.5:3.5)
-    aspect-ratio: 2.5 / 3.5 !important;
+    aspect-ratio: var(--cardRatio) !important;
     width: 100%;
-    height: auto; // Let aspect-ratio control height
-
-    // When container is wide enough for 2+ cards, max to cardWidth
+    height: auto;
     max-width: var(--cardWidth);
 
     &:hover {
       transform: translateY(-2px);
-      //border-color: var(--accent);
-      border: 2px solid var(--sinon-black) inset;
-    }
-
-    &:focus {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
+      outline: 2px solid var(--sinon-black);
     }
 
     // Horizontal variant for categorized projects
@@ -72,28 +66,28 @@
       max-width: var(--cardWidth);
       flex-shrink: 0;
       height: 380px;
-      aspect-ratio: unset;
+      //aspect-ratio: unset;
     }
+  }
 
-    .project-image {
+  .project-image {
+    width: 100%;
+    height: 45%; // Take up 45% of card height for good balance
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    img {
       width: 100%;
-      height: 45%; // Take up 45% of card height for good balance
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      height: 100%;
+      object-fit: cover;
     }
   }
 
   .project-info {
-    padding: 1rem;
+    padding: 0 15px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -103,6 +97,7 @@
       font-family: inherit;
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
+      margin: 0.5rem 0;
       color: var(--sinon-white);
       line-height: 1.3;
       font-weight: 600;
@@ -114,7 +109,7 @@
       color: black;
       color: var(--sinon-black);
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin: 0;
       font-size: 0.9rem;
     }
 
@@ -136,23 +131,23 @@
   }
 
   //Single file layout
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: $bp-desktop) {
     @container (max-width: calc(600px + 1.5rem)) {
       .project-card {
         width: 100%;
         max-width: 100%;
-        aspect-ratio: unset !important;
+        //aspect-ratio: unset !important;
       }
     }
   }
 
   // Mobile responsive styles
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: $bp-desktop) {
     .project-card {
       --cardWidth: 240px;
 
       // Maintain aspect ratio on mobile, but allow smaller base size
-      aspect-ratio: 2.5 / 3.5;
+      aspect-ratio: var(--cardRatio);
       height: auto;
 
       &.horizontal {

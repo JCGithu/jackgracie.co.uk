@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "../../app.css";
+  import "../../app.scss";
   import Navigation from "$lib/components/Navigation.svelte";
   import Menu from "$lib/components/Menu.svelte";
   import type { LayoutProps } from "./$types";
@@ -20,12 +20,19 @@
     name: "",
     showing: false,
   });
+
   $effect(() => {
     let slug = $page.url.pathname.split("/").pop()!;
     if (Object.values(data.skills).some((skill) => skill.slug === slug)) {
       currentSkill.name = slug;
       currentSkill.showing = false;
     } else {
+      for (const skill of Object.keys(data.skills)) {
+        if (data.skills[skill].projects.some((project) => project.slug === slug)) {
+          currentSkill.name = skill;
+          currentSkill.showing = true;
+        }
+      }
       currentSkill.showing = slug.length > 1;
     }
   });

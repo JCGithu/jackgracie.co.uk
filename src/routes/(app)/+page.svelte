@@ -19,6 +19,7 @@
   <meta name="description" content="Jack Gracie - Motion Graphics, Video, and Web Design Portfolio" />
 </svelte:head>
 
+<div class="noise"></div>
 <div class="home">
   <Backdrop />
   <div class="titleBox">
@@ -31,3 +32,16 @@
     </div>
   </div>
 </div>
+
+<style>
+  .noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/images/noise.png");
+    opacity: 0.3;
+    z-index: 10;
+  }
+</style>
