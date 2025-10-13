@@ -125,5 +125,4 @@
   .error-status {
     font-weight: 600;
   }
-
 </style>

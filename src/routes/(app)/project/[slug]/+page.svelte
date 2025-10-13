@@ -151,7 +151,6 @@
     align-items: baseline !important;
   }
 
-
   .sidebar {
     position: sticky !important;
     top: 5rem;
@@ -271,7 +270,6 @@
     .title-container h1 {
       font-size: 2rem;
     }
-
 
     .metadata {
       position: static; // Remove sticky on mobile
