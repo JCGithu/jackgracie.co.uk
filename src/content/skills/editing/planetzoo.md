@@ -1,7 +1,7 @@
 ---
 title: Planet Zoo
 subtitle: "DLC Trailers"
-description: "Directed, shot, and edited multiple DLC trailers"
+description: "Build a world for wildlife in Planet Zoo, the ultimate Zoo simulator"
 skill: ["editing"]
 category: Frontier
 accent: "#2FB684"
@@ -10,6 +10,7 @@ tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=KBQjFXOz1mc"
 poster: "../images/editing/Zoo_Med.png"
 related: ["arid", "oceania"]
+role: "Captured, Edited, Directed"
 ---
 
 Cute animals, colourful environments, what's not to like?

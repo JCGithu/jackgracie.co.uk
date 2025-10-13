@@ -14,7 +14,6 @@ links:
 ---
 
 This tool was built out of my own want to transfer my Storygraph data quickly to another platform. It lets you copy out the books in your lists into easy to manage text blocks. Please see the video for an example.
-<br/>
 
 ## Features
 

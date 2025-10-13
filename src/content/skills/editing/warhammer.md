@@ -1,12 +1,12 @@
 ---
 title: "Warhammer 40K: Chaos Gate"
 subtitle: Console Launch Trailer
-description: Edited and captured
+description: "Lead the Grey Knights to exterminate the forces of Chaos in fast-paced, ferocious, turn-based tactical combat."
 skill: ["editing", "capture"]
 category: Frontier
 accent: "#1C748A"
 order: 3
-role: "Edit and Capture"
+role: "Shot and Edited"
 tools: ["After Effects", "Premiere", "Unity"]
 poster: "https://img.youtube.com/vi/RAi2bDQeoEo/maxresdefault.jpg"
 feature: "https://www.youtube.com/watch?v=RAi2bDQeoEo"

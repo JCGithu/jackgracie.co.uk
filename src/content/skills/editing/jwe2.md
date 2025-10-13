@@ -1,7 +1,7 @@
 ---
 title: Jurassic World Evolution 2
 subtitle: "DLC Trailers & Featurettes"
-description: "Directed, shot, and edited multiple DLC trailers. I worked on JWE2 across it's initial release and first five DLCs."
+description: "Jurassic World Evolution 2 is the much-anticipated sequel to Frontier’s ground-breaking 2018 management simulation"
 skill: ["editing"]
 accent: "#DC8519"
 order: 2

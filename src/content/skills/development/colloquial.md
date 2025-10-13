@@ -13,32 +13,12 @@ links:
     text: "View Source Code"
 ---
 
-# Portfolio Website
+I sought to combine my two lockdown hobbies: livestreaming and coding, in ways that might be helpful for the smaller communities.
 
-A modern, responsive portfolio website built with cutting-edge web technologies to showcase creative work and professional experience.
+On this site you can find a few tools, such as a [custom chat overlay](https://colloquial.studio/streamtools/chatter)with the ability to customise every aspect; from automatically including pronouns from users, to inputting your own CSS-based bezier curves for the animations.
 
-## Key Features
+One particular challenge was [Emote Drop](https://colloquial.studio/streamtools/emotedrop), which takes live chat data to pull the emote images and then drops them into a physics simulated browser source. The physics are built using the Rust game engine Rapier and imported via WASM.
 
-- **Responsive Design**: Optimized for all device sizes
-- **Fast Loading**: Built with SvelteKit for optimal performance
-- **Modern UI**: Clean, minimalist design with smooth animations
-- **Accessibility**: WCAG compliant with proper semantic markup
-- **SEO Optimized**: Meta tags and structured data for search engines
+Finally there are a few games on the site such as [Twordle](https://colloquial.studio/games/twordle). Twitch, Wordle. Streamers could pick a word or play along with chat and guess either a word or a letter at a time. This is a very clear indicator of the time period of this project!
 
-## Technical Stack
-
-- **Frontend**: SvelteKit with TypeScript
-- **Styling**: Tailwind CSS v4 with custom design system
-- **Build Tool**: Vite for fast developing and optimized builds
-- **Content**: Markdown-based content management with mdsvex
-- **Deployment**: Static site generation for fast loading
-
-## Design Philosophy
-
-The design emphasizes:
-
-- Clean, minimalist aesthetics
-- Smooth, purposeful animations
-- Excellent user experience
-- Professional presentation
-- Easy navigation and content discovery
+[Colloquial.studio](https://colloquial.studio/)

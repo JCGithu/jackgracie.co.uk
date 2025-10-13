@@ -2,12 +2,11 @@
 title: "Headspace"
 subtitle: "Meditation Animations"
 description: "A series of calming 10-minute looping animations to pair with audio from Headspace."
-category: "Metro"
 accent: "#7182E3"
 tools: ["After Effects", "Illustrator"]
 skill: ["motion"]
 poster: "/images/motion/headspace_thumb.jpg"
-order: 2
+order: 3
 feature: "/webm/headspace.webm"
 ---
 

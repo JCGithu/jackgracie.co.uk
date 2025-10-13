@@ -8,6 +8,7 @@ tools: ["Premiere", "After Effects", "DaVinci Resolve", "Ableton Live"]
 poster: "/images/editing/playlist.png"
 feature: "/images/editing/playlist.png"
 order: 5
+role: "Produced, Shot, Edited"
 ---
 
 Playlist Picks was a series that I pitched and drove while I was at Metro.

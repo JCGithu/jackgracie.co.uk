@@ -1,15 +1,16 @@
 ---
 title: "Stranded: Alien Dawn"
 subtitle: "Release & DLC Trailer"
-description: "Directed, Captured, Edited"
+description: "Brave a new world in Stranded: Alien Dawn, a planet survival sim placing the fate of a small marooned group in your hands"
 skill: ["editing"]
 accent: "#2FB684"
 category: Frontier
 order: 4
-tools: ["After Effects", "Premiere"]
+tools: ["After Effects", "Premiere", "Lua"]
 feature: "https://www.youtube.com/watch?v=NTKYIu4nRz4"
 poster: "../images/editing/stranded.jpg"
 related: ["military", "robots", "preorder"]
+role: "Shot, Edited, Directed"
 ---
 
 <script>

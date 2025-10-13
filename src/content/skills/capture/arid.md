@@ -21,7 +21,7 @@ poster: "../images/capture/arid.png"
   ]
 </script>
 
-A very tight schedule for this pack, and a real challenge given the maximalist nature of zoo (decorations everywhere!) versus the minimalist environment of the desert. The species for this pack were also much smaller than usual — making it much harder to get quality shots without showcasing low-fidelty textures. I did manage to incorporate some camera moves developed on [JWE2](project/jwe2) that would later feed into the Oceania pack, such as the whip pan in the Dama Gazelle enclosure.
+A very tight schedule for this pack, and a real challenge given the maximalist nature of zoo (decorations everywhere!) versus the minimalist environment of the desert. The species for this pack were also much smaller than usual — making it much harder to get quality shots without showcasing low-fidelty textures. I did manage to incorporate some camera moves developed on [JWE2](/project/jwe2) that would later feed into the Oceania pack, such as the whip pan in the Dama Gazelle enclosure.
 
 > Discover the miraculous wildlife of the world’s dunes, deserts and dusty plains by welcoming eight incredible new species to your zoo.
 

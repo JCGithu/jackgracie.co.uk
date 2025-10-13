@@ -8,7 +8,7 @@ skill: ["capture"]
 category: "Jurassic World Evolution 2"
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=4X-NN_UaQkU"
-role: "Scripted, Edited, Directed, Capture"
+role: "Scripted, Edited, Directed, Captured"
 poster: "/images/capture/cretaceous.png"
 ---
 

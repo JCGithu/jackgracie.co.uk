@@ -1,14 +1,14 @@
 ---
 title: "Dominion: Malta Expansion"
 subtitle: "DLC Trailers"
-description: "My largest project for JWE2"
+description: "Set before Jurassic World Dominion, you’ll discover spectacular new prehistoric species in an all new campaign."
 accent: "#DC8519"
 order: 1
 skill: ["capture"]
 category: "Jurassic World Evolution 2"
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=bcv_RQB1Rlk"
-role: "Scripted, Edited, Directed, Capture"
+role: "Scripted, Edited, Directed, Captured"
 poster: "/images/capture/moros.png"
 ---
 
@@ -18,6 +18,6 @@ poster: "/images/capture/moros.png"
 
 My largest project for JWE2, doubling the shot count. The addition of a first person camera system at the tailend of DLC4 opened up the game to much more dynamic shots. Previously shots would need to have a set trajectory and speed but this now allowed for sweeping and eased movement. This is showcased best in the whip-pan face-off scene and the Fury Road style jeep chasing sequence.
 
-**Role:** Scripted, Edited, Directed, Capture
+> Set before the dramatic events of Jurassic World Dominion, you’ll attempt to manage multiple dinosaur facilities and discover spectacular new prehistoric species all in a new campaign.
 
 <YouTube url="https://www.youtube.com/watch?v=ZwD3YaPV7-o" />
