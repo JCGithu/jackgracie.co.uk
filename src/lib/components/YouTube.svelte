@@ -24,7 +24,7 @@
   {#if isLoaded}
     <iframe src="https://www.youtube.com/embed/{videoId}?autoplay=1" {title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   {:else}
-    <div class="youtube-thumbnail" role="button" tabindex="0" onclick={loadVideo} onkeydown={(e) => e.key === "Enter" && loadVideo()} aria-label="Play {title}">
+    <div id="youtube-thumbnail" role="button" tabindex="0" onclick={loadVideo} onkeydown={(e) => e.key === "Enter" && loadVideo()} aria-label="Play {title}">
       <img src={thumbnailUrl} alt="{title} thumbnail" class="thumbnail-image" loading="lazy" />
 
       <div class="play-button">
@@ -42,6 +42,7 @@
     aspect-ratio: 16/9;
     width: 100%;
     height: 100%;
+    padding: 0.5rem;
   }
 
   iframe {
@@ -51,10 +52,10 @@
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   }
 
-  .youtube-thumbnail {
+  #youtube-thumbnail {
     aspect-ratio: 16/9;
     width: 100%;
-    height: 100%;
+    height: auto;
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -76,13 +77,14 @@
       outline: 2px solid #3b82f6;
       outline-offset: 2px;
     }
-  }
-
-  .thumbnail-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
   }
 
   .play-button {
