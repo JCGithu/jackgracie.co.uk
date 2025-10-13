@@ -66,22 +66,22 @@
 
 <DynamicBackground />
 
-<div class="skill-page" class:modal-open={isModalOpen}>
-  <div class="skill-banner">
+<div id="skillpage" class:modal-open={isModalOpen}>
+  <div id="banner">
     {#each skillData.banner as banner, index}
-      <img src={banner.url} alt={banner.alt} class="banner-layer" style="z-index: {skillData.banner.length - index};" />
+      <img src={banner.url} alt={banner.alt} style="z-index: {skillData.banner.length - index};" />
     {/each}
   </div>
 
-  <div class="skill-content" style="--skill-accent: {skillData.accent}">
-    <div class="skill-header" class:expanded={isReelExpanded}>
-      <div class="skill-inner">
-        <div class="header-content">
+  <div id="content" style="--skill-accent: {skillData.accent}">
+    <div class="description-container" class:expanded={isReelExpanded}>
+      <div class="page-padding">
+        <div class="description">
           <h1>{skillData.name}</h1>
-          <p class="skill-description">{@html skillData.description}</p>
+          <p>{@html skillData.description}</p>
         </div>
         {#if skillData.reel}
-          <div class="reel-toggle-button-container">
+          <div class="reel-toggle">
             <ArrowButton onclick={toggleReel} direction={isReelExpanded ? "up" : "down"} colour={skillData.accent} hover={"black"} right={true} fill={true} fade={false}>
               {isReelExpanded ? "Hide" : "Reel"}
             </ArrowButton>
@@ -90,41 +90,44 @@
       </div>
 
       {#if skillData.reel && isReelExpanded}
-        <div class="reel-expanded-content" transition:slide={{ duration: 300 }}>
-          <div class="reel-video-container">
+        <div class="reel-container" transition:slide={{ duration: 300 }}>
+          <div class="reel-video">
             <ProjectFeature feature={skillData.reel.video} title={skillData.reel.title} poster={skillData.reel.title} compact={true} />
-          </div>
-          <div class="reel-info">
-            <ArrowButton onclick={() => goto(skillData.reel?.link || "/")} direction="right" right={true} colour="var(--sinon-black)" fill={true} fade={false}>Read More</ArrowButton>
           </div>
         </div>
       {/if}
     </div>
 
-    <!-- Display categorized projects -->
-    {#each Object.entries(groupedProjects().groups) as [category, categoryProjects]}
-      <div class="category-section skill-inner">
-        {#if categoryMap.has(category)}
-          <img src={categoryMap.get(category)} alt={category} class="category-icon" />
-        {:else}
-          <h2 class="category-title">{category}</h2>
-        {/if}
-        <div class="projects-horizontal-scroll" use:horizontalScroll>
-          {#each categoryProjects as project}
-            <ProjectCard {project} horizontal={true} onProjectClick={openModal} />
+    <div id="projects-container">
+      <!-- Display categorized projects -->
+      {#each Object.entries(groupedProjects().groups) as [category, categoryProjects]}
+        <div class="category-section page-padding">
+          {#if categoryMap.has(category)}
+            <img src={categoryMap.get(category)} alt={category} class="category-icon" />
+          {:else}
+            <h2 class="category-title">{category}</h2>
+          {/if}
+          <div class="projects-horizontal-scroll" use:horizontalScroll>
+            {#each categoryProjects as project}
+              {#if !project.hide}
+                <ProjectCard {project} horizontal={true} onProjectClick={openModal} />
+              {/if}
+            {/each}
+          </div>
+        </div>
+      {/each}
+
+      <!-- Display uncategorized projects in grid layout -->
+      {#if groupedProjects().uncategorized.length > 0}
+        <div class="projects-flex page-padding">
+          {#each groupedProjects().uncategorized as project}
+            {#if !project.hide}
+              <ProjectCard {project} horizontal={false} onProjectClick={openModal} />
+            {/if}
           {/each}
         </div>
-      </div>
-    {/each}
-
-    <!-- Display uncategorized projects in grid layout -->
-    {#if groupedProjects().uncategorized.length > 0}
-      <div class="projects-flex skill-inner">
-        {#each groupedProjects().uncategorized as project}
-          <ProjectCard {project} horizontal={false} onProjectClick={openModal} />
-        {/each}
-      </div>
-    {/if}
+      {/if}
+    </div>
   </div>
 </div>
 
@@ -138,7 +141,7 @@
   @include projectStyles.projects-horizontal-scroll;
   @include projectStyles.projects-flex;
 
-  .skill-page {
+  #skillpage {
     min-height: 100vh;
     color: var(--sinon-white);
     position: relative;
@@ -152,7 +155,7 @@
     }
   }
 
-  .skill-banner {
+  #banner {
     width: 30rem;
     flex-shrink: 0;
     overflow: hidden;
@@ -161,18 +164,35 @@
     left: 0;
     z-index: 1;
     height: 100vh;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
-  .banner-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  #content {
+    flex: 1;
+    padding: 3rem 0;
+    margin-left: 30rem;
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+    height: 100vh;
+    h1 {
+      font-family: var(--font-pimento);
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: var(--skill-accent);
+      color: var(--sinon-white);
+    }
+    @include custom-scrollbar($thumb-color: var(--skill-accent), $track-color: transparent, $width: 12px, $border-radius: 6px, $hover-mix: 80);
   }
 
-  .skill-header {
+  .description-container {
     background-color: var(--skill-accent);
     padding-bottom: 1rem;
     padding-top: 3rem;
@@ -185,25 +205,33 @@
     }
   }
 
-  .header-content {
+  .description {
     display: flex;
     flex-direction: column;
     position: relative;
+    p {
+      background-color: var(--skill-accent);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      position: relative;
+    }
   }
 
-  .reel-toggle-button-container {
+  .reel-toggle {
     position: absolute;
     bottom: -1rem;
     right: 2rem;
+    right: calc(50% - 3rem);
     z-index: 10;
     width: auto;
   }
 
-  .reel-expanded-content {
+  .reel-container {
     padding: 2rem 2rem 0 2rem;
   }
 
-  .reel-video-container {
+  .reel-video {
     max-width: 800px;
     margin: 0 auto 1.5rem auto;
   }
@@ -219,56 +247,22 @@
     text-align: center;
   }
 
-  .skill-content {
-    flex: 1;
-    padding: 3rem 0;
-    margin-left: 30rem;
-    position: relative;
-    z-index: 1;
-    overflow-y: auto;
-
-    height: 100vh;
-
-    h1 {
-      font-family: var(--font-pimento);
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      color: var(--skill-accent);
-      color: var(--sinon-white);
-      //color: var(--sinon-black);
+  #projects-container {
+    :first-child.projects-flex {
+      margin-top: 2rem;
     }
-  }
-
-  .skill-description {
-    background-color: var(--skill-accent);
-
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    position: relative;
-    //padding-left: 1rem;
-    //border-left: 3px solid var(--skill-accent);
   }
 
   .category-section {
     padding-top: 1rem !important;
-    //margin-bottom: 1rem;
     padding-bottom: 20px !important;
-    // &:nth-child(odd) {
-    //   background-color: color-mix(in srgb, var(--skill-accent) 40%, transparent);
-    // }
-    // &:nth-child(even) {
-    //   background-color: color-mix(in srgb, var(--skill-accent) 80%, transparent);
-    // }
-    //background-color: color-mix(in srgb, var(--skill-accent) 40%, transparent);
-  }
-
-  .category-title {
-    font-family: inherit;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    color: var(--sinon-black);
+    h2 {
+      font-family: inherit;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      color: var(--sinon-black);
+    }
   }
 
   .category-icon {
@@ -277,19 +271,19 @@
     fill: var(--sinon-black);
   }
 
-  .skill-inner {
+  .page-padding {
     padding: 0 2rem;
   }
 
   // Mobile responsive styles
   @media screen and (max-width: $bp-desktop) {
-    .skill-page {
+    #skillpage {
       flex-direction: column !important;
       overflow: visible !important;
       min-height: auto !important;
     }
 
-    .skill-banner {
+    #banner {
       width: 100% !important;
       height: auto !important;
       min-height: auto !important;
@@ -297,16 +291,15 @@
       top: auto !important;
       left: auto !important;
       z-index: auto !important;
+      img {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+      }
     }
 
-    .banner-layer {
-      position: relative !important;
-      width: 100% !important;
-      height: auto !important;
-      object-fit: contain !important;
-    }
-
-    .skill-content {
+    #content {
       max-width: 100% !important;
       margin-left: 0 !important;
       padding: 1.5rem 0 !important;
@@ -321,40 +314,31 @@
       }
     }
 
-    .skill-description {
-      font-size: 1rem;
-      margin-bottom: 2rem;
+    .description {
+      p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
     }
 
     .category-section {
       margin-bottom: 2rem;
+      h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+      }
     }
 
-    .category-title {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .reel-toggle-button {
-      bottom: -0.75rem;
-      right: 1rem;
-    }
-
-    .reel-expanded-content {
+    .reel-container {
       padding: 1.5rem 1rem 0 1rem;
     }
 
-    .reel-video-container {
+    .reel-video {
       margin-bottom: 1rem;
     }
 
     .reel-info {
       gap: 0.75rem;
     }
-  }
-
-  // Custom scrollbar styling for skill content using mixin
-  .skill-content {
-    @include custom-scrollbar($thumb-color: var(--skill-accent), $track-color: transparent, $width: 12px, $border-radius: 6px, $hover-mix: 80);
   }
 </style>
