@@ -11,7 +11,8 @@ export const toolMap = new Map<string, string>([
   ['Ableton Live', '/icons/ableton.png'],
   ['Izotope RX', '/icons/RX11.png'],
   ['Illustrator', '/icons/tools/illustrator.svg'],
-  ['Photoshop', '/icons/tools/photoshop.svg']
+  ['Photoshop', '/icons/tools/photoshop.svg'],
+  ['Unity', '/icons/unity.svg']
 ]);
 
 export const categoryMap = new Map<string, string>([
