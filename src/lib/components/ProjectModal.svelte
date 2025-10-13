@@ -61,12 +61,11 @@
               <p class="subtitle-text"><strong>{project.subtitle}</strong></p>
             {/if}
 
-            {#if project.description}
-              <p class="description-text">{project.description}</p>
-            {/if}
-
-            {#if project.client}
-              <p class="client-text">Client: {project.client}</p>
+            {#if project.role}
+              <p class="role-text">
+                <strong>Role:</strong>
+                {project.role}
+              </p>
             {/if}
           </div>
 
@@ -214,7 +213,7 @@
     color: var(--sinon-black);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.5rem;
     width: 100%;
   }
 
@@ -238,22 +237,23 @@
   }
 
   .divider {
-    height: 1px;
+    height: 3px;
     background: var(--project-accent);
     opacity: 0.3;
-    margin: 0.5rem 0;
+    margin-bottom: 1rem;
   }
 
   .tools-section {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .tools-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.5rem;
     align-items: center;
   }
 
