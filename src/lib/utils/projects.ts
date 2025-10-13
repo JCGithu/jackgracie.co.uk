@@ -10,7 +10,7 @@ function createSkillData(): Record<string, Skill> {
       name: "Editing",
       slug: "editing",
       accent: "#25AC7D",
-      description: "I've been editing for 13 years, ever since I downloaded Premiere CS5 and couldn't watch my edits until rendered them. I've edited in several industries, videography, journalism, social media, and gaming.",
+      description: "I've been editing for 13 years, ever since I downloaded Premiere CS5 and needed to render out my edits to see them. I've edited in several industries: videography, journalism, social media, and gaming. I'm always looking for the next project.",
       banner: [
         {
           url: "/images/editing/videoBanner.jpg",
@@ -23,7 +23,7 @@ function createSkillData(): Record<string, Skill> {
       name: "Game Capture",
       slug: "capture",
       accent: "#bf85f6",
-      description: "In my time as a Video Artist at Frontier I captured across multiple titles and engines. Taking my knowledge of editing and in-person videography into the digital world, where the only limit is your software, is so fun and freeing. ",
+      description: "In my time as a Video Artist at Frontier I captured across multiple titles and engines. Taking my knowledge of editing and in-person videography into the digital world, where the only limit is your software is so fun and freeing. ",
       banner: [
         {
           url: "/images/capture/CamPath_02.png",
@@ -33,7 +33,6 @@ function createSkillData(): Record<string, Skill> {
       reel: {
         video: "https://www.youtube.com/watch?v=gvzm4KSNp6s",
         title: "Game Capture Reel",
-        link: "/project/frontier",
       },
       projects: [],
     },
@@ -41,27 +40,27 @@ function createSkillData(): Record<string, Skill> {
       name: "Motion Graphics",
       slug: "motion",
       accent: "#ebc170",
-      description: "Dynamic animations and motion graphics that bring ideas to life.",
+      description: "My motion graphics work has covered everything from recreating game UIs, to newscast graphics, to short form animations.",
       banner: [
         {
           url: "/images/motion/motion_combo.png",
           alt: "Motion Graphics Banner",
         },
-        // {
-        //   url: "/images/motion/motion_background.png",
-        //   alt: "Motion Graphics Banner",
-        // },
       ],
+      reel: {
+        video: "https://www.youtube.com/watch?v=ak7QmAedl2k",
+        title: "Motion Reel",
+      },
       projects: [],
     },
-    development: {
-      name: "Development",
-      slug: "development",
+    developing: {
+      name: "Developing",
+      slug: "developing",
       accent: "#EC4E34",
-      description: "Modern, responsive web design and development.",
+      description: "I took up coding in 2020 to create my own tools for video editing. Since then I've expanded to applications, websites, and games.",
       banner: [
         {
-          url: "/images/development/Desk.png",
+          url: "/images/developing/Desk.png",
           alt: "Web Design Banner",
         },
       ],

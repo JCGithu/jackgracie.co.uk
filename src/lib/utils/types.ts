@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { Component } from 'svelte';
 
-const Skill = z.enum(["motion", "editing", "development", "capture"]);
+const Skill = z.enum(["motion", "editing", "developing", "capture"]);
 
 const ProjectLinks = z.object({
   url: z.string(),
@@ -11,7 +11,7 @@ const ProjectLinks = z.object({
 const Reel = z.object({
   video: z.string(),
   title: z.string(),
-  link: z.string(),
+  link: z.string().optional(),
 });
 
 const ProjectMetadata = z.object({
@@ -27,6 +27,7 @@ const ProjectMetadata = z.object({
   poster: z.string(),
   order: z.number(),
   feature: z.string(),
+  hide: z.boolean().optional(),
   links: z.array(ProjectLinks).optional(),
   category: z.string().optional(),
   related: z.array(z.string()).optional(),
