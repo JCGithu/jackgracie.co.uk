@@ -57,7 +57,7 @@ function createSkillData(): Record<string, Skill> {
     development: {
       name: "Development",
       slug: "development",
-      accent: "#bf85f6",
+      accent: "#EC4E34",
       description: "Modern, responsive web design and development.",
       banner: [
         {

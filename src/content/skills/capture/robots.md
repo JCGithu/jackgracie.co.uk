@@ -12,10 +12,12 @@ poster: "../images/capture/robots.jpg"
 role: "Scripted, Edited, Directed, Capture"
 ---
 
+<script>
+  import YouTube from '$lib/components/YouTube.svelte';
+</script>
+
 Stranded's first DLC was a very tight project, and a massive expansion to the core gameplay and story. The difficulty of Stranded was how to convey both narrative and game loop visually, as a majority of it's key moments happen _entirely_ in UI. This meant adapting existing game animations, aligning characters, and trying to squeeze moments out the story out through visible in-game actions where I could.
 
 **Role:** Scripted, Edited, Directed, Capture
 
-**Videos:**
-
-- [Robots and Guardians DLC Trailer](https://www.youtube.com/watch?v=NTKYIu4nRz4)
+<YouTube url="https://www.youtube.com/watch?v=NTKYIu4nRz4" />

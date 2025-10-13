@@ -11,6 +11,13 @@ feature: "https://www.youtube.com/watch?v=NTKYIu4nRz4"
 poster: "../images/editing/stranded.jpg"
 ---
 
+<script>
+  import Gallery from '$lib/components/Gallery.svelte';
+  const images = [
+    {src: "../images/editing/strandedStore.jpg", alt: 'Steam Page'},
+  ]
+</script>
+
 All my previous Frontier projects had been building on established properties — so working on _Stranded_ leaving early access was a very different experience. It's gameplay and toolset were constantly improving, and our workflow had to adapt alongside.
 
 Plotted camera moves needed to be completed through their Lua-based modding system, which allowed acces to environmental controls such as atmosphere and lighting.
@@ -46,3 +53,5 @@ Another last minute trailer. Created in two weeks.
 **Videos:**
 
 - [Pre-Order Trailer](https://www.youtube.com/watch?v=tT1mRSPs3gc)
+
+<Gallery {images} size=400/>

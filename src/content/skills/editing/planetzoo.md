@@ -5,7 +5,7 @@ description: "Directed, shot, and edited multiple DLC trailers"
 skill: ["editing", "capture"]
 category: Frontier
 accent: "#2FB684"
-order: 2
+order: 1
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=KBQjFXOz1mc"
 poster: "../images/editing/Zoo_Med.png"
