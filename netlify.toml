@@ -1,0 +1,51 @@
+[build]
+  command = "bun run build"
+  publish = "build"
+  
+[build.environment]
+  NODE_VERSION = "18"
+  
+[[redirects]]
+  from = "/motion"
+  to = "/motion"
+  status = 301
+  
+[[redirects]]
+  from = "/mograph"
+  to = "/motion"
+  status = 301
+  
+[[redirects]]
+  from = "/editingreel"
+  to = "https://youtu.be/GM1dctHM1EM"
+  status = 301
+  
+[[redirects]]
+  from = "/capture"
+  to = "/capture"
+  status = 301
+  
+[[redirects]]
+  from = "/capturereel"
+  to = "/capture"
+  status = 301
+  
+[[redirects]]
+  from = "/mographreel"
+  to = "https://www.youtube.com/watch?v=ak7QmAedl2k"
+  status = 301
+  
+[[redirects]]
+  from = "/cv"
+  to = "/data/CV.pdf"
+  status = 301
+  
+[[redirects]]
+  from = "/pages/notionclock"
+  to = "/notionclock"
+  status = 301
+  
+[[redirects]]
+  from = "/projects/notionclock"
+  to = "/notionclock"
+  status = 301
