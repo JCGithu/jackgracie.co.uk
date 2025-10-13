@@ -2,7 +2,7 @@
   interface ImageData {
     src: string;
     alt: string;
-    targetSize?: number; // in pixels
+    width?: number; // in pixels
     accent?: string;
     align?: "top" | "bottom" | "left" | "right" | "center";
   }
@@ -58,7 +58,7 @@
 
   // Calculate item styles for flexbox layout
   let itemStyles = validImages.map((image, index) => {
-    return `height: ${size}px; width: ${image.targetSize || size}px;`;
+    return `height: ${size}px; width: ${image.width || size}px;`;
   });
 
   // Calculate image alignment styles
