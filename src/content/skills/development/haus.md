@@ -13,7 +13,7 @@ links:
     text: "View Source Code"
 ---
 
-A relatively simple site, but such a fun project — and implimentation of the card design is still deeply satisfying to me.
+A relatively simple site, but such a fun project — and implementation of the card design is still deeply satisfying to me.
 
 Please do open it up and have a look through there are some really fun artists.
 

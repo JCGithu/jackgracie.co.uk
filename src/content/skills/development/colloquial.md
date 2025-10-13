@@ -15,7 +15,7 @@ links:
 
 I sought to combine my two lockdown hobbies: livestreaming and coding, in ways that might be helpful for the smaller communities.
 
-On this site you can find a few tools, such as a [custom chat overlay](https://colloquial.studio/streamtools/chatter)with the ability to customise every aspect; from automatically including pronouns from users, to inputting your own CSS-based bezier curves for the animations.
+On this site you can find a few tools, such as a [custom chat overlay](https://colloquial.studio/streamtools/chatter) with the ability to customise every aspect; from automatically including pronouns from users, to inputting your own CSS-based bezier curves for the animations.
 
 One particular challenge was [Emote Drop](https://colloquial.studio/streamtools/emotedrop), which takes live chat data to pull the emote images and then drops them into a physics simulated browser source. The physics are built using the Rust game engine Rapier and imported via WASM.
 

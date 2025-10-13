@@ -8,7 +8,7 @@ skill: ["capture"]
 category: "Jurassic World Evolution 2"
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=G2tgq0Dmaqs"
-role: "Scripted, Edited, Directed, Capture"
+role: "Scripted, Edited, Directed, Captured"
 poster: "/images/capture/dlc1.png"
 ---
 

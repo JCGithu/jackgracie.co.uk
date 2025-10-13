@@ -15,8 +15,12 @@ order: 7
   import YouTube from '$lib/components/YouTube.svelte';
 </script>
 
-Occasional freelance edits for brands such as Netflix, FA Surrey, and We Are Reach
+Occasional freelance edits for brands such as Netflix, FA Surrey, and We Are Reach.
 
-<Instagram reelId="C4tYXTBubW4" height=400/>
+One Day Bloopers:
+
+<Instagram reelId="C4tYXTBubW4" height=320 width=250/>
+
+Haunted House experience edit for Bloody Disgusting:
 
 <YouTube url="https://www.youtube.com/watch?v=jPczZYGDqlc" />

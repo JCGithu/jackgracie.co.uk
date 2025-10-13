@@ -16,7 +16,7 @@ I edited the BTS featurette covering the scoring of the game, a soundtrack that 
 
 As someone with absolutely no musical talent I've always watched scoring featurettes for film and games with awe — so getting the chance to work on one was an exciting challenge. It was a large undertaking given the sheer amount of footage to catalogue, and later synchronise.
 
-As a fan of these featurettes covering the scoring process I wanted to assure one thing — that the footage of the players was properly synchronised to the final score. In so many feautrettes they use the footage of the musicians as pure B-Roll, when the whole purpose for watching is fans of the music wanting to witness the creation of the music that we have such a personal connection to.
+As a fan of these featurettes covering the scoring process I wanted to assure one thing — that the footage of the players was properly synchronised to the final score. In so many featurettes they use the footage of the musicians as pure B-Roll, when the whole purpose for watching is fans of the music wanting to witness the creation of the music that we have such a personal connection to.
 
 This was a feat which I'm proud to say was achieved; and well worth having this stuck in my head for months after.
 
