@@ -151,14 +151,6 @@
     align-items: baseline !important;
   }
 
-  .content {
-    //min-height: 100vh;
-    margin-bottom: 2rem;
-    background-color: var(--off-white);
-    z-index: 3;
-    background-repeat: repeat;
-    background-image: var(--grain);
-  }
 
   .sidebar {
     position: sticky !important;
@@ -280,9 +272,6 @@
       font-size: 2rem;
     }
 
-    .content {
-      gap: 1.5rem;
-    }
 
     .metadata {
       position: static; // Remove sticky on mobile

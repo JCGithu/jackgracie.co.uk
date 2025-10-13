@@ -126,28 +126,4 @@
     font-weight: 600;
   }
 
-  .home-button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 0.75rem 2rem;
-    border-radius: 6px;
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    margin-top: 1rem;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-2px);
-    }
-
-    &:active {
-      transform: translateY(0);
-    }
-  }
 </style>
