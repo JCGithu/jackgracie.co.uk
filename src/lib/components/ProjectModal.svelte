@@ -178,11 +178,6 @@
     }
   }
 
-  .description-text {
-    //margin: 0;
-    margin-bottom: -1rem;
-  }
-
   .featured-media {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -196,7 +191,8 @@
 
   .content-column {
     //color: var(--sinon-white);
-    overflow-y: auto;
+    overflow: visible;
+    overflow-y: scroll;
     padding-bottom: 2rem;
     padding-right: 1rem;
   }
@@ -228,12 +224,6 @@
     font-size: 1.1rem;
     color: var(--project-accent);
     font-weight: 600;
-  }
-
-  .client-text {
-    margin: 0;
-    opacity: 0.9;
-    line-height: 1.5;
   }
 
   .divider {

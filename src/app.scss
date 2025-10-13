@@ -103,15 +103,7 @@ h1 {
 	font-family: 'DM Serif Display', serif;
 }
 
-/* Home Page Styles */
-.home {
-	width: 100vw;
-	height: 100%;
-	overflow: hidden;
-	position: relative;
-	background-color: var(--notion-black);
-	background: linear-gradient(to top right, #803cff, rgb(47, 35, 49));
-}
+/* Home Page Styles - moved to component level */
 
 .backdrop {
 	width: 100vw;
@@ -182,10 +174,6 @@ body.modal-open {
 	overflow: hidden;
 	height: 100vh;
 }
-
-
-
-
 
 /* Animations */
 @keyframes popUpAnim {

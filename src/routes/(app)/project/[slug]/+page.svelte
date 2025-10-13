@@ -48,7 +48,7 @@
   </div>
 
   <div class="project-body">
-    <div class="content">
+    <div class="project-content">
       <project.content />
     </div>
     <aside class="sidebar">
@@ -208,9 +208,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     margin: 0 auto;
   }
 

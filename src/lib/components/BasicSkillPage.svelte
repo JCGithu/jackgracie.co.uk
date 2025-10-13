@@ -236,17 +236,6 @@
     margin: 0 auto 1.5rem auto;
   }
 
-  .reel-info {
-    position: absolute;
-    left: calc(50% - 4rem);
-    bottom: 2rem;
-    transform: scale(1.1);
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    text-align: center;
-  }
-
   #projects-container {
     :first-child.projects-flex {
       margin-top: 2rem;
@@ -335,10 +324,6 @@
 
     .reel-video {
       margin-bottom: 1rem;
-    }
-
-    .reel-info {
-      gap: 0.75rem;
     }
   }
 </style>
