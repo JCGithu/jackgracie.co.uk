@@ -6,7 +6,6 @@ category: "Metro"
 accent: "#fbb256"
 tools: ["After Effects", "Illustrator"]
 skill: ["motion"]
-client: "Personal Project"
 poster: "/images/motion/oddjob.jpg"
 order: 3
 feature: "/webm/OddJob.webm"

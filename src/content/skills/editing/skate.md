@@ -6,15 +6,10 @@ skill: ["editing"]
 category: EA
 accent: "#fa9c06"
 order: 3
+role: "Edited, Graded, Mixed"
 tools: ["After Effects", "Premiere", "DaVinci Resolve"]
 poster: "images/editing/skate.jpg"
 feature: "https://www.youtube.com/watch?v=v7krdLF0hiQ"
 ---
 
-Get ready for skate.’s September 16th Early Access release by catching up with the Full Circle Dev team as they talk through what’s in store for Early Access, what to expect in Seasonal Updates, and more!
-
-The next evolution of the award-winning skate™ franchise is releasing in Early Access September 16th.
-
-Experience improved Flick-It controls, the rich physics based skateboarding gameplay that provides those “only in skate.“ moments and off-board exploration for full freedom in the online multiplayer world of San Vansterdam.
-
-Your new favorite hangout awaits.
+> Get ready for skate.’s September 16th Early Access release by catching up with the Full Circle Dev team as they talk through what’s in store for Early Access, what to expect in Seasonal Updates, and more!

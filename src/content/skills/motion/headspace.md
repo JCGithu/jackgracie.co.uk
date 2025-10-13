@@ -6,7 +6,6 @@ category: "Metro"
 accent: "#7182E3"
 tools: ["After Effects", "Illustrator"]
 skill: ["motion"]
-client: "Headspace"
 poster: "/images/motion/headspace_thumb.jpg"
 order: 2
 feature: "/webm/headspace.webm"
@@ -15,7 +14,7 @@ feature: "/webm/headspace.webm"
 <script>
   import Gallery from '$lib/components/Gallery.svelte';
   const images = [
-    {src: "../images/motion/motion_combo.png", alt: 'Sunny Headspace', targetSize: 530, align: 'bottom'},
+    {src: "../images/motion/motion_combo.png", alt: 'Sunny Headspace', width: 530, align: 'bottom'},
     {src: "../images/motion/motionReel.jpg", alt: 'Reel Thumbnail', },
     {src: "../images/motion/head4.jpg", alt: 'NoHead'},
     {src: "../images/motion/head4.jpg", alt: 'NoHead'},

@@ -2,10 +2,10 @@
 title: "Storygraph Printer"
 subtitle: "Chrome Extension"
 description: "A simple extension for users of the booklogging site Storygraph."
-skill: ["development"]
+skill: ["developing"]
 accent: "#2cb1bc"
 tools: ["Svelte", "Vite", "Node.js"]
-poster: "/images/development/SGP_Banner.png"
+poster: "/images/developing/SGP_Banner.png"
 order: 2
 feature: "https://www.youtube.com/watch?v=sPQ0mVb8GBQ"
 links:

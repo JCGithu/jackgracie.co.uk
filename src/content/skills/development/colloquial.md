@@ -1,12 +1,12 @@
 ---
-title: "Colloquial.Studio"
+title: "Colloquial. Studio"
 subtitle: "Streaming Tools"
 description: "A collection of games and tools for small streamers"
-skill: ["development"]
+skill: ["developing"]
 accent: "#fe5f55"
 tools: ["Svelte", "Tailwind CSS", "TypeScript", "Vite"]
-poster: "/images/development/colloquial.png"
-feature: "/images/development/colloquial.png"
+poster: "/images/developing/colloquial.png"
+feature: "/images/developing/colloquial.png"
 order: 1
 links:
   - url: "https://github.com/jcgithu/jackgracie-portfolio"
@@ -29,7 +29,7 @@ A modern, responsive portfolio website built with cutting-edge web technologies 
 
 - **Frontend**: SvelteKit with TypeScript
 - **Styling**: Tailwind CSS v4 with custom design system
-- **Build Tool**: Vite for fast development and optimized builds
+- **Build Tool**: Vite for fast developing and optimized builds
 - **Content**: Markdown-based content management with mdsvex
 - **Deployment**: Static site generation for fast loading
 

@@ -16,8 +16,6 @@ poster: "/images/capture/moros.png"
   import YouTube from '$lib/components/YouTube.svelte';
 </script>
 
-##
-
 My largest project for JWE2, doubling the shot count. The addition of a first person camera system at the tailend of DLC4 opened up the game to much more dynamic shots. Previously shots would need to have a set trajectory and speed but this now allowed for sweeping and eased movement. This is showcased best in the whip-pan face-off scene and the Fury Road style jeep chasing sequence.
 
 **Role:** Scripted, Edited, Directed, Capture
