@@ -265,7 +265,7 @@
     .modal-content {
       max-height: 85dvh;
       width: 100%;
-      max-width: none;
+      max-width: 92vw;
       height: 85dvh;
     }
 
@@ -288,7 +288,7 @@
       order: 1;
       overflow-y: auto;
       padding: 0.5rem;
-      padding-bottom: 3rem;
+      padding-bottom: rem;
       flex: 1;
       min-height: 0;
     }
