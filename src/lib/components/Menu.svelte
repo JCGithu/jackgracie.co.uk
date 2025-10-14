@@ -7,15 +7,16 @@
   interface Props {
     skills: Record<string, Skill>;
     onNavigate: (slug: string) => void;
+    bottom?: boolean;
   }
 
-  let { skills, onNavigate }: Props = $props();
+  let { skills, onNavigate, bottom }: Props = $props();
   let targetNode = $state<HTMLElement>()!;
   const inViewport = new IsInViewport(() => targetNode);
   let swirlOn = $state([false, false, false, false]);
 </script>
 
-<div class="menu" bind:this={targetNode}>
+<div class="menu" bind:this={targetNode} class:bottom>
   {#if inViewport.current}
     {#each Object.keys(skills) as skill, index (skill)}
       <button transition:fly|global={{ x: 100, delay: index * 100, duration: 300 }} class="menu_item" style="--accent-color: {skills[skill].accent}" onclick={() => onNavigate(skills[skill].slug)} onmouseenter={() => (swirlOn[index] = true)} onmouseleave={() => (swirlOn[index] = false)}>
@@ -32,4 +33,8 @@
 
 <style lang="scss">
   @use "$lib/styles/menu" as *;
+
+  .bottom {
+    height: 100vh !important;
+  }
 </style>

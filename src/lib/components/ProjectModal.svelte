@@ -54,13 +54,11 @@
           </div>
         </div>
 
-        <!-- Right Column: Metadata -->
         <div class="metadata-column">
-          <div class="metadata-section">
+          <div class="metadata-top">
             {#if project.subtitle}
               <p class="subtitle-text"><strong>{project.subtitle}</strong></p>
             {/if}
-
             {#if project.role}
               <p class="role-text">
                 <strong>Role:</strong>
@@ -68,20 +66,13 @@
               </p>
             {/if}
           </div>
-
-          <div class="divider"></div>
-
-          <div class="tools-section">
-            <div class="tools-list">
+          <div class="metadata-bottom">
+            <div class="tools-compact">
               {#each project.tools as tool}
                 <ToolIcon toolName={tool} />
               {/each}
             </div>
-          </div>
-
-          <div class="modal-actions">
-            <button class="primary-button" onclick={() => goto(`/project/${project.slug}`)}> View Full Project </button>
-            <button class="secondary-button" onclick={closeModal}> Close </button>
+            <button class="primary-button" onclick={() => goto(`/project/${project.slug}`)}> View Project </button>
           </div>
         </div>
       </div>
@@ -205,18 +196,32 @@
   }
 
   .metadata-column {
-    //color: var(--sinon-white);
     color: var(--sinon-black);
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
   }
 
-  .metadata-section {
+  .metadata-top {
     display: flex;
     flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .metadata-bottom {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     gap: 0.5rem;
+    margin-top: auto;
+  }
+
+  .tools-compact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    align-items: center;
   }
 
   .subtitle-text {
@@ -224,33 +229,6 @@
     font-size: 1.1rem;
     color: var(--project-accent);
     font-weight: 600;
-  }
-
-  .divider {
-    height: 3px;
-    background: var(--project-accent);
-    opacity: 0.3;
-    margin-bottom: 1rem;
-  }
-
-  .tools-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .tools-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
-  }
-
-  .modal-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
   }
 
   button {
@@ -276,56 +254,124 @@
     }
   }
 
-  .secondary-button {
-    background: transparent;
-    //color: var(--sinon-white);
-    border: 1px solid var(--project-accent);
-    padding: 0.875rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-
-    &:hover {
-      background: var(--project-accent);
-      color: var(--sinon-black);
-      transform: translateY(-1px);
-    }
-  }
-
   // Mobile responsive styles
   @media screen and (max-width: $bp-mobile) {
     .modal-backdrop {
-      padding: 1rem;
+      padding: 0.5rem;
+      align-items: flex-start;
+      padding-top: 4rem;
     }
 
     .modal-content {
-      max-height: 85vh;
+      max-height: 85dvh;
+      width: 100%;
+      max-width: none;
+      height: 85dvh;
     }
 
     .modal-body {
       grid-template-columns: 1fr;
-      gap: 2rem;
-      padding: 1.5rem;
+      gap: 0.75rem;
+      padding: 0.75rem;
       display: grid;
+      grid-template-rows: 1fr auto;
+      height: 100%;
+      overflow: hidden;
     }
 
     .project-title {
-      font-size: 2rem;
-    }
-
-    .metadata-column {
-      gap: 1.5rem;
-      order: 2;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
     }
 
     .content-column {
       order: 1;
+      overflow-y: auto;
+      padding: 0.5rem;
+      padding-bottom: 3rem;
+      flex: 1;
+      min-height: 0;
     }
 
-    .modal-actions {
+    .metadata-column {
+      order: 2;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       flex-direction: column;
+    }
+
+    .featured-media {
+      aspect-ratio: 16 / 9;
+      margin-bottom: 1rem;
+    }
+
+    .metadata-top {
+      gap: 0.25rem;
+    }
+
+    .subtitle-text {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .role-text {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .metadata-bottom {
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tools-compact {
+      gap: 0.25rem;
+    }
+
+    .primary-button {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  // Small mobile optimizations
+  @media screen and (max-width: $bp-mobile-small) {
+    .modal-backdrop {
+      padding: 0.25rem;
+      padding-top: 3.5rem;
+    }
+
+    .modal-content {
+      border-radius: 0.5rem;
+    }
+
+    .modal-body {
+      padding: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+    }
+
+    .metadata-column {
+      padding: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .metadata-bottom {
+      gap: 0.25rem;
+    }
+
+    .primary-button {
+      padding: 0.75rem;
+      font-size: 0.85rem;
     }
   }
 </style>

@@ -1,3 +1,5 @@
+@use "$lib/styles/_breakpoints" as *;
+
 .menu {
   top: 0;
   left: 0;
@@ -9,7 +11,13 @@
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: center;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  //transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  @media screen and (max-width: $bp-mobile-tablet) {
+    height: 110dvh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1.2fr;
+  }
 
   button {
     font-family: "Pimento";
@@ -35,6 +43,19 @@
   text-align: center;
   width: 100%;
   display: inline-block;
+
+  @media screen and (max-width: $bp-mobile-tablet) {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    // &:nth-child(3) {
+    //   height: 110%;
+    // }
+  }
+
+  @media screen and (max-width: $bp-mobile-small) {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+  }
 }
 
 .swirl_container {
@@ -46,4 +67,30 @@
   height: 35vw;
   z-index: 5;
   pointer-events: none;
+  transition: transform 0.3s ease;
+
+  @media screen and (max-width: $bp-mobile-tablet) {
+    width: 28vw;
+    height: 28vw;
+    transform: translate(-50%, -50%) scaleX(1) scaleY(0.4);
+  }
+
+  @media screen and (max-width: $bp-mobile) {
+    width: 40vw;
+    height: 40vh;
+    transform: translate(-50%, -50%) scaleX(0.9) scaleY(0.35);
+  }
+
+  @media screen and (max-width: $bp-mobile-small) {
+    width: 50vw;
+    height: 40vh;
+    transform: translate(-50%, -50%) scaleX(0.9) scaleY(0.3);
+  }
+
+  /* Landscape mobile optimization */
+  @media screen and (max-width: $bp-mobile-tablet) and (orientation: landscape) {
+    width: 20vh;
+    height: 20vh;
+    transform: translate(-50%, -50%) scaleX(0.9) scaleY(0.4);
+  }
 }

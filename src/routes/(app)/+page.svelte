@@ -51,7 +51,7 @@
 
   <!-- Fullpage Menu Section -->
   <div class="menuSection">
-    <Menu {skills} onNavigate={navigateToSkill} />
+    <Menu {skills} onNavigate={navigateToSkill} bottom={true} />
   </div>
 </div>
 
