@@ -14,8 +14,9 @@
     "dev": "bun run vite dev",
     "build": "bun run vite build",
     "preview": "bun run vite preview",
-    "check": "bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json --watch"
+    "sync:redirects": "node scripts/sync-redirects.js",
+    "check": "bun run sync:redirects && bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "bun run sync:redirects && bun run svelte-kit sync && bun run svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",
