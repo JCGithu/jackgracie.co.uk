@@ -7,8 +7,9 @@ export const prerender = true;
 
 export const load: LayoutLoad = async ({ url }: { url: URL }) => {
   if (redirects.hasOwnProperty(url.pathname)) {
+    let searchSplit = url.href.split('?');
     const targetUrl = redirects[url.pathname as keyof typeof redirects];
-    const finalUrl = url.search ? `${targetUrl}${url.search}` : targetUrl;
+    const finalUrl = searchSplit[1] ? `${targetUrl}?${searchSplit[1]}` : targetUrl;
     return redirect(301, finalUrl);
   }
 
