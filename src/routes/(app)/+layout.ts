@@ -7,9 +7,7 @@ export const prerender = true;
 
 export const load: LayoutLoad = async ({ url }: { url: URL }) => {
   const skills = await loadSkills();
-
   if (redirects.hasOwnProperty(url.pathname)) {
-    console.log(redirects[url.pathname as keyof typeof redirects]);
     return redirect(301, redirects[url.pathname as keyof typeof redirects]);
   }
 

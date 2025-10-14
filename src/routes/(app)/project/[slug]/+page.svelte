@@ -22,10 +22,7 @@
   onMount(() => {
     let scrollHeight = document.documentElement.scrollHeight;
     let windowHeight = window.innerHeight;
-    console.log(scrollHeight, windowHeight);
-    if (scrollHeight <= windowHeight) {
-      showMetadata = true;
-    }
+    if (scrollHeight <= windowHeight) showMetadata = true;
   });
 </script>
 
