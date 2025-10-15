@@ -1,15 +1,23 @@
 <script lang="ts">
+
+
+    import { goto } from "$app/navigation";
+    import { slide } from "svelte/transition";
+
+    import type { Skill, Project } from "$lib/utils/types.js";
+    
+    import "$lib/styles/projects.scss";
+    
   import ProjectModal from "./ProjectModal.svelte";
   import ProjectCard from "./ProjectCard.svelte";
   import DynamicBackground from "./DynamicBackground.svelte";
-  import type { Skill, Project } from "$lib/utils/types.js";
-  import "$lib/styles/projects.scss";
   import { categoryMap } from "$lib/utils/icons";
   import { horizontalScroll } from "$lib/utils/horizontalScroll";
   import ProjectFeature from "./ProjectFeature.svelte";
   import ArrowButton from "./ArrowButton.svelte";
-  import { goto } from "$app/navigation";
-  import { slide } from "svelte/transition";
+  import YouTube from "./YouTube.svelte";
+
+
 
   let { skillData }: { skillData: Skill } = $props();
 
@@ -67,7 +75,7 @@
   <div id="banner">
     {#each skillData.banner as banner, index}
       {#if banner.image}
-        <enhanced:img src={banner.image} alt={banner.alt} style="z-index: {skillData.banner.length - index};" sizes="(max-width: 768px) 100vw, 1920px" />
+        <enhanced:img src={banner.image} alt={banner.alt} style="z-index: {skillData.banner.length - index};" sizes="(max-width: 768px) 1920px" />
       {:else}
         <img src={banner.url} alt={banner.alt} style="z-index: {skillData.banner.length - index};" />
       {/if}
@@ -93,7 +101,7 @@
       {#if skillData.reel && skillData.reel.video && skillData.reel.title && isReelExpanded}
         <div class="reel-container" transition:slide={{ duration: 300 }}>
           <div class="reel-video">
-            <YouTube url={skillData.reel.video || ""} title={skillData.reel.title} />
+            <YouTube url={skillData.reel.video} title={skillData.reel.title} />
           </div>
         </div>
       {/if}
@@ -103,17 +111,11 @@
       <!-- Display categorized projects -->
       {#each Object.entries(groupedProjects().groups || {}) as [category, categoryProjects]}
         <div class="category-section page-padding">
-          {#if categoryMap.has(category)}
-            {#if categoryMap.get(category)}
-              {#if typeof categoryMap.get(category) === "string"}
-                <img src={categoryMap.get(category)!} alt={category} class="category-icon" />
-              {:else}
-                <enhanced:img src={categoryMap.get(category).default} alt={category} class="category-icon" sizes="4rem" />
-              {/if}
+            {#if categoryMap.has(category)}
+              <img src={categoryMap.get(category)!} alt={category} class="category-icon" />
+            {:else}
+              <h2 class="category-title">{category}</h2>
             {/if}
-          {:else}
-            <h2 class="category-title">{category}</h2>
-          {/if}
           <div class="projects-horizontal-scroll" use:horizontalScroll>
             {#each categoryProjects as project}
               {#if !project.hide}
