@@ -33,8 +33,63 @@
 
 <style lang="scss">
   @use "$lib/styles/menu" as *;
+  @use "$lib/styles/breakpoints" as *;
 
   .bottom {
     height: 100vh !important;
   }
+  .menu_item {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: var(--accent-color);
+    color: white;
+    font-family: "Pimento";
+    font-size: 2rem;
+    cursor: pointer;
+    border: none;
+    transition: color 0.3s ease;
+    &:hover {
+      text-decoration: underline !important;
+    }
+    @media screen and (max-width: $bp-mobile-tablet) {
+      font-size: 1.5rem;
+      padding: 0.75rem;
+    }
+
+    @media screen and (max-width: $bp-mobile-small) {
+      font-size: 1.25rem;
+      padding: 0.5rem;
+    }
+  }
+
+  .swirl_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(1.2) scaleY(0.5);
+    width: 35vw;
+    height: 35vw;
+    z-index: 5;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+
+    @media screen and (max-width: $bp-mobile-tablet) {
+      width: 28vw;
+      height: 28vw;
+      transform: translate(-50%, -50%) scaleX(1) scaleY(0.4);
+    }
+
+    @media screen and (max-width: $bp-mobile) {
+      width: 40vw;
+      height: 40vh;
+      transform: translate(-50%, -50%) scaleX(0.9) scaleY(0.35);
+    }
+    @media screen and (max-width: $bp-mobile-small) {
+      width: 50vw;
+      height: 40vh;
+      transform: translate(-50%, -50%) scaleX(0.9) scaleY(0.3);
+    }
+  }
+
 </style>
