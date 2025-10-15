@@ -6,7 +6,7 @@ accent: "#E04E4E"
 tools: ["After Effects", "Photoshop"]
 skill: ["motion"]
 video: "/webm/scrapped.webm"
-poster: "../images/motion/girl.jpg"
+poster: "/images/motion/girl.jpg"
 order: 5
 feature: "/webm/scrapped.webm"
 ---

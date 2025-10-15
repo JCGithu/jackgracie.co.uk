@@ -6,7 +6,7 @@ accent: "#138A40"
 tools: ["After Effects", "Photoshop"]
 video: "/webm/Frog.webm"
 skill: ["motion"]
-poster: "../images/motion/frog.jpg"
+poster: "/images/motion/frog.jpg"
 order: 4
 feature: "/webm/Frog.webm"
 ---

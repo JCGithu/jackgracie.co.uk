@@ -8,7 +8,7 @@ accent: "#2FB684"
 order: 1
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=KBQjFXOz1mc"
-poster: "../images/capture/oceania.png"
+poster: "/images/capture/oceania.png"
 role: "Shot, Captured, Directed"
 ---
 

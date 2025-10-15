@@ -8,7 +8,7 @@ category: Frontier
 order: 4
 tools: ["After Effects", "Premiere", "Lua"]
 feature: "https://www.youtube.com/watch?v=NTKYIu4nRz4"
-poster: "../images/editing/stranded.jpg"
+poster: "/images/editing/stranded.jpg"
 related: ["military", "robots", "preorder"]
 role: "Shot, Edited, Directed"
 ---

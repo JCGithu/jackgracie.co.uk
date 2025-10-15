@@ -1,7 +1,7 @@
 ---
 title: "Dominion: BioSyn Expansion"
 subtitle: "Secondary Trailers"
-description: "The biggest DLC yet features an immersive new campaign inspired by the events from Jurassic World Dominion."
+description: "The biggest DLC yet features an immersive new campaign inspired by Jurassic World Dominion."
 accent: "#EC4E34"
 order: 2
 skill: ["capture"]

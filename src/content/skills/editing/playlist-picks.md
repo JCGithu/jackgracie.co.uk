@@ -17,4 +17,4 @@ I sourced the guests, arranged the shoot, studio, and cameras, conducted the int
 
 I also made the title sequence and theme tune, which was a fun diversion from the regular work of Metro.
 
-<img alt='Steven Yeun in Playlist Picks' src="../images/editing/play2.jpg">
+![Steven Yeun in Playlist Picks](../images/editing/play2.jpg?loading=lazy&sizes=(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 800px)

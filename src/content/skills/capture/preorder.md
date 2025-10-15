@@ -8,7 +8,7 @@ category: "Stranded: Alien Dawn"
 order: 4
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=tT1mRSPs3gc"
-poster: "../images/capture/stranded.png"
+poster: "/images/capture/stranded.png"
 role: "Directed, Edited, Captured"
 ---
 

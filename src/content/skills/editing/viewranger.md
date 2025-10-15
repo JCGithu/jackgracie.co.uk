@@ -7,7 +7,7 @@ skill: ["editing"]
 order: 6
 tools: ["After Effects", "Premiere", "Izotope RX"]
 feature: "https://www.youtube.com/watch?v=Cjf0rb3DTlc"
-poster: "../images/editing/viewranger.jpg"
+poster: "/images/editing/viewranger.jpg"
 role: "Produced, Shot, Edited"
 ---
 

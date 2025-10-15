@@ -6,7 +6,7 @@ accent: "#4642CD"
 tools: ["After Effects", "Photoshop"]
 skill: ["motion"]
 video: "/webm/scrapped.webm"
-poster: "../images/motion/water.jpg"
+poster: "/images/motion/water.jpg"
 order: 1
 feature: "https://www.youtube.com/watch?v=1XCVh0k1-w0"
 ---

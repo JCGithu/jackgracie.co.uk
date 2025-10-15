@@ -12,14 +12,14 @@ feature: "/webm/headspace.webm"
 
 <script>
   import Gallery from '$lib/components/Gallery.svelte';
-  const images = [
-    {src: "../images/motion/motion_combo.png", alt: 'Sunny Headspace', width: 530, align: 'bottom'},
-    {src: "../images/motion/motionReel.jpg", alt: 'Reel Thumbnail', },
-    {src: "../images/motion/head4.jpg", alt: 'NoHead'},
-    {src: "../images/motion/head4.jpg", alt: 'NoHead'},
-    {src: "../images/motion/head4.jpg", alt: 'NoHead'},
-    
-  ]
+//   <MarkdownGallery accent='#7182E3'>
+//   ![Sunny Headspace](/images/motion/motion_combo.png?loading=lazy&sizes=(max-width: 768px) 240px, (max-width: 1024px) 300px, 400px)
+//   ![Reel Thumbnail](/images/motion/motionReel.jpg?loading=lazy&sizes=(max-width: 768px) 240px, (max-width: 1024px) 300px, 400px)
+//   ![Headspace Animation](/images/motion/head4.jpg?loading=lazy&sizes=(max-width: 768px) 240px, (max-width: 1024px) 300px, 400px)
+//   ![Headspace Animation](/images/motion/head4.jpg?loading=lazy&sizes=(max-width: 768px) 240px, (max-width: 1024px) 300px, 400px)
+//   ![Headspace Animation](/images/motion/head4.jpg?loading=lazy&sizes=(max-width: 768px) 240px, (max-width: 1024px) 300px, 400px)
+// </MarkdownGallery>
+
 </script>
 
 During my time at Metro we were approached to create a series of promotional pieces for [Headspace](https://www.headspace.com/).
@@ -27,5 +27,3 @@ During my time at Metro we were approached to create a series of promotional pie
 These would need to be looping animations of calm peaceful scenes that would be captivating enough to grab attention on the feed — but too not distracting.
 
 Each week I pitched and created a scene with characters in-line with Headspaces classic imagery, tying in with the themes of the audio.
-
-<Gallery {images} accent='#7182E3'/>
