@@ -13,7 +13,7 @@
 <div class="project-card" class:horizontal style="--accent: {project.accent}" role="button" tabindex="0" onclick={() => onProjectClick(project)} onkeydown={(e) => e.key === "Enter" && onProjectClick(project)}>
   <div class="project-image">
     {#if project.posterImage}
-    <enhanced:img src={project.posterImage} alt={project.title} loading="lazy" sizes="(max-width: 768px) 300px" />
+    <enhanced:img src={project.posterImage} alt={project.title} loading="lazy" sizes="350px" />
     {:else}
     <img src={project.poster} alt={project.title} loading="lazy" />
     {/if}
