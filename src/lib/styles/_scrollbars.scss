@@ -1,27 +1,3 @@
-// Custom scrollbar mixins for cross-browser compatibility
-// Supports both WebKit (Chrome, Safari, Edge) and Firefox
-// Updated to fix CSS variable compatibility issues
-//
-// Usage Examples:
-// @include custom-scrollbar($thumb-color: #ff0000, $track-color: #000000);
-// @include custom-scrollbar-horizontal($thumb-color: var(--accent), $height: 10px);
-// @include overlay-scrollbar($thumb-color: var(--accent)); // Overlay scrollbar (no gutter)
-// @include main-scrollbar; // Preset for main page scrollbar
-// @include skill-scrollbar; // Preset for skill pages
-// @include project-scrollbar; // Preset for project modals (overlay)
-// @include modal-scrollbar; // Preset for modal overlays (overlay)
-
-// Firefox-specific mixin to prevent hover expansion
-@mixin firefox-scrollbar-fix {
-  scrollbar-width: auto;
-  
-  &:hover,
-  &:focus,
-  &:active {
-    scrollbar-width: auto !important;
-  }
-}
-
 @mixin custom-scrollbar(
   $thumb-color: var(--sinon-red),
   $track-color: transparent,
@@ -30,14 +6,19 @@
   $hover-mix: 80%,
   $overlay: false
 ) {
-  // Firefox scrollbar styling - force consistent size
-  @include firefox-scrollbar-fix;
+  
+  scrollbar-width: auto;
+  
+  &:hover,
+  &:focus,
+  &:active {
+    scrollbar-width: auto !important;
+  }
+  
   scrollbar-color: $thumb-color $track-color;
 
-  // WebKit scrollbar styling (Chrome, Safari, Edge)
   &::-webkit-scrollbar {
     width: $width;
-    // Overlay scrollbar - doesn't take up layout space
     @if $overlay or $track-color == transparent {
       background: transparent;
     }
@@ -46,7 +27,6 @@
   &::-webkit-scrollbar-track {
     @if $track-color == transparent or $overlay {
       background: transparent;
-      // Hide the track completely for overlay scrollbars
       display: none;
     } @else {
       background: $track-color;
@@ -59,21 +39,18 @@
     border-radius: $border-radius;
     transition: opacity 0.2s ease;
     
-    // Overlay scrollbar styling
     @if $overlay or $track-color == transparent {
       border: 2px solid transparent;
       background-clip: content-box;
-      min-height: 20px; // Ensure minimum thumb size
+      min-height: 20px;
     }
 
     &:hover {
-      // Use opacity for hover effect - compatible with CSS variables
       opacity: 0.8;
     }
   }
 }
 
-// Horizontal scrollbar variant
 @mixin custom-scrollbar-horizontal(
   $thumb-color: var(--skill-accent),
   $track-color: rgba(255, 255, 255, 0.1),
@@ -82,14 +59,19 @@
   $hover-mix: 80%,
   $overlay: false
 ) {
-  // Firefox scrollbar styling - force consistent size
-  @include firefox-scrollbar-fix;
+  
+  scrollbar-width: auto;
+  
+  &:hover,
+  &:focus,
+  &:active {
+    scrollbar-width: auto !important;
+  }
+  
   scrollbar-color: $thumb-color $track-color;
 
-  // WebKit scrollbar styling (Chrome, Safari, Edge)
   &::-webkit-scrollbar {
     height: $height;
-    // Overlay scrollbar - doesn't take up layout space
     @if $overlay or $track-color == transparent {
       background: transparent;
     }
@@ -98,7 +80,6 @@
   &::-webkit-scrollbar-track {
     @if $track-color == transparent or $overlay {
       background: transparent;
-      // Hide the track completely for overlay scrollbars
       display: none;
     } @else {
       background: $track-color;
@@ -111,37 +92,18 @@
     border-radius: $border-radius;
     transition: opacity 0.2s ease;
     
-    // Overlay scrollbar styling
     @if $overlay or $track-color == transparent {
       border: 2px solid transparent;
       background-clip: content-box;
-      min-width: 20px; // Ensure minimum thumb size for horizontal
+      min-width: 20px;
     }
 
     &:hover {
-      // Use opacity for hover effect - compatible with CSS variables
       opacity: 0.8;
     }
   }
 }
 
-// Dedicated overlay scrollbar mixin
-@mixin overlay-scrollbar(
-  $thumb-color: var(--sinon-red),
-  $width: 8px,
-  $border-radius: 4px
-) {
-  @include custom-scrollbar(
-    $thumb-color: $thumb-color,
-    $track-color: transparent,
-    $width: $width,
-    $border-radius: $border-radius,
-    $hover-mix: 0,
-    $overlay: true
-  );
-}
-
-// Preset mixins for common use cases
 @mixin main-scrollbar {
   @include custom-scrollbar(
     $thumb-color: var(--sinon-red),
@@ -149,16 +111,6 @@
     $width: 0.4rem,
     $border-radius: 0.5rem,
     $hover-mix: 0
-  );
-}
-
-@mixin skill-scrollbar {
-  @include custom-scrollbar(
-    $thumb-color: var(--skill-accent),
-    $track-color: rgba(255, 255, 255, 0.1),
-    $width: 12px,
-    $border-radius: 6px,
-    $hover-mix: 80
   );
 }
 
@@ -171,6 +123,25 @@
     $hover-mix: 0,
     $overlay: true
   );
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none !important; 
+  -ms-overflow-style: none !important;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    display: none !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
 }
 
 @mixin modal-scrollbar {

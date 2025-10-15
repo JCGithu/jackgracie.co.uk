@@ -1,6 +1,5 @@
 @use '$lib/styles/_breakpoints' as *;
 
-/* Shared markdown content styling for project pages */
 .project-content {
   position: relative;
   width: 100%;
@@ -8,7 +7,6 @@
 
   // Headings
   h1,h2,h3,h4,h5,h6 {
-    //font-family: "DM Serif Display", serif;
     color: var(--project-accent, var(--sinon-red));
     margin: 1.5rem 0 1rem 0;
     line-height: 1.3;

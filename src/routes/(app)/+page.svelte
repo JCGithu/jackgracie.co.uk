@@ -56,7 +56,7 @@
 </div>
 
 <style lang="scss">
-  // @use "$lib/styles/menu" as *;
+  @use "$lib/styles/scrollbars" as scrollbars;
 
   .scrollContainer {
     position: fixed;
@@ -68,26 +68,8 @@
     overflow-x: hidden;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
-    //background: linear-gradient(to top right, #803cff, rgb(47, 35, 49));
     background: radial-gradient(circle at left, #803cff, rgb(47, 35, 49));
-
-    /* Hide scrollbar - enhanced for all browsers */
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE and Edge */
-
-    &::-webkit-scrollbar {
-      display: none !important; /* Chrome, Safari, Opera */
-      width: 0 !important;
-      height: 0 !important;
-    }
-
-    &::-webkit-scrollbar-track {
-      display: none !important;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      display: none !important;
-    }
+    @include scrollbars.hide-scrollbar;
   }
 
   .noise {
