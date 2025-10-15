@@ -44,7 +44,7 @@
         <!-- Left Column: Content -->
         <div class="content-column">
           <div class="featured-media">
-            <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
+            <ProjectFeature project={project} />
           </div>
 
           <h2 id="modal-title" class="project-title">{project.title}</h2>
@@ -72,8 +72,8 @@
                 <ToolIcon toolName={tool} />
               {/each}
             </div>
-            <button class="primary-button" onclick={() => goto(`/project/${project.slug}`)}> View Project </button>
           </div>
+          <button class="primary-button" onclick={() => goto(`/project/${project.slug}`)}> View Project </button>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
     display: grid;
     background-color: var(--off-white);
     grid-template-columns: 2fr 1fr;
-    gap: 2rem;
+    gap: 1rem;
     height: 100%;
     padding: 2rem;
     scrollbar-width: none;
@@ -199,36 +199,44 @@
     color: var(--sinon-black);
     display: grid;
     grid-template-columns: 1fr;
+    padding-top: 2rem;
+    //border: 2px solid var(--project-accent);
+    //background: var(--project-accent);
+    color: var(--project-accent);
+    border-radius: 0.5rem;
     flex-direction: column;
+    margin-top: 2rem;
     gap: 0.5rem;
     width: 100%;
+    padding: 1rem;
+    height: fit-content;
   }
 
   .metadata-top {
     display: flex;
     flex-direction: column;
+    border-bottom: 2px solid var(--project-accent);
     gap: 0.25rem;
+    padding-bottom: 0.5rem;
+
+    p {
+      margin: 0;
+      margin-bottom: 0.25rem;
+    }
   }
 
   .metadata-bottom {
     display: grid;
-    grid-template-rows: 1fr 1fr;
     gap: 0.5rem;
-    margin-top: auto;
+    margin: 0;
+    margin-top: 0.5rem;
   }
 
   .tools-compact {
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
-    align-items: center;
-  }
-
-  .subtitle-text {
     margin: 0;
-    font-size: 1.1rem;
-    color: var(--project-accent);
-    font-weight: 600;
   }
 
   button {
@@ -237,7 +245,7 @@
 
   .primary-button {
     background: var(--project-accent);
-    color: var(--sinon-black);
+    color: white;
     border: none;
     padding: 0.875rem 1.5rem;
     border-radius: 0.5rem;
@@ -250,7 +258,6 @@
       background: var(--project-accent);
       opacity: 0.9;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -301,7 +308,8 @@
       border-radius: 0.5rem;
       margin-top: 0.5rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 0.5fr;
+      grid-template-rows: 1fr 0.2fr;
       flex-direction: column;
     }
 
@@ -312,16 +320,24 @@
 
     .metadata-top {
       gap: 0.25rem;
+      border: none;
+      justify-content: center;
+      padding: 0;
+      p {
+        margin: 0;
+        padding: 0;
+      }
+      
     }
 
     .subtitle-text {
       font-size: 1rem;
-      margin-bottom: 0.25rem;
+      //margin-bottom: 0.25rem;
     }
 
     .role-text {
       font-size: 0.9rem;
-      margin: 0;
+      //margin: 0;
     }
 
     .metadata-bottom {
@@ -331,12 +347,15 @@
 
     .tools-compact {
       gap: 0.25rem;
+      align-items: center;
+      justify-content: end;
     }
 
     .primary-button {
       width: 100%;
       padding: 0.75rem 1rem;
       font-size: 0.9rem;
+      grid-column: 1 / span 2;
     }
   }
 

@@ -1,5 +1,9 @@
 <script lang="ts">
+  import type { Picture } from 'vite-imagetools';
+  import { getEnhancedImage, hasEnhancedImage } from '$lib/utils/image-imports';
+
   interface ImageData {
+    picture?: Picture;
     src: string;
     alt: string;
     width?: number; // in pixels
@@ -16,6 +20,13 @@
 
   let { size = 200, images = [], grow = true, accent }: Props = $props();
 
+  let validImages = images.map((image) => {
+    if (hasEnhancedImage(image.src)) {
+      image.picture = getEnhancedImage(image.src);
+    }
+    return image;
+  });
+
   // Modal state
   let selectedImage = $state<ImageData | null>(null);
   let modalOpen = $state(false);
@@ -27,7 +38,6 @@
 
   function closeModal() {
     modalOpen = false;
-    selectedImage = null;
   }
 
   // Close modal on escape key
@@ -37,26 +47,6 @@
     }
   }
 
-  // Ensure images is always an array and filter out any invalid items
-  let safeImages = Array.isArray(images) ? images : [];
-
-  // Filter and process valid images with extra safety checks
-  let validImages = safeImages.filter((image, index) => {
-    try {
-      if (!image) return false;
-      if (typeof image !== "object") return false;
-      if (!image.hasOwnProperty("src")) return false;
-      if (!image.src) return false;
-      if (typeof image.src !== "string") return false;
-      if (image.src.trim() === "") return false;
-      return true;
-    } catch (error) {
-      console.warn(`Invalid image at index ${index}:`, image, error);
-      return false;
-    }
-  });
-
-  // Calculate item styles for flexbox layout
   let itemStyles = validImages.map((image, index) => {
     return `height: ${size}px; width: ${image.width || size}px;`;
   });
@@ -79,26 +69,32 @@
         return "object-position: center center;";
     }
   });
+
 </script>
 
 <div class="gallery">
   <div class="flex-container">
-    {#each validImages as item, index}
-      {#if item && item.src}
-        <div class="flex-item" style={itemStyles[index]} class:grow onclick={() => openModal(item)} onkeydown={(e) => e.key === "Enter" && openModal(item)} role="button" tabindex="0" aria-label="Open image preview">
-          <img src={item.src} alt={item.alt || ""} style={imageStyles[index]} />
+    {#each validImages as image, index (image.alt + index)}
+        <div class="flex-item" style={itemStyles[index]} class:grow onclick={() => openModal(image)} onkeydown={(e) => e.key === "Enter" && openModal(image)} role="button" tabindex="0" aria-label="Open image preview">
+          {#if image.picture}
+            <enhanced:img src={image.picture} alt={image.alt || ""} style={imageStyles[index]} loading="lazy" sizes="(max-width: 768px) 240px, (max-width: 1024px) 300px, 400px" />
+          {:else}
+            <img src={image.src} alt={image.alt || ""} style={imageStyles[index]} loading="lazy" />
+          {/if}
         </div>
-      {/if}
     {/each}
   </div>
 </div>
 
-<!-- Modal Preview -->
 {#if modalOpen && selectedImage}
-  <div class="modal-overlay" style={`--accent-color: ${accent};`} onclick={closeModal} onkeydown={handleKeydown} role="dialog" aria-modal="true" tabindex="-1">
+  <div class="modal-overlay" style:--accent-color={accent} onclick={closeModal} onkeydown={handleKeydown} role="dialog" aria-modal="true" tabindex="-1">
     <div class="modal-content" onclick={(e) => e.stopPropagation()} role="none">
       <button class="modal-close" onclick={closeModal} aria-label="Close modal">×</button>
-      <img src={selectedImage.src} alt={selectedImage.alt || ""} class="modal-image" />
+        {#if selectedImage.picture}
+          <enhanced:img src={selectedImage.picture} alt={selectedImage.alt || ""} class="modal-image" loading="lazy" sizes="(max-width: 768px) 90vw, (max-width: 1024px) 90vw, 90vw" />
+        {:else}
+          <img src={selectedImage.src} alt={selectedImage.alt || ""} class="modal-image" loading="lazy" />
+        {/if}
     </div>
   </div>
 {/if}
@@ -132,7 +128,7 @@
     transform: scale(1.02);
   }
 
-  .flex-item img {
+  .flex-item :global(enhanced\:img) {
     width: 100%;
     height: 100%;
     object-fit: cover;

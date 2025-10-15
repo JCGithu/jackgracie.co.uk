@@ -1,7 +1,8 @@
 import { error } from '@sveltejs/kit';
 import type { Project, Skill } from './types';
-import { ProjectMetadata } from './types';
+import { FullProject } from './types';
 import { validateOrThrow } from './validation';
+import { getEnhancedImage, hasEnhancedImage } from './image-imports';
 export const prerender = true;
 
 function createSkillData(): Record<string, Skill> {
@@ -69,11 +70,18 @@ function createSkillData(): Record<string, Skill> {
   }
 }
 
-
 export async function loadProjectsAndSkills() {
   const paths = import.meta.glob('/src/content/skills/*/*.md', { eager: true })
   const projects = new Set<Project>();
   const skillData = createSkillData(); // Create fresh skill data for each call
+
+  Object.values(skillData).forEach(skill => {
+    skill.banner.forEach(banner => {
+      if (hasEnhancedImage(banner.url)) {
+        banner.image = getEnhancedImage(banner.url);
+      }
+    });
+  });
 
   for (const path in paths) {
     const file = paths[path]
@@ -81,9 +89,17 @@ export async function loadProjectsAndSkills() {
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
       const { default: content, metadata } = file as any;
-      const validMetadata = validateOrThrow(ProjectMetadata, metadata, slug);
-      const project = { ...validMetadata, slug, path, content } satisfies Project;
-      projects.add(project);
+      let project = { ...metadata, slug, path, content } satisfies Project;
+
+      if (hasEnhancedImage(project.poster)) {
+        project.posterImage = getEnhancedImage(project.poster);
+      }
+      if (hasEnhancedImage(project.feature)) {
+        project.featureImage = getEnhancedImage(project.feature);
+      }
+
+      const validProject = validateOrThrow(FullProject, project, slug);
+      projects.add(validProject);
 
       if (project.skill) {
         for (const skill of project.skill) {

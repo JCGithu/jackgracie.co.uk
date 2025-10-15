@@ -8,15 +8,15 @@
   }
 
   let { project, horizontal = false, onProjectClick }: Props = $props();
-  let imgSrc = import.meta.glob("/images/editing/playlist.png");
 </script>
 
 <div class="project-card" class:horizontal style="--accent: {project.accent}" role="button" tabindex="0" onclick={() => onProjectClick(project)} onkeydown={(e) => e.key === "Enter" && onProjectClick(project)}>
   <div class="project-image">
-    <img src={project.poster} alt={project.title} />
-    <!-- {#if project.poster}
-      <enhanced:img src={project.poster} alt={project.title} />
-    {/if} -->
+    {#if project.posterImage}
+    <enhanced:img src={project.posterImage} alt={project.title} loading="lazy" sizes="(max-width: 768px) 300px" />
+    {:else}
+    <img src={project.poster} alt={project.title} loading="lazy" />
+    {/if}
   </div>
   <div class="project-info">
     <h3>{project.title}</h3>
@@ -30,7 +30,7 @@
 
 <style lang="scss">
   @use "$lib/styles/_breakpoints" as *;
-  // Card width variable - 300px for wide, 240px for mobile
+
   .project-card {
     --cardWidth: 300px;
 
@@ -72,17 +72,22 @@
 
   .project-image {
     width: 100%;
-    height: 45%; // Take up 45% of card height for good balance
+    height: 45%;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 
-    img {
-      width: 100%;
+    :global(picture) {
       height: 100%;
-      object-fit: cover;
+      width: auto;
+
+    }
+
+    :global(enhanced\:img) {
+      height: 100%;
+      width: auto;
     }
   }
 
@@ -115,6 +120,7 @@
 
     .description {
       margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
       line-height: 1.4;
       font-size: 0.85rem;
       flex: 1;

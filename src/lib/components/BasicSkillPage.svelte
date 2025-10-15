@@ -4,7 +4,7 @@
   import DynamicBackground from "./DynamicBackground.svelte";
   import type { Skill, Project } from "$lib/utils/types.js";
   import "$lib/styles/projects.scss";
-  import { categoryMap } from "$lib/utils/icons.js";
+  import { categoryMap } from "$lib/utils/icons";
   import { horizontalScroll } from "$lib/utils/horizontalScroll";
   import ProjectFeature from "./ProjectFeature.svelte";
   import ArrowButton from "./ArrowButton.svelte";
@@ -34,12 +34,9 @@
       }
     });
 
-    // Sort projects within each category by order
     Object.keys(groups).forEach((category) => {
       groups[category].sort((a, b) => a.order - b.order);
     });
-
-    // Sort uncategorized projects by order
     uncategorized.sort((a, b) => a.order - b.order);
 
     return { groups, uncategorized };
@@ -69,7 +66,11 @@
 <div id="skillpage" class:modal-open={isModalOpen}>
   <div id="banner">
     {#each skillData.banner as banner, index}
-      <img src={banner.url} alt={banner.alt} style="z-index: {skillData.banner.length - index};" />
+      {#if banner.image}
+        <enhanced:img src={banner.image} alt={banner.alt} style="z-index: {skillData.banner.length - index};" sizes="(max-width: 768px) 100vw, 1920px" />
+      {:else}
+        <img src={banner.url} alt={banner.alt} style="z-index: {skillData.banner.length - index};" />
+      {/if}
     {/each}
   </div>
 
@@ -89,10 +90,10 @@
         {/if}
       </div>
 
-      {#if skillData.reel && isReelExpanded}
+      {#if skillData.reel && skillData.reel.video && skillData.reel.title && isReelExpanded}
         <div class="reel-container" transition:slide={{ duration: 300 }}>
           <div class="reel-video">
-            <ProjectFeature feature={skillData.reel.video} title={skillData.reel.title} poster={skillData.reel.title} compact={true} />
+            <YouTube url={skillData.reel.video || ""} title={skillData.reel.title} />
           </div>
         </div>
       {/if}
@@ -100,10 +101,16 @@
 
     <div id="projects-container">
       <!-- Display categorized projects -->
-      {#each Object.entries(groupedProjects().groups) as [category, categoryProjects]}
+      {#each Object.entries(groupedProjects().groups || {}) as [category, categoryProjects]}
         <div class="category-section page-padding">
           {#if categoryMap.has(category)}
-            <img src={categoryMap.get(category)} alt={category} class="category-icon" />
+            {#if categoryMap.get(category)}
+              {#if typeof categoryMap.get(category) === "string"}
+                <img src={categoryMap.get(category)!} alt={category} class="category-icon" />
+              {:else}
+                <enhanced:img src={categoryMap.get(category).default} alt={category} class="category-icon" sizes="4rem" />
+              {/if}
+            {/if}
           {:else}
             <h2 class="category-title">{category}</h2>
           {/if}
@@ -164,7 +171,7 @@
     left: 0;
     z-index: 1;
     height: 100vh;
-    img {
+    enhanced\:img {
       position: absolute;
       top: 0;
       left: 0;
@@ -280,7 +287,7 @@
       top: auto !important;
       left: auto !important;
       z-index: auto !important;
-      img {
+      enhanced\:img, img {
         position: relative !important;
         width: 100% !important;
         height: auto !important;

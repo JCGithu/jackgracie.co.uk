@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { Component } from 'svelte';
+import type { Picture } from 'vite-imagetools';
 
 const Skill = z.enum(["motion", "editing", "developing", "capture"]);
 
@@ -25,8 +26,10 @@ const ProjectMetadata = z.object({
   client: z.string().optional(),
   video: z.string().optional(),
   poster: z.string(),
+  posterImage: z.custom<Picture>((val) => val != null).optional(),
   order: z.number(),
   feature: z.string(),
+  featureImage: z.custom<Picture>((val) => val != null).optional(),
   hide: z.boolean().optional(),
   links: z.array(ProjectLinks).optional(),
   category: z.string().optional(),
@@ -47,6 +50,7 @@ const SkillSchema = z.object({
   banner: z.array(z.object({
     url: z.string(),
     alt: z.string(),
+    image: z.custom<Picture>((val) => val != null).optional(),
   })),
   reel: Reel.optional(),
   projects: z.array(FullProject),

@@ -39,7 +39,7 @@
 <div class="project-page" style="--project-accent: {project.accent}">
   <div class="title-container">
     <div class="feature-container">
-      <ProjectFeature feature={project.feature} title={project.title} poster={project.poster} />
+      <ProjectFeature project={project} />
     </div>
     <h1>{project.title}</h1>
   </div>
@@ -115,7 +115,6 @@
 
   :global(html) {
     --project-accent: var(--project-accent);
-    //@include custom-scrollbar($thumb-color: var(--project-accent), $track-color: var(--off-white), $width: 12px, $border-radius: 6px, $hover-mix: 80);
   }
 
   .project-page {
@@ -146,6 +145,13 @@
     grid-template-columns: 1fr 0.3fr;
     grid-gap: 2rem;
     align-items: baseline !important;
+  }
+
+  .project-content {
+    background: var(--off-white);
+    background-repeat: repeat;
+    background-image: url(/images/noisedark.png);
+    z-index: 5;
   }
 
   .sidebar {

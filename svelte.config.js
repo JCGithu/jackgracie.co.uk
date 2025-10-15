@@ -5,20 +5,19 @@ import redirects from './src/lib/redirects.ts';
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
-	extensions: ['.md'],
+	extensions: ['.md']
 }
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: ['.svelte', '.md'],
 	preprocess: [
+		mdsvex(mdsvexOptions),
 		vitePreprocess(),
-		mdsvex(mdsvexOptions)
 	],
 	vitePlugin: {
 		inspector: true,
 	},
-
 	kit: {
 		adapter: adapter({
 			pages: 'build',
