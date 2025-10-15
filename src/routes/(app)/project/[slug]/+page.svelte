@@ -6,23 +6,18 @@
   import ProjectCard from "$lib/components/ProjectCard.svelte";
   import { goto } from "$app/navigation";
   import { fade, fly } from "svelte/transition";
-  import { ScrollState, ElementSize } from "runed";
+  import { ElementSize } from "runed";
+  import { scrollY, innerHeight } from 'svelte/reactivity/window';
   import { onMount } from "svelte";
   import { horizontalScroll } from "$lib/utils/horizontalScroll.js";
   let { data } = $props();
 
   let project = data.project;
   let relatedProjects = data.relatedProjects;
-
-  const scroll = new ScrollState({
-    element: () => window,
-  });
-
-  let showMetadata = $derived(scroll.y > 50);
+  let showMetadata = $derived(scrollY.current > 50);
   onMount(() => {
     let scrollHeight = document.documentElement.scrollHeight;
-    let windowHeight = window.innerHeight;
-    if (scrollHeight <= windowHeight) showMetadata = true;
+    if (scrollHeight <= innerHeight.current) showMetadata = true;
   });
 </script>
 

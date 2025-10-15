@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { fly } from "svelte/transition";
-  import { ScrollState } from "runed";
+  import { scrollY } from 'svelte/reactivity/window';
   import ArrowButton from "$lib/components/ArrowButton.svelte";
   import Hamburger from "./Hamburger.svelte";
   import Menu from "./Menu.svelte";
@@ -19,10 +19,7 @@
   let skills = data.skills;
   let menuOpen = $state(false);
 
-  const scroll = new ScrollState({
-    element: () => window,
-  });
-  let navBarShow = $derived(scroll.y > 50);
+  let navBarShow = $derived(scrollY.current > 50);
 
   function goHome() {
     goto("/");
