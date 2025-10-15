@@ -16,11 +16,11 @@
   </div>
 {:else if youtube}
     <div class="feature-video">
-      <YouTube url={project.feature || ""} title={project.title} />
+      <YouTube url={project.feature} title={project.title} />
     </div>
 {:else if video}
   <div class="feature-video">
-    <video controls loop autoplay preload="metadata" poster={project.posterImage ? project.posterImage : project.poster} title={project.title}>
+    <video controls loop autoplay preload="metadata" poster={project.posterImage ? project.posterImage.img.src : project.poster} title={project.title}>
       <source src={project.feature} type="video/webm" />
       <track kind="captions" src="" label="No captions available" />
       Your browser does not support the video tag.

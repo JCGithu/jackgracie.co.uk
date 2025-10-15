@@ -19,7 +19,7 @@
   let skills = data.skills;
   let menuOpen = $state(false);
 
-  let navBarShow = $derived(scrollY.current > 50);
+  let navBarShow = $derived((scrollY.current ?? 0) > 50);
 
   function goHome() {
     goto("/");

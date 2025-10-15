@@ -7,17 +7,17 @@
   import { goto } from "$app/navigation";
   import { fade, fly } from "svelte/transition";
   import { ElementSize } from "runed";
-  import { scrollY, innerHeight } from 'svelte/reactivity/window';
+  import { scrollY } from 'svelte/reactivity/window';
   import { onMount } from "svelte";
   import { horizontalScroll } from "$lib/utils/horizontalScroll.js";
   let { data } = $props();
 
   let project = data.project;
   let relatedProjects = data.relatedProjects;
-  let showMetadata = $derived(scrollY.current > 50);
+  let showMetadata = $derived((scrollY?.current ?? 0) > 50);
   onMount(() => {
     let scrollHeight = document.documentElement.scrollHeight;
-    if (scrollHeight <= innerHeight.current) showMetadata = true;
+    if (scrollHeight <= window.innerHeight) showMetadata = true;
   });
 </script>
 
