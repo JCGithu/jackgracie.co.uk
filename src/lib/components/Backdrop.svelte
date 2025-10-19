@@ -1,39 +1,49 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import lottie from 'lottie-web';
-	import backdrop from '../../lottie/backdrop.json';
+  import { onMount } from "svelte";
+  import lottie from "lottie-web";
+  import backdrop from "../../lottie/backdrop.json";
 
-	let animationContainer: HTMLElement;
+  let animationContainer: HTMLElement;
 
-	onMount(() => {
-		const animation = lottie.loadAnimation({
-			container: animationContainer,
-			animationData: backdrop,
-		});
+  import { outerWidth, outerHeight } from "svelte/reactivity/window";
 
-		function windowResize() {
-			if (animationContainer) {
-				const lott = animationContainer.children[0] as HTMLElement;
-				if (window.outerWidth >= window.outerHeight * 1.78) {
-					lott.setAttribute('preserveAspectRatio', 'xMinYMid meet');
-				} else {
-					lott.setAttribute('preserveAspectRatio', 'xMidYMax slice');
-				}
-				if (animationContainer.children[1]) {
-					const del = animationContainer.children[1];
-					animationContainer.removeChild(del);
-				}
-			}
-		}
+  let aspectRatio = $derived(outerWidth.current && outerHeight.current ? (outerWidth.current >= outerHeight.current * 1.78 ? "xMinYMid meet" : "xMidYMax slice") : "xMidYMax slice");
 
-		window.addEventListener('resize', windowResize);
-		windowResize();
+  onMount(() => {
+    const animation = lottie.loadAnimation({
+      container: animationContainer,
+      animationData: backdrop,
+    });
 
-		return () => {
-			animation.destroy();
-			window.removeEventListener('resize', windowResize);
-		};
-	});
+    function windowResize() {
+      if (animationContainer) {
+        const lott = animationContainer.children[0] as HTMLElement;
+        lott.setAttribute("preserveAspectRatio", aspectRatio);
+        if (animationContainer.children[1]) {
+          const del = animationContainer.children[1];
+          animationContainer.removeChild(del);
+        }
+      }
+    }
+
+    window.addEventListener("resize", windowResize);
+    windowResize();
+
+    return () => {
+      animation.destroy();
+      window.removeEventListener("resize", windowResize);
+    };
+  });
 </script>
 
-<div id="backdrop" bind:this={animationContainer} class="backdrop"></div>
+<div id="backdrop" bind:this={animationContainer}></div>
+
+<style lang="scss">
+  #backdrop {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+  }
+</style>
