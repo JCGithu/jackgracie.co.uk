@@ -16,6 +16,11 @@ publish = "build"
   status = 301
 
 [[redirects]]
+  from = "/videography"
+  to = "https://vimeo.com/1123610282?share=copy"
+  status = 301
+
+[[redirects]]
   from = "/frontier"
   to = "https://youtu.be/GM1dctHM1EM"
   status = 301
