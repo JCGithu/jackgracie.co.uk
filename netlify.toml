@@ -16,6 +16,11 @@ publish = "build"
   status = 301
 
 [[redirects]]
+  from = "/frontier"
+  to = "https://youtu.be/GM1dctHM1EM"
+  status = 301
+
+[[redirects]]
   from = "/capturereel"
   to = "/capture"
   status = 301
