@@ -29,6 +29,7 @@ const config = {
 			entries: ['*',
 				...Object.keys(redirects),
 				'/notionclock',
+				'/404',
 			],
 			handleHttpError: 'fail',
 			handleUnseenRoutes: 'warn'

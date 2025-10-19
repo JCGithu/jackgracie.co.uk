@@ -22,5 +22,12 @@ const redirectsSection = Object.entries(redirects).map(([from, to]) =>
   status = 301
 `).join('\n');
 
-writeFileSync(resolve(dirname(fileURLToPath(import.meta.url)), '../netlify.toml'), buildConfig + '\n' + redirectsSection);
-console.log(`✅ Synced ${Object.keys(redirects).length} redirects to netlify.toml`);
+// Add catch-all redirect for 404 handling
+const catchAllRedirect = `[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
+`;
+
+writeFileSync(resolve(dirname(fileURLToPath(import.meta.url)), '../netlify.toml'), buildConfig + '\n' + redirectsSection + '\n' + catchAllRedirect);
+console.log(`✅ Synced ${Object.keys(redirects).length} redirects to netlify.toml (+ catch-all for 404)`);

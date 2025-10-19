@@ -39,3 +39,8 @@ publish = "build"
   from = "/projects/notionclock"
   to = "/notionclock"
   status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
