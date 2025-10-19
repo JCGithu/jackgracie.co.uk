@@ -60,7 +60,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: capitalize;
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-sans);
     pointer-events: auto;
     transition: all 0.3s ease-in-out;
     &:hover {

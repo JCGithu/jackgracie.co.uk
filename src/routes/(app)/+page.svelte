@@ -38,13 +38,14 @@
   <!-- Title Section -->
   <div class="home">
     <Backdrop />
-    <div class="titleBox">
-      <div class="titleText">
-        <h1 class="DMserif">
+    <div id="homeBox">
+      <div id="titleText">
+        <h1 id="title">
           <SplitText copy="jack gracie" />
         </h1>
         <!-- <div class="underline"></div> -->
-        <p class="mini">contact@jackgracie.co.uk</p>
+        <p id="email">contact@jackgracie.co.uk</p>
+        <p class="hidden">Pimento font</p>
       </div>
     </div>
   </div>
@@ -57,6 +58,7 @@
 
 <style lang="scss">
   @use "$lib/styles/scrollbars" as scrollbars;
+  @use "$lib/styles/breakpoints" as *;
 
   .scrollContainer {
     position: fixed;
@@ -106,5 +108,58 @@
     position: relative;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+  }
+
+  .hidden {
+    font-family: var(--font-pimento);
+    visibility: hidden;
+  }
+
+  #homeBox {
+    position: relative;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    h1 {
+      z-index: 10;
+      position: relative;
+      text-align: center;
+      margin: 0;
+      font-size: 4rem;
+      font-weight: 400;
+
+      @media screen and (max-width: $bp-desktop) {
+        font-size: 3rem;
+      }
+
+      @media screen and (max-width: $bp-mobile) {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  #titleText {
+    width: 20rem;
+    height: auto;
+    position: relative;
+    text-align: center;
+    align-items: center;
+
+    ::selection {
+      background: #ff809a;
+    }
+  }
+
+  #email {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin: 0;
+    margin-top: -0.2rem;
+    margin-bottom: 0.4rem;
+    font-family: "Poppins", sans-serif;
   }
 </style>

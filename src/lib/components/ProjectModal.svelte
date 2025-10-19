@@ -44,7 +44,7 @@
         <!-- Left Column: Content -->
         <div class="content-column">
           <div class="featured-media">
-            <ProjectFeature project={project} />
+            <ProjectFeature {project} />
           </div>
 
           <h2 id="modal-title" class="project-title">{project.title}</h2>
@@ -189,7 +189,7 @@
   }
 
   .project-title {
-    font-family: "Pimento", serif;
+    font-family: var(--font-pimento);
     font-size: 2.5rem;
     margin: 0;
     color: var(--project-accent);
@@ -240,7 +240,7 @@
   }
 
   button {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-sans);
   }
 
   .primary-button {
@@ -327,7 +327,6 @@
         margin: 0;
         padding: 0;
       }
-      
     }
 
     .subtitle-text {
