@@ -21,12 +21,12 @@ Previous great experiences:
 
 ## 🤖 Tech
 
+- Mini e-reader (xteink-x4) - [Link](https://www.xteink.com/products/xteink-x4)
 - Polaroid - Color 600 Film <span class="highlight">Can be purchased via Polaroid direct now</span>
 - An old iPod, camera, or games console. I have a number of projects for these I'd like to try.
 
 ## 🏡 Home
 
-- Nice mug - [Link here](https://kinto-europe.com/collections/mug-cup/products/20754?variant=18332156493882)
 - Hasami porcelain coffee dripper, unglazed
 - Bread lame
 - Bread banneton
@@ -56,19 +56,24 @@ Here is my full 'To Read' list, in no particular order:
   </table>
 </div>
 
-## Cook Books & Others:
+### Cook Books & Others:
 
 - Aran: Recipes and Stories from a Bakery in the Heart of Scotland
 - Lune - Croissants all day all night
 - Supa Ya Ramen
 - Super Sourdough - James Morton
 - The Greatest Traybake Cookbook Ever — John Gregory-Smith
-- Hirayasumi, Vol. 1
+
+### Other Books:
+
+- Minute Cryptic (Puzzles)
+- Hirayasumi, Vol. 1 (Comic)
+- Succession - The Complete Scripts
 
 ## 🤷 Misc
 
-- Record player repaired <span class="highlight">(The hinge on the lid is broken, I have no idea who could fix it or how much)</span>
 - Nice coffee beans. Caffeinated or not.
+- New Scientist subscription
 
 ## 🎻 Vinyl
 
@@ -94,6 +99,10 @@ You can find what albums I'm after on my [Discogs account](https://www.discogs.c
 </div>
 
 ---
+
+# Once I get a place
+
+- Nice mug - [Link here](https://kinto-europe.com/collections/mug-cup/products/20754?variant=18332156493882)
 
 # More Expensive
 
