@@ -1,6 +1,6 @@
 ---
 title: "Wishlist"
-subtitle: "last updated: May-ish"
+subtitle: "last updated: November"
 description: "A curated list of gift ideas, books, experiences, and items I'm interested in"
 accent: "#ff6b35"
 order: 1
@@ -13,11 +13,7 @@ order: 1
 ## 🌄 Experiences
 
 I'd like anything that's crafty or a one-off experience.
-Previous great experiences:
-
-- Coffee tasting at Hot Numbers
-- Pottery classes
-- Croissant cooking class
+Previous great experiences include: Coffee tasting at Hot Numbers, pottery classes, croissant cookng class.
 
 ## 🤖 Tech
 
@@ -27,7 +23,7 @@ Previous great experiences:
 
 ## 🏡 Home
 
-- Hasami porcelain coffee dripper, unglazed
+- V60 coffee dripper. <span class="highlight">Hario make the 'official ones' but it can be from Etsy, any coffee shop, ceramics place, etc. Material also not important, just something that looks nice.</span>
 - Bread lame
 - Bread banneton
 
@@ -75,16 +71,10 @@ Here is my full 'To Read' list, in no particular order:
 - Nice coffee beans. Caffeinated or not.
 - New Scientist subscription
 
+<!-- Removed until I have a set-up
 ## 🎻 Vinyl
-
 You can find what albums I'm after on my [Discogs account](https://www.discogs.com/wantlist?user=JCGracie)! You can buy from trusted sellers direct on the site.
-
-## 🥼 Clothes
-
-- I'm looking to get a lightweight waterproof jacket. Something for daily wear or light hiking.
-- Black trainers. Size 11, 10½ if possible. Simple. For everyday use, not running.
-- Running shorts. 2-in-1 shorts, preferably with a phone pocket.
-- Forest green cardigan.
+-->
 
 <div class="card">
   <div class="card-header">
@@ -100,19 +90,13 @@ You can find what albums I'm after on my [Discogs account](https://www.discogs.c
 
 ---
 
-# Once I get a place
+# ...Once I get a place
 
 - Nice mug - [Link here](https://kinto-europe.com/collections/mug-cup/products/20754?variant=18332156493882)
 
 # More Expensive
 
 These are here because I also keep this list for myself — they are above present price.
-
-## 🥼 Clothes
-
-- I'm looking to get a lightweight waterproof jacket. Something for daily wear or light hiking.
-- Yellow Uskees #3003 buttoned workshirt - [Link](https://uskees.com/products/3003-yellow-button-workshirt?variant=31257971359884)
-- LaboMono Coats/Jackets - [Link](https://labomono.com/)
 
 ## 🏡 Home
 
