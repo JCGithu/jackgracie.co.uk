@@ -7,5 +7,6 @@ export default {
   "/mographreel": "https://www.youtube.com/watch?v=ak7QmAedl2k",
   "/cv": "/data/CV.pdf",
   "/pages/notionclock": "/notionclock",
-  "/projects/notionclock": "/notionclock"
+  "/projects/notionclock": "/notionclock",
+  "/alison": "https://drive.google.com/drive/folders/1W06JYY5sLY74p2img5pADk7MFYNNTY6v?usp=sharing",
 };
