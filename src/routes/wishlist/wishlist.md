@@ -24,7 +24,6 @@ Previous great experiences include: Coffee tasting at Hot Numbers, pottery class
 ## 🏡 Home
 
 - V60 coffee dripper. <span class="highlight">Hario make the 'official ones' but it can be from Etsy, any coffee shop, ceramics place, etc. Material also not important, just something that looks nice.</span>
-- Bread lame
 - Bread banneton
 
 ## 📙 Books
@@ -55,21 +54,19 @@ Here is my full 'To Read' list, in no particular order:
 ### Cook Books & Others:
 
 - Aran: Recipes and Stories from a Bakery in the Heart of Scotland
-- Lune - Croissants all day all night
-- Supa Ya Ramen
 - Super Sourdough - James Morton
 - The Greatest Traybake Cookbook Ever — John Gregory-Smith
 
 ### Other Books:
 
 - Minute Cryptic (Puzzles)
-- Hirayasumi, Vol. 1 (Comic)
 - Succession - The Complete Scripts
 
 ## 🤷 Misc
 
 - Nice coffee beans. Caffeinated or not.
-- New Scientist subscription
+- New Scientist subscription.
+- Leather replacement strap for my watch.
 
 <!-- Removed until I have a set-up
 ## 🎻 Vinyl
