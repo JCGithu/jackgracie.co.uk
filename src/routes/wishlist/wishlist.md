@@ -13,7 +13,19 @@ order: 1
 ## 🌄 Experiences
 
 I'd like anything that's crafty or a one-off experience.
-Previous great experiences include: Coffee tasting at Hot Numbers, pottery classes, croissant cookng class.
+Previous great experiences include: Coffee tasting at Hot Numbers, pottery classes, croissant cooking class.
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">If there is nothing here you want to get...</h3>
+  </div>
+  <div class="card-content">
+    Please just get me something that you've personally enjoyed <i>or</i> think that I will, for example:<br>
+    <span class="highlight">A favourite book, film, or album</span><br>
+    <span class="highlight">A board or card game that looks fun</span><br>
+    <span class="highlight">Tickets for museum events.</span>
+  </div>
+</div>
 
 ## 🤖 Tech
 
@@ -73,19 +85,7 @@ Here is my full 'To Read' list, in no particular order:
 You can find what albums I'm after on my [Discogs account](https://www.discogs.com/wantlist?user=JCGracie)! You can buy from trusted sellers direct on the site.
 -->
 
-<div class="card">
-  <div class="card-header">
-    <h3 class="card-title">If there is nothing here you want to get...</h3>
-  </div>
-  <div class="card-content">
-    Please just get me something that you've personally enjoyed <i>or</i> think that I will, for example:<br>
-    <span class="highlight">A favourite book, film, or album</span><br>
-    <span class="highlight">A board or card game that looks fun</span><br>
-    <span class="highlight">Tickets for museum events.</span>
-  </div>
-</div>
-
----
+<!-- ---
 
 # ...Once I get a place
 
@@ -97,8 +97,4 @@ These are here because I also keep this list for myself — they are above prese
 
 ## 🏡 Home
 
-- Sourdough slicer
-
-## 🤖 Tech
-
-- ToneCarrier35 film holder - [Link](https://tonephotographic.com/products/tonecarrier-35-mm)
+- Sourdough slicer -->
