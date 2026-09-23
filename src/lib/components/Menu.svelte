@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fly } from "svelte/transition";
+  import { fly, scale } from "svelte/transition";
   import { IsInViewport } from "runed";
   import type { Skill } from "$lib/utils/types.js";
   import Swirl from "./Swirl.svelte";
@@ -19,7 +19,7 @@
 <div class="menu" bind:this={targetNode} class:bottom>
   {#if inViewport.current}
     {#each Object.keys(skills) as skill, index (skill)}
-      <button transition:fly|global={{ x: 100, delay: index * 100, duration: 300 }} class="menu_item" style="--accent-color: {skills[skill].accent}" onclick={() => onNavigate(skills[skill].slug)} onmouseenter={() => (swirlOn[index] = true)} onmouseleave={() => (swirlOn[index] = false)}>
+      <button in:fly|global={{ x: 100, delay: index * 100, duration: 300 }} out:fly|global={{ x: 100, delay: index * 50, duration: 200 }} class="menu_item" style="--accent-color: {skills[skill].accent}" onclick={() => onNavigate(skills[skill].slug)} onmouseenter={() => (swirlOn[index] = true)} onmouseleave={() => (swirlOn[index] = false)}>
         {skills[skill].name}
         {#if swirlOn[index]}
           <div class="swirl_container">
@@ -44,7 +44,7 @@
     width: 100%;
     background: var(--accent-color);
     color: white;
-    font-family: "Pimento";
+    font-family: var(--font-pimento);
     font-size: 2rem;
     cursor: pointer;
     border: none;
@@ -91,5 +91,4 @@
       transform: translate(-50%, -50%) scaleX(0.9) scaleY(0.3);
     }
   }
-
 </style>
