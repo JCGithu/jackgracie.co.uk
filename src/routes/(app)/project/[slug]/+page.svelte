@@ -7,7 +7,7 @@
   import { goto } from "$app/navigation";
   import { fade, fly } from "svelte/transition";
   import { ElementSize } from "runed";
-  import { scrollY } from 'svelte/reactivity/window';
+  import { scrollY } from "svelte/reactivity/window";
   import { onMount } from "svelte";
   import { horizontalScroll } from "$lib/utils/horizontalScroll.js";
   let { data } = $props();
@@ -34,7 +34,7 @@
 <div class="project-page" style="--project-accent: {project.accent}">
   <div class="title-container">
     <div class="feature-container">
-      <ProjectFeature project={project} />
+      <ProjectFeature {project} />
     </div>
     <h1>{project.title}</h1>
   </div>
@@ -192,12 +192,13 @@
 
   .feature-container {
     width: 100%;
-    max-width: 800px;
-    aspect-ratio: 16 / 9;
+    //max-width: 800px;
+    //aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    background-color: red;
   }
 
   .description {
