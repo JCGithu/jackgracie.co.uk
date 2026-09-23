@@ -19,5 +19,6 @@ export const toolMap = new Map<string, string>([
 export const categoryMap = new Map<string, string>([
   ['Frontier', '/icons/Frontier.svg'],
   ['Metro', '/icons/Metro.svg'],
-  ['EA', '/icons/EA.svg']
+  ['EA', '/icons/EA.svg'],
+  ['Ninja Theory', '/icons/NT.svg']
 ]);

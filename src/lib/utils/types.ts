@@ -53,6 +53,7 @@ const SkillSchema = z.object({
     image: z.custom<Picture>((val) => val != null).optional(),
   })),
   reel: Reel.optional(),
+  categories: z.array(z.string()),
   projects: z.array(FullProject),
 });
 

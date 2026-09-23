@@ -11,7 +11,7 @@ function createSkillData(): Record<string, Skill> {
       name: "Editing",
       slug: "editing",
       accent: "#25AC7D",
-      description: "I've been editing for 13 years, ever since I downloaded Premiere CS5 and needed to render out my edits to see them. I've edited in several industries: videography, journalism, social media, and gaming. I'm always looking for the next project.",
+      description: "13 years experience across videography, journalism, social media, and gaming.",
       banner: [
         {
           url: "/images/editing/videoBanner.jpg",
@@ -19,6 +19,7 @@ function createSkillData(): Record<string, Skill> {
         },
       ],
       projects: [],
+      categories: ["Ninja Theory", "EA", "Frontier"],
     },
     capture: {
       name: "Game Capture",
@@ -36,6 +37,7 @@ function createSkillData(): Record<string, Skill> {
         title: "Game Capture Reel",
       },
       projects: [],
+      categories: ["Jurassic World Evolution 2", "Planet Zoo", "Stranded: Alien Dawn"],
     },
     motion: {
       name: "Motion Graphics",
@@ -53,6 +55,7 @@ function createSkillData(): Record<string, Skill> {
         title: "Motion Reel",
       },
       projects: [],
+      categories: [],
     },
     developing: {
       name: "Developing",
@@ -66,6 +69,7 @@ function createSkillData(): Record<string, Skill> {
         },
       ],
       projects: [],
+      categories: [],
     },
   }
 }
