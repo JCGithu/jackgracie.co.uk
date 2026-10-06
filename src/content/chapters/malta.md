@@ -3,13 +3,10 @@ title: "Dominion: Malta Expansion"
 subtitle: "DLC Trailers"
 description: "Set before Jurassic World Dominion, you’ll discover spectacular new prehistoric species in an all new campaign."
 accent: "#DC8519"
-order: 1
-skill: ["capture"]
-category: "Jurassic World Evolution 2"
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=bcv_RQB1Rlk"
 role: "Scripted, Edited, Directed, Captured"
-poster: "/images/capture/moros.png"
+poster: "/images/MaltaCard.png"
 ---
 
 <script>

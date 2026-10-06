@@ -2,13 +2,10 @@
 title: "Robots & Guardians DLC"
 subtitle: "DLC Trailer"
 description: "Robots and Guardians and Aliens — oh my!"
-skill: ["capture"]
 accent: "#2FB684"
-category: "Stranded: Alien Dawn"
-order: 1
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=NTKYIu4nRz4"
-poster: "/images/capture/robots.jpg"
+poster: "/images/RobotCard.png"
 role: "Scripted, Edited, Directed, Captured"
 ---
 

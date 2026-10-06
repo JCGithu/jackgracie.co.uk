@@ -2,14 +2,11 @@
 title: Arid Pack
 subtitle: "DLC Trailers"
 description: "Discover the miraculous wildlife of the world’s dunes, deserts and dusty plains by welcoming eight incredible new species to your zoo"
-skill: ["capture"]
-category: Planet Zoo
 accent: "#e1ad77"
 role: "Shot, Edited"
-order: 1
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=c2cY0NoVMC8"
-poster: "/images/capture/arid.png"
+poster: "/images/AridCard.png"
 ---
 
 <script>

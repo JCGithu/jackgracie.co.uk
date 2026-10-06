@@ -2,6 +2,7 @@
   import { goto } from "$app/navigation";
   import "../../app.scss";
   import ArrowButton from "$lib/components/ArrowButton.svelte";
+  import Noise from "$lib/components/Noise.svelte";
   function goHome() {
     goto("/");
   }
@@ -12,7 +13,7 @@
 </svelte:head>
 
 <div class="error-container">
-  <div class="noise"></div>
+  <Noise />
 
   <div class="error-content">
     <div class="error-box">
@@ -38,18 +39,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-  }
-
-  .noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("/images/noise.png");
-    opacity: 0.3;
-    z-index: 10;
-    pointer-events: none;
   }
 
   .error-content {

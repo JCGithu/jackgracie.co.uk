@@ -1,6 +1,7 @@
 <script lang="ts">
-  import type { Picture } from 'vite-imagetools';
-  import { getEnhancedImage, hasEnhancedImage } from '$lib/utils/image-imports';
+  import type { Picture } from "vite-imagetools";
+  import { getEnhancedImage, hasEnhancedImage } from "$lib/utils/image-imports";
+  import YouTube from "./YouTube.svelte";
 
   interface ImageData {
     picture?: Picture;
@@ -11,14 +12,20 @@
     align?: "top" | "bottom" | "left" | "right" | "center";
   }
 
+  interface VideoData {
+    src: string;
+    title: string;
+  }
+
   interface Props {
     size?: number;
     images?: ImageData[];
+    videos?: VideoData[];
     grow?: boolean;
     accent?: string;
   }
 
-  let { size = 200, images = [], grow = true, accent }: Props = $props();
+  let { size = 200, images = [], videos = [], grow = true, accent }: Props = $props();
 
   let validImages = images.map((image) => {
     if (hasEnhancedImage(image.src)) {
@@ -40,18 +47,20 @@
     modalOpen = false;
   }
 
-  // Close modal on escape key
-  function handleKeydown(event: KeyboardEvent) {
-    if (event.key === "Escape" && modalOpen) {
-      closeModal();
-    }
-  }
-
   let itemStyles = validImages.map((image, index) => {
     return `height: ${size}px; width: ${image.width || size}px;`;
   });
 
-  // Calculate image alignment styles
+  let videoItemStyles = videos.map((video, index) => {
+    return `width: ${size}px;`;
+  });
+
+  let imageSizes = validImages.map((image) => {
+    if (!image.picture) return undefined;
+    const minWidth = Math.round((size * image.picture.img.w) / image.picture.img.h);
+    return minWidth >= 780 ? `${minWidth}px` : `(max-width: ${minWidth}px) ${minWidth}px, (max-width: 780px) 100vw, 780px`;
+  });
+
   let imageStyles = validImages.map((image, index) => {
     const align = image.align || "center";
 
@@ -69,34 +78,41 @@
         return "object-position: center center;";
     }
   });
-
 </script>
 
 <div class="gallery">
   <div class="flex-container">
     {#each validImages as image, index (image.alt + index)}
-        <div class="flex-item" style={itemStyles[index]} class:grow onclick={() => openModal(image)} onkeydown={(e) => e.key === "Enter" && openModal(image)} role="button" tabindex="0" aria-label="Open image preview">
-          {#if image.picture}
-            <enhanced:img src={image.picture} alt={image.alt || ""} style={imageStyles[index]} loading="lazy" sizes="(max-width: 768px) 240px, (max-width: 1024px) 300px, 400px" />
-          {:else}
-            <img src={image.src} alt={image.alt || ""} style={imageStyles[index]} loading="lazy" />
-          {/if}
-        </div>
+      <div class="flex-item" style={itemStyles[index]} class:grow onclick={() => openModal(image)} onkeydown={(e) => e.key === "Enter" && openModal(image)} role="button" tabindex="0" aria-label="Open image preview">
+        {#if image.picture}
+          <enhanced:img src={image.picture} alt={image.alt || ""} style={imageStyles[index]} loading="lazy" sizes={imageSizes[index]} />
+        {:else}
+          <img src={image.src} alt={image.alt || ""} style={imageStyles[index]} loading="lazy" />
+        {/if}
+      </div>
+    {/each}
+    {#each videos as video, index (video.title + index)}
+      <div class="flex-item" style={videoItemStyles[index]} class:grow>
+        <YouTube url={video.src} title={video.title} />
+      </div>
     {/each}
   </div>
 </div>
 
 {#if modalOpen && selectedImage}
-  <div class="modal-overlay" style:--accent-color={accent} onclick={closeModal} onkeydown={handleKeydown} role="dialog" aria-modal="true" tabindex="-1">
+  <!-- showModal() puts the preview in the browser's top layer, above the site-wide grain and outside any ancestor's stacking context or clip-path. Escape is handled natively and fires `close` -->
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
+  <dialog class="modal-overlay" style:--accent-color={accent} aria-label={selectedImage.alt || "Image preview"} {@attach (dialog) => dialog.showModal()} onclose={closeModal} onclick={closeModal}>
     <div class="modal-content" onclick={(e) => e.stopPropagation()} role="none">
       <button class="modal-close" onclick={closeModal} aria-label="Close modal">×</button>
-        {#if selectedImage.picture}
-          <enhanced:img src={selectedImage.picture} alt={selectedImage.alt || ""} class="modal-image" loading="lazy" sizes="(max-width: 768px) 90vw, (max-width: 1024px) 90vw, 90vw" />
-        {:else}
-          <img src={selectedImage.src} alt={selectedImage.alt || ""} class="modal-image" loading="lazy" />
-        {/if}
+      {#if selectedImage.picture}
+        <enhanced:img src={selectedImage.picture} alt={selectedImage.alt || ""} class="modal-image" sizes="90vw" />
+      {:else}
+        <img src={selectedImage.src} alt={selectedImage.alt || ""} class="modal-image" />
+      {/if}
+      <a class="modal-full-size" href={selectedImage.picture?.img.src ?? selectedImage.src} target="_blank" rel="noopener">View full size</a>
     </div>
-  </div>
+  </dialog>
 {/if}
 
 <style>
@@ -159,16 +175,26 @@
   /* Modal styles */
   .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: none;
     background: color-mix(in srgb, var(--accent-color) 70%, transparent);
-    display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
     backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay[open] {
+    display: flex;
+  }
+
+  .modal-overlay::backdrop {
+    background: transparent;
   }
 
   .modal-content {
@@ -203,6 +229,25 @@
   }
 
   .modal-close:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .modal-full-size {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    z-index: 1001;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .modal-full-size:hover {
     background: rgba(0, 0, 0, 0.9);
   }
 

@@ -5,10 +5,10 @@ description: "Testing generative effects in After Effects"
 accent: "#138A40"
 tools: ["After Effects", "Photoshop"]
 video: "/webm/Frog.webm"
-skill: ["motion"]
+skill: { motion: 4 }
 poster: "/images/motion/frog.jpg"
-order: 4
 feature: "/webm/Frog.webm"
+year: 2019
 ---
 
 # Pond Time

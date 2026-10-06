@@ -3,9 +3,6 @@ title: Late Cretaceous Pack
 subtitle: "DLC Trailers"
 description: "Four captivating species that roamed the land, sea and air over 65 million years ago."
 accent: "#6FA03B"
-order: 3
-skill: ["capture"]
-category: "Jurassic World Evolution 2"
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=vsEjnSl0oWQ"
 role: "Scripted, Edited, Directed, Captured"

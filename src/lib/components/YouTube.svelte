@@ -13,7 +13,17 @@
   }
 
   let videoId = extractVideoId(url);
-  let thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  let thumbnailUrl = $state(`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`);
+  const fallbackThumbnailUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+
+  function useFallbackThumbnail() {
+    if (thumbnailUrl !== fallbackThumbnailUrl) thumbnailUrl = fallbackThumbnailUrl;
+  }
+
+  // A missing maxresdefault 404s with a 120x90 placeholder image, which some browsers display instead of firing `error`
+  function checkThumbnail(event: Event) {
+    if ((event.currentTarget as HTMLImageElement).naturalWidth <= 120) useFallbackThumbnail();
+  }
 
   function loadVideo() {
     isLoaded = true;
@@ -25,7 +35,7 @@
     <iframe src="https://www.youtube.com/embed/{videoId}?autoplay=1" {title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   {:else}
     <div id="youtube-thumbnail" role="button" tabindex="0" onclick={loadVideo} onkeydown={(e) => e.key === "Enter" && loadVideo()} aria-label="Play {title}">
-      <img src={thumbnailUrl} alt="{title} thumbnail" class="thumbnail-image" loading="lazy" />
+      <img src={thumbnailUrl} alt="{title} thumbnail" class="thumbnail-image" loading="lazy" onload={checkThumbnail} onerror={useFallbackThumbnail} />
 
       <div class="play-button">
         <svg width="68" height="48" viewBox="0 0 68 48">
@@ -42,7 +52,7 @@
     aspect-ratio: 16/9;
     width: 100%;
     height: 100%;
-    padding: 0.5rem;
+    // padding: 0.5rem;
   }
 
   iframe {
@@ -53,7 +63,7 @@
   }
 
   #youtube-thumbnail {
-    aspect-ratio: 16/9;
+    // aspect-ratio: 16/9;
     width: 100%;
     height: auto;
     position: relative;

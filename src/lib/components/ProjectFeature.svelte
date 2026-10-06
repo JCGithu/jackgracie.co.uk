@@ -1,8 +1,9 @@
 <script lang="ts">
   import YouTube from "$lib/components/YouTube.svelte";
-  import type { Project } from "$lib/utils/types.js";
+  import { getImageUrlAtWidth } from "$lib/utils/image-imports";
+  import type { Chapter, Project } from "$lib/utils/types.js";
 
-  let { project }: { project: Project } = $props();
+  let { project, priority = false }: { project: Project | (Chapter & { feature: string }); priority?: boolean } = $props();
 
   let url = project.feature.includes("http") || false;
   let youtube = project.feature.includes("youtube.com") || project.feature.includes("youtu.be") || false;
@@ -12,15 +13,15 @@
 
 {#if project.featureImage}
   <div class="feature-image">
-    <enhanced:img src={project.featureImage} alt={project.title} loading="eager" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px" />
+    <enhanced:img src={project.featureImage} alt={project.title} loading={priority ? "eager" : "lazy"} fetchpriority={priority ? "high" : "auto"} sizes="(max-width: 1100px) 100vw, 1040px" />
   </div>
 {:else if youtube}
-    <div class="feature-video">
-      <YouTube url={project.feature} title={project.title} />
-    </div>
+  <div class="feature-video">
+    <YouTube url={project.feature} title={project.title} />
+  </div>
 {:else if video}
   <div class="feature-video">
-    <video controls loop autoplay preload="metadata" poster={project.posterImage ? project.posterImage.img.src : project.poster} title={project.title}>
+    <video controls loop autoplay preload="metadata" poster={project.posterImage ? getImageUrlAtWidth(project.posterImage, 1366) : project.poster} title={project.title}>
       <source src={project.feature} type="video/webm" />
       <track kind="captions" src="" label="No captions available" />
       Your browser does not support the video tag.
@@ -28,7 +29,7 @@
   </div>
 {:else}
   <div class="feature-image">
-      <img src={project.feature} alt={project.title} loading="eager" />
+    <img src={project.feature} alt={project.title} loading={priority ? "eager" : "lazy"} />
   </div>
 {/if}
 

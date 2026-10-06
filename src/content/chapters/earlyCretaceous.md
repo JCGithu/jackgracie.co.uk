@@ -3,9 +3,6 @@ title: Early Cretaceous Pack
 subtitle: "DLC Trailers"
 description: "Breathe new life into your parks and discover a stunning array of Cretaceous animals"
 accent: "#b076fd"
-order: 5
-skill: ["capture"]
-category: "Jurassic World Evolution 2"
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=G2tgq0Dmaqs"
 role: "Scripted, Edited, Directed, Captured"

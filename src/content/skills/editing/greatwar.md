@@ -2,14 +2,14 @@
 title: "The Great War: Western Front"
 subtitle: BTS Featurette
 description: "Play a deciding role in history with this real-time tactical experience"
-skill: ["editing"]
+skill: { editing: 6 }
 category: Frontier
 accent: "#EC4E34"
-order: 3
 tools: ["After Effects", "Premiere", "DaVinci Resolve"]
 poster: "https://img.youtube.com/vi/ja72bw5IfRA/maxresdefault.jpg"
 feature: "https://www.youtube.com/watch?v=ja72bw5IfRA"
 role: "Edited"
+year: 2022
 ---
 
 I edited the BTS featurette covering the scoring of the game, a soundtrack that sought to bring the sound of the 1910's into the present.

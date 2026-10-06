@@ -4,10 +4,10 @@ subtitle: "Meditation Animations"
 description: "A series of calming 10-minute looping animations to pair with audio from Headspace."
 accent: "#7182E3"
 tools: ["After Effects", "Illustrator"]
-skill: ["motion"]
+skill: { motion: 3 }
 poster: "/images/motion/headspace_thumb.jpg"
-order: 3
 feature: "/webm/headspace.webm"
+year: 2020
 ---
 
 <script>

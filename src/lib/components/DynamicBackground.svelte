@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <div class="dynamic-background"></div>
 
 <style lang="scss">
@@ -14,8 +11,11 @@
     pointer-events: none;
     opacity: 1;
     background: var(--off-white);
-    background-repeat: repeat;
-    background-image: url(/images/noisedark.png);
+    // background: var(--gradient-home);
+    // background-color: var(--gradient-home);
+    // background-color: blue;
+    // background-repeat: repeat;
+    // background-image: url(/images/noisedark.png);
     overflow: hidden;
   }
 

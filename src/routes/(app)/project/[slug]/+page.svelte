@@ -4,6 +4,8 @@
   import ToolIcon from "$lib/components/ToolIcon.svelte";
   import "$lib/styles/markdown.scss";
   import ProjectCard from "$lib/components/ProjectCard.svelte";
+  import ProjectChapters from "$lib/components/ProjectChapters.svelte";
+  import type { Chapter } from "$lib/utils/types.js";
   import { goto } from "$app/navigation";
   import { fade, fly } from "svelte/transition";
   import { ElementSize } from "runed";
@@ -14,6 +16,8 @@
 
   let project = data.project;
   let relatedProjects = data.relatedProjects;
+  let chapters = $derived(data.chapters);
+  let activeChapter: Chapter | undefined = $state();
   let showMetadata = $derived((scrollY?.current ?? 0) > 50);
   onMount(() => {
     let scrollHeight = document.documentElement.scrollHeight;
@@ -31,17 +35,27 @@
   {/if}
 </svelte:head>
 
-<div class="project-page" style="--project-accent: {project.accent}">
+<div class="project-page" class:on-accent={activeChapter} style="--project-accent: {project.accent}">
   <div class="title-container">
     <div class="feature-container">
-      <ProjectFeature {project} />
+      <ProjectFeature {project} priority />
     </div>
     <h1>{project.title}</h1>
+    <p class="project-year">{project.year}</p>
   </div>
 
   <div class="project-body">
     <div class="project-content">
+      {#if chapters.length}
+        <nav class="chapter-nav" aria-label="Chapters">
+          <span class="chapter-nav-label">Chapters</span>
+          {#each chapters as chapter (chapter.slug)}
+            <a href="#{chapter.slug}" style={chapter.accent ? `--chapter-accent: ${chapter.accent}` : undefined}>{chapter.title}</a>
+          {/each}
+        </nav>
+      {/if}
       <project.content />
+      <ProjectChapters {chapters} bind:active={activeChapter} />
     </div>
     <aside class="sidebar">
       {#if showMetadata}
@@ -114,7 +128,7 @@
 
   .project-page {
     padding: 6rem 2rem 2rem 2rem;
-    max-width: 900px;
+    max-width: 1100px;
     position: fixed;
     margin: 0 auto;
     color: var(--sinon-black);
@@ -130,8 +144,15 @@
     h1 {
       font-family: var(--font-pimento);
       font-size: 2.5rem;
-      margin: 2rem 0;
+      margin: 2rem 0 0.5rem;
       color: var(--project-accent);
+    }
+
+    .project-year {
+      margin: 0 0 2rem 0;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      opacity: 0.8;
     }
   }
 
@@ -143,16 +164,58 @@
   }
 
   .project-content {
-    background: var(--off-white);
-    background-repeat: repeat;
-    background-image: url(/images/noisedark.png);
     z-index: 5;
+  }
+
+  // The sidebar sits over the active chapter's accent band, so it switches to off-white
+  .on-accent {
+    .metadata-inner {
+      background: var(--off-white);
+    }
+
+    .metadata-value {
+      color: var(--sinon-black);
+    }
+  }
+
+  .chapter-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    a {
+      --chapter-accent: var(--project-accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 2px solid var(--chapter-accent);
+      color: var(--chapter-accent);
+      font-weight: 600;
+      text-decoration: none;
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+
+      &:hover {
+        background-color: var(--chapter-accent);
+        color: var(--sinon-white);
+      }
+    }
+  }
+
+  .chapter-nav-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
   }
 
   .sidebar {
     position: sticky !important;
     top: 5rem;
     align-self: start;
+    z-index: 4;
   }
 
   @keyframes skew {
@@ -171,6 +234,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.8rem !important;
     animation: skew 0.4s ease-out;
+    transition: background-color 0.8s ease;
   }
 
   .metadata-item {
@@ -188,6 +252,7 @@
   .metadata-value {
     color: var(--sinon-white);
     opacity: 0.9;
+    transition: color 0.8s ease;
   }
 
   .feature-container {
@@ -198,7 +263,7 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    background-color: red;
+    // background-color: red;
   }
 
   .description {

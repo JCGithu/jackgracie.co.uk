@@ -1,6 +1,7 @@
 <script lang="ts">
   import "../../app.scss";
   import Navigation from "$lib/components/Navigation.svelte";
+  import Noise from "$lib/components/Noise.svelte";
   import type { LayoutProps } from "./$types";
   import PageTransition from "$lib/transition.svelte";
   import { page } from "$app/stores";
@@ -44,3 +45,5 @@
     {@render children()}
   </PageTransition>
 </main>
+
+<Noise />

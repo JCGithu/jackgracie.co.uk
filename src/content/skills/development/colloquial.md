@@ -2,15 +2,15 @@
 title: "Colloquial. Studio"
 subtitle: "Streaming Tools"
 description: "A collection of games and tools for small streamers"
-skill: ["developing"]
+skill: { developing: 1 }
 accent: "#fe5f55"
 tools: ["Svelte", "Tailwind CSS", "TypeScript", "Vite"]
 poster: "/images/developing/colloquial.png"
 feature: "/images/developing/colloquial.png"
-order: 1
 links:
   - url: "https://github.com/jcgithu/jackgracie-portfolio"
     text: "View Source Code"
+year: 2022
 ---
 
 I sought to combine my two lockdown hobbies: livestreaming and coding, in ways that might be helpful for the smaller communities.

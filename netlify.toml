@@ -51,6 +51,61 @@ publish = "build"
   status = 301
 
 [[redirects]]
+  from = "/alison"
+  to = "https://drive.google.com/drive/folders/1W06JYY5sLY74p2img5pADk7MFYNNTY6v?usp=sharing"
+  status = 301
+
+[[redirects]]
+  from = "/project/arid"
+  to = "/project/planetzoo#arid"
+  status = 301
+
+[[redirects]]
+  from = "/project/oceania"
+  to = "/project/planetzoo#oceania"
+  status = 301
+
+[[redirects]]
+  from = "/project/malta"
+  to = "/project/jwe2#malta"
+  status = 301
+
+[[redirects]]
+  from = "/project/biosyn"
+  to = "/project/jwe2#biosyn"
+  status = 301
+
+[[redirects]]
+  from = "/project/lateCretaceous"
+  to = "/project/jwe2#lateCretaceous"
+  status = 301
+
+[[redirects]]
+  from = "/project/campCretaceous"
+  to = "/project/jwe2#campCretaceous"
+  status = 301
+
+[[redirects]]
+  from = "/project/earlyCretaceous"
+  to = "/project/jwe2#earlyCretaceous"
+  status = 301
+
+[[redirects]]
+  from = "/project/military"
+  to = "/project/stranded#military"
+  status = 301
+
+[[redirects]]
+  from = "/project/robots"
+  to = "/project/stranded#robots"
+  status = 301
+
+[[redirects]]
+  from = "/project/preorder"
+  to = "/project/stranded#preorder"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/404"
   status = 404

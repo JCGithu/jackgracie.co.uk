@@ -8,14 +8,17 @@
   }
 
   let { project, horizontal = false, onProjectClick }: Props = $props();
+
+  // Horizontal cards are fixed-size; grid cards stretch to the container's full width when it narrows
+  let sizes = $derived(horizontal ? "(max-width: 1024px) 280px, 320px" : "(max-width: 570px) 100vw, (max-width: 1024px) 280px, (max-width: 1170px) 280px");
 </script>
 
 <div class="project-card" class:horizontal style="--accent: {project.accent}" role="button" tabindex="0" onclick={() => onProjectClick(project)} onkeydown={(e) => e.key === "Enter" && onProjectClick(project)}>
   <div class="project-image">
     {#if project.posterImage}
-    <enhanced:img src={project.posterImage} alt={project.title} loading="lazy" sizes="350px" />
+      <enhanced:img src={project.posterImage} alt={project.title} loading="lazy" {sizes} />
     {:else}
-    <img src={project.poster} alt={project.title} loading="lazy" />
+      <img src={project.poster} alt={project.title} loading="lazy" />
     {/if}
   </div>
   <div class="project-info">
@@ -82,7 +85,6 @@
     :global(picture) {
       height: 100%;
       width: auto;
-
     }
 
     :global(enhanced\:img) {
@@ -138,11 +140,10 @@
 
   //Single file layout
   @media screen and (min-width: $bp-desktop) {
-    @container (max-width: calc(600px + 1.5rem)) {
+    @container (max-width: calc(500px + 1.5rem)) {
       .project-card {
         width: 100%;
         max-width: 100%;
-        //aspect-ratio: unset !important;
       }
     }
   }

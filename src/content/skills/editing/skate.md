@@ -2,14 +2,14 @@
 title: "Skate."
 subtitle: Dev Diary
 description: "Get ready for the skate. Early Access release. Your new favorite hangout awaits."
-skill: ["editing"]
+skill: { editing: 2 }
 category: EA
 accent: "#fa9c06"
-order: 3
 role: "Edited, Graded, Mixed"
 tools: ["After Effects", "Premiere", "DaVinci Resolve"]
 poster: "/images/editing/skate.jpg"
 feature: "https://www.youtube.com/watch?v=v7krdLF0hiQ"
+year: 2025
 ---
 
 This long-form dev diary was an edited down discussion with the key team members. We wanted to make sure that it conveyed all the information accuratly while keeping as much of the playful tone of the franchise as possible.

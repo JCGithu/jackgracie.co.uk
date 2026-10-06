@@ -33,8 +33,6 @@
 </svelte:head>
 
 <div class="scrollContainer">
-  <div class="noise"></div>
-
   <!-- Title Section -->
   <div class="home">
     <Backdrop />
@@ -51,9 +49,9 @@
   </div>
 
   <!-- Fullpage Menu Section -->
-  <div class="menuSection">
+  <!-- <div class="menuSection">
     <Menu {skills} onNavigate={navigateToSkill} bottom={true} />
-  </div>
+  </div> -->
 </div>
 
 <style lang="scss">
@@ -66,24 +64,12 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+    // scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
-    background: radial-gradient(circle at left, #803cff, rgb(47, 35, 49));
+    background: var(--gradient-home);
     @include scrollbars.hide-scrollbar;
-  }
-
-  .noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 200vh; /* Cover the full height of both sections */
-    background-image: url("/images/noise.png");
-    opacity: 0.3;
-    z-index: 10;
-    pointer-events: none;
   }
 
   .home {

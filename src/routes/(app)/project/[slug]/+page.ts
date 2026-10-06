@@ -1,4 +1,4 @@
-import { loadProject, loadAllProjects } from '$lib/utils/projects.js';
+import { loadProject, loadAllProjects, loadChapters } from '$lib/utils/projects.js';
 import type { Project } from '$lib/utils/types.js';
 export const prerender = true;
 
@@ -18,6 +18,7 @@ export async function load({ params }) {
 
   return {
     project,
-    relatedProjects
+    relatedProjects,
+    chapters: loadChapters(project)
   };
 };

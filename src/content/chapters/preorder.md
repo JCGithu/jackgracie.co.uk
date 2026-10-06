@@ -2,10 +2,7 @@
 title: "Pre-Order"
 subtitle: "Early Access Date Announcement"
 description: "Stranded: Alien Dawn has officially left Steam Early Access!"
-skill: ["capture"]
 accent: "#ebc170"
-category: "Stranded: Alien Dawn"
-order: 4
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=tT1mRSPs3gc"
 poster: "/images/capture/stranded.png"

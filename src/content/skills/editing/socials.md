@@ -2,12 +2,12 @@
 title: "Socials"
 subtitle: "Social Edits for brands and YouTubers"
 description: ""
-skill: ["editing"]
+skill: { editing: 10 }
 accent: "#EC4E34"
 tools: ["Premiere", "After Effects"]
 poster: "/images/editing/oneday.png"
 feature: "/images/editing/oneday.png"
-order: 7
+year: 2020-2026
 ---
 
 <script>

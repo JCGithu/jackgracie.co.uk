@@ -1,51 +1,41 @@
 <script lang="ts">
+  import { slide } from "svelte/transition";
 
+  import type { Skill, Project } from "$lib/utils/types.js";
 
-    import { goto } from "$app/navigation";
-    import { slide } from "svelte/transition";
+  import "$lib/styles/projects.scss";
 
-    import type { Skill, Project } from "$lib/utils/types.js";
-    
-    import "$lib/styles/projects.scss";
-    
   import ProjectModal from "./ProjectModal.svelte";
   import ProjectCard from "./ProjectCard.svelte";
   import DynamicBackground from "./DynamicBackground.svelte";
   import { categoryMap } from "$lib/utils/icons";
   import { horizontalScroll } from "$lib/utils/horizontalScroll";
-  import ProjectFeature from "./ProjectFeature.svelte";
   import ArrowButton from "./ArrowButton.svelte";
   import YouTube from "./YouTube.svelte";
-
-
+  import RivePlayer from "./RivePlayer.svelte";
 
   let { skillData }: { skillData: Skill } = $props();
 
-  let projects = skillData.projects;
-  let selectedProject: Project = $state(projects[0]);
+  let visibleProjects = $derived(skillData.projects.filter((p) => !p.hide));
+  let selectedProject: Project | undefined = $state();
   let isModalOpen = $state(false);
   let isReelExpanded = $state(false);
 
-  // Group projects by category
-  let groupedProjects = $derived(() => {
+  // A project's category only groups it on skills that list that category
+  let groupedProjects = $derived.by(() => {
     const groups: Record<string, Project[]> = {};
     const uncategorized: Project[] = [];
 
-    projects.forEach((project) => {
-      if (project.category) {
-        if (!groups[project.category]) {
-          groups[project.category] = [];
-        }
+    for (const category of skillData.categories) {
+      groups[category] = [];
+    }
+    for (const project of visibleProjects) {
+      if (project.category && groups[project.category]) {
         groups[project.category].push(project);
       } else {
         uncategorized.push(project);
       }
-    });
-
-    Object.keys(groups).forEach((category) => {
-      groups[category].sort((a, b) => a.order - b.order);
-    });
-    uncategorized.sort((a, b) => a.order - b.order);
+    }
 
     return { groups, uncategorized };
   });
@@ -75,7 +65,10 @@
   <div id="banner">
     {#each skillData.banner as banner, index}
       {#if banner.image}
-        <enhanced:img src={banner.image} alt={banner.alt} style="z-index: {skillData.banner.length - index};" sizes="(max-width: 768px) 1920px" />
+        <!-- Cropped to fill a full-height column, so its rendered width follows the viewport height. Hidden at <=1024px, where 1px picks the smallest file -->
+        <enhanced:img src={banner.image} alt={banner.alt} style="z-index: {skillData.banner.length - index};" sizes="(max-width: 1024px) 1px, calc(100vh * {banner.image.img.w / banner.image.img.h})" />
+      {:else if banner.url.endsWith(".riv")}
+        <RivePlayer src={banner.url} label={banner.alt} stateMachine={banner.stateMachine} class="banner-rive" style="z-index: {skillData.banner.length - index};" />
       {:else}
         <img src={banner.url} alt={banner.alt} style="z-index: {skillData.banner.length - index};" />
       {/if}
@@ -87,7 +80,7 @@
       <div class="page-padding">
         <div class="description">
           <h1>{skillData.name}</h1>
-          <p>{@html skillData.description}</p>
+          <!-- <p>{@html skillData.description}</p> -->
         </div>
         {#if skillData.reel}
           <div class="reel-toggle">
@@ -108,31 +101,27 @@
     </div>
 
     <div id="projects-container">
-      <!-- Display categorized projects -->
-      {#each Object.entries(groupedProjects().groups || {}) as [category, categoryProjects]}
-        <div class="category-section page-padding">
+      {#each Object.entries(groupedProjects.groups) as [category, categoryProjects] (category)}
+        {#if categoryProjects.length}
+          <div class="category-section page-padding">
             {#if categoryMap.has(category)}
               <img src={categoryMap.get(category)!} alt={category} class="category-icon" />
             {:else}
               <h2 class="category-title">{category}</h2>
             {/if}
-          <div class="projects-horizontal-scroll" use:horizontalScroll>
-            {#each categoryProjects as project}
-              {#if !project.hide}
+            <div class="projects-horizontal-scroll" use:horizontalScroll>
+              {#each categoryProjects as project (project.slug)}
                 <ProjectCard {project} horizontal={true} onProjectClick={openModal} />
-              {/if}
-            {/each}
+              {/each}
+            </div>
           </div>
-        </div>
+        {/if}
       {/each}
 
-      <!-- Display uncategorized projects in grid layout -->
-      {#if groupedProjects().uncategorized.length > 0}
+      {#if groupedProjects.uncategorized.length > 0}
         <div class="projects-flex page-padding">
-          {#each groupedProjects().uncategorized as project}
-            {#if !project.hide}
-              <ProjectCard {project} horizontal={false} onProjectClick={openModal} />
-            {/if}
+          {#each groupedProjects.uncategorized as project (project.slug)}
+            <ProjectCard {project} horizontal={false} onProjectClick={openModal} />
           {/each}
         </div>
       {/if}
@@ -140,7 +129,9 @@
   </div>
 </div>
 
-<ProjectModal project={selectedProject} isOpen={isModalOpen} {closeModal} />
+{#if selectedProject}
+  <ProjectModal project={selectedProject} isOpen={isModalOpen} {closeModal} />
+{/if}
 
 <style lang="scss">
   @use "$lib/styles/projects.scss" as projectStyles;
@@ -170,6 +161,8 @@
     overflow: hidden;
     position: fixed;
     top: 0;
+    //rotate: -1deg;
+    //transform: scale(1.1) translateX(-1rem);
     left: 0;
     z-index: 1;
     height: 100vh;
@@ -181,6 +174,11 @@
       height: 100%;
       object-fit: cover;
     }
+    :global(.banner-rive) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   #content {
@@ -188,8 +186,8 @@
     padding: 3rem 0;
     margin-left: 30rem;
     position: relative;
-    z-index: 1;
-    overflow-y: auto;
+    z-index: 2;
+    overflow-x: hidden;
     height: 100vh;
     h1 {
       font-family: var(--font-pimento);
@@ -204,10 +202,15 @@
   .description-container {
     background-color: var(--skill-accent);
     padding-bottom: 1rem;
+    padding-left: 1rem;
+    // padding-right: 4rem;
+    margin-right: -4rem;
     padding-top: 3rem;
-    margin-top: -3rem;
+    margin-top: -4rem;
+    margin-left: -1rem;
     position: relative;
     transition: all 0.3s ease;
+    // rotate: 1.5deg;
 
     &.expanded {
       padding-bottom: 2rem;
@@ -249,6 +252,7 @@
     :first-child.projects-flex {
       margin-top: 2rem;
     }
+    justify-content: center;
   }
 
   .category-section {
@@ -283,18 +287,29 @@
 
     #banner {
       width: 100% !important;
-      height: auto !important;
+      //height: auto !important;
       min-height: auto !important;
+      max-height: 20vh !important;
       position: relative !important;
       top: auto !important;
       left: auto !important;
+      visibility: hidden !important;
+      height: 0 !important;
       z-index: auto !important;
-      enhanced\:img, img {
+      margin-bottom: -0.5rem !important;
+      enhanced\:img,
+      img {
         position: relative !important;
         width: 100% !important;
         height: auto !important;
         object-fit: contain !important;
       }
+    }
+
+    .description-container {
+      margin-top: -7rem !important;
+      padding-top: 9rem !important;
+      padding-left: 4rem !important;
     }
 
     #content {

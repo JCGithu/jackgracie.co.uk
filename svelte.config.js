@@ -27,7 +27,9 @@ const config = {
 		}),
 		prerender: {
 			entries: ['*',
-				...Object.keys(redirects),
+				// The prerenderer follows redirects and would write the #anchor into a filename,
+				// so chapter redirects are left to netlify.toml
+				...Object.entries(redirects).filter(([, to]) => !to.includes('#')).map(([from]) => from),
 				'/notionclock',
 				'/404',
 			],

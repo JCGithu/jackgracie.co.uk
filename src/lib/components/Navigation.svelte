@@ -12,13 +12,12 @@
       name: string;
       showing: boolean;
     };
-    data: { skills: Record<string, Skill> };
+    data: { skills: Record<string, Skill>; url: string };
   }
 
   let { currentSkill, data }: Props = $props();
   let skills = data.skills;
   let menuOpen = $state(false);
-
   let navBarShow = $derived((scrollY.current ?? 0) > 50);
 
   function goHome() {
@@ -29,20 +28,30 @@
     currentSkill.name ? goto(`/${currentSkill.name}`) : goHome();
   }
 
-  function navigateToSkill(skill: string) {
-    goto(`/${skill}`);
+  async function navigateToSkill(skill: string) {
+    menuOpen = false;
     setTimeout(() => {
-      menuOpen = false;
-    }, 300);
+      goto(`/${skill}`);
+    }, 100);
   }
 
   function handleHamburgerClick() {
     menuOpen = !menuOpen;
   }
 
-  function handleKeydown(event: KeyboardEvent) {
+  function onkeydown(event: KeyboardEvent) {
     if (event.key === "Escape" && menuOpen) {
       menuOpen = false;
+    }
+  }
+
+  function onwheel(event: WheelEvent) {
+    if (data.url === "/") {
+      if (event.deltaY > 0) {
+        menuOpen = true;
+      } else {
+        menuOpen = false;
+      }
     }
   }
 
@@ -52,7 +61,7 @@
   });
 </script>
 
-<svelte:window onkeydown={handleKeydown} />
+<svelte:window {onkeydown} {onwheel}/>
 
 <nav class="navBar" class:navbarFill={navBarShow}>
   <div class="nav-left">
@@ -79,10 +88,12 @@
   @use "$lib/styles/_breakpoints" as *;
   @use "$lib/styles/menu" as *;
 
+  // The menu and hamburger sit above the site-wide grain (z-index 2000)
   .menu {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 2001;
   }
 
   .nav-left {
@@ -153,7 +164,7 @@
     position: fixed;
     top: 1rem;
     right: 2rem;
-    z-index: 1001;
+    z-index: 2002;
     width: 2rem;
     height: 2rem;
     background: none;

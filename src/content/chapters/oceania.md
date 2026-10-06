@@ -2,13 +2,10 @@
 title: Oceania Pack
 subtitle: "DLC Trailers"
 description: "Explore breathtaking archipelagos and experience the beauty and culture of the continent’s sun-kissed Pacific islands"
-skill: ["capture"]
-category: Planet Zoo
 accent: "#2FB684"
-order: 1
 tools: ["After Effects", "Premiere"]
 feature: "https://www.youtube.com/watch?v=KBQjFXOz1mc"
-poster: "/images/capture/oceania.png"
+poster: "/images/ExampleCard2.png"
 role: "Shot, Captured, Directed"
 ---
 

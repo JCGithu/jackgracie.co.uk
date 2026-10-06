@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
-import type { Project, Skill } from './types';
-import { FullProject } from './types';
+import type { Chapter, Project, Skill, SkillNames } from './types';
+import { FullChapter, FullProject } from './types';
 import { validateOrThrow } from './validation';
 import { getEnhancedImage, hasEnhancedImage } from './image-imports';
 export const prerender = true;
@@ -19,7 +19,7 @@ function createSkillData(): Record<string, Skill> {
         },
       ],
       projects: [],
-      categories: ["Ninja Theory", "EA", "Frontier"],
+      categories: [],
     },
     capture: {
       name: "Game Capture",
@@ -37,7 +37,7 @@ function createSkillData(): Record<string, Skill> {
         title: "Game Capture Reel",
       },
       projects: [],
-      categories: ["Jurassic World Evolution 2", "Planet Zoo", "Stranded: Alien Dawn"],
+      categories: [],
     },
     motion: {
       name: "Motion Graphics",
@@ -46,8 +46,9 @@ function createSkillData(): Record<string, Skill> {
       description: "My motion graphics work has covered everything from recreating game UIs, to newscast graphics, to short form animations.",
       banner: [
         {
-          url: "/images/motion/motion_combo.png",
+          url: "/rive/colin.riv",
           alt: "Motion Graphics Banner",
+          stateMachine: "State Machine 1",
         },
       ],
       reel: {
@@ -78,6 +79,7 @@ export async function loadProjectsAndSkills() {
   const paths = import.meta.glob('/src/content/skills/*/*.md', { eager: true })
   const projects = new Set<Project>();
   const skillData = createSkillData(); // Create fresh skill data for each call
+  const validationErrors: string[] = [];
 
   Object.values(skillData).forEach(skill => {
     skill.banner.forEach(banner => {
@@ -102,20 +104,31 @@ export async function loadProjectsAndSkills() {
         project.featureImage = getEnhancedImage(project.feature);
       }
 
-      const validProject = validateOrThrow(FullProject, project, slug);
+      let validProject: Project;
+      try {
+        validProject = validateOrThrow(FullProject, project, slug);
+      } catch (e) {
+        validationErrors.push((e as Error).message);
+        continue;
+      }
       projects.add(validProject);
 
-      if (project.skill) {
-        for (const skill of project.skill) {
-          if (skillData[skill]) {
-            skillData[skill].projects.push(project);
-            skillData[skill].projects.sort((a, b) => a.order - b.order);
-          }
-        }
+      for (const skill of Object.keys(validProject.skill ?? {})) {
+        skillData[skill]?.projects.push(project);
       }
     } else {
       console.error(`${slug} is failing`);
     }
+  }
+
+  // Report every invalid project at once rather than stopping at the first
+  if (validationErrors.length) {
+    throw new Error(`${validationErrors.length} project(s) failed validation:\n${validationErrors.join('\n')}`);
+  }
+
+  for (const [name, skill] of Object.entries(skillData)) {
+    const orderOf = (p: Project) => p.skill?.[name as SkillNames] ?? 0;
+    skill.projects.sort((a, b) => orderOf(a) - orderOf(b));
   }
 
   return {
@@ -148,6 +161,27 @@ export async function loadProjectsBySkill(skill: string): Promise<Project[]> {
     error(404, 'Skill not found');
   }
   return skills[skill].projects;
+}
+
+const chapterFiles = import.meta.glob('/src/content/chapters/*.md', { eager: true });
+
+export function loadChapters(project: Project): Chapter[] {
+  return (project.chapters ?? []).map((slug) => {
+    const file = chapterFiles[`/src/content/chapters/${slug}.md`] as any;
+    if (!file) {
+      throw new Error(`${project.slug} lists chapter "${slug}" but src/content/chapters/${slug}.md doesn't exist`);
+    }
+
+    const chapter = { ...file.metadata, slug, content: file.default };
+    if (chapter.feature && hasEnhancedImage(chapter.feature)) {
+      chapter.featureImage = getEnhancedImage(chapter.feature);
+    }
+    if (chapter.poster && hasEnhancedImage(chapter.poster)) {
+      chapter.posterImage = getEnhancedImage(chapter.poster);
+    }
+
+    return validateOrThrow(FullChapter, chapter, `${project.slug} chapter ${slug}`);
+  });
 }
 
 export async function loadProject(slug: string): Promise<Project> {

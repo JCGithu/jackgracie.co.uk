@@ -1,6 +1,7 @@
 <script lang="ts">
   import "../../app.scss";
   import type { PageProps } from "./$types";
+  import Noise from "$lib/components/Noise.svelte";
 
   let { data }: PageProps = $props();
   let wishlist = data.wishlist;
@@ -12,7 +13,7 @@
 </svelte:head>
 
 <div class="wishlist-container" style="--wishlist-accent: {wishlist.accent}">
-  <div class="noise"></div>
+  <Noise />
   <div class="overlay"></div>
   <main>
     <h1>{wishlist.title}</h1>
@@ -325,18 +326,6 @@
       width: 0 !important;
       height: 0 !important;
     }
-  }
-
-  .noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 200vh;
-    background-image: url("/images/noise.png");
-    opacity: 0.3;
-    z-index: 10;
-    pointer-events: none;
   }
 
   .overlay {
