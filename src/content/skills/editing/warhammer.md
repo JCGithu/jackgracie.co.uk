@@ -7,7 +7,7 @@ category: Frontier
 accent: "#1C748A"
 role: "Shot and Edited"
 tools: ["After Effects", "Premiere", "Unity"]
-poster: "https://img.youtube.com/vi/RAi2bDQeoEo/maxresdefault.jpg"
+poster: "/images/editing/warhammer.jpg"
 feature: "https://www.youtube.com/watch?v=RAi2bDQeoEo"
 year: 2023
 ---

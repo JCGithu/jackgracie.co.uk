@@ -309,7 +309,7 @@
     .description-container {
       margin-top: -7rem !important;
       padding-top: 9rem !important;
-      padding-left: 4rem !important;
+      padding-left: 1rem !important;
     }
 
     #content {
@@ -343,7 +343,12 @@
     }
 
     .reel-container {
-      padding: 1.5rem 1rem 0 1rem;
+      // padding: 1.5rem 1rem 0 1rem;
+      max-width: 90%;
+    }
+
+    .reel-toggle {
+      right: 50%;
     }
 
     .reel-video {

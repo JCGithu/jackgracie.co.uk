@@ -6,7 +6,7 @@ skill: { editing: 6 }
 category: Frontier
 accent: "#EC4E34"
 tools: ["After Effects", "Premiere", "DaVinci Resolve"]
-poster: "https://img.youtube.com/vi/ja72bw5IfRA/maxresdefault.jpg"
+poster: "/images/editing/greatwar.jpg"
 feature: "https://www.youtube.com/watch?v=ja72bw5IfRA"
 role: "Edited"
 year: 2022
