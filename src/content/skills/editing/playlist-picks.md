@@ -18,10 +18,8 @@ year: 2019
   ];
 </script>
 
-Playlist Picks was a series that I pitched and drove while I was at Metro.
+Playlist Picks was a series that I pitched and lead at Metro.
 
-I sourced the guests, arranged the shoot, studio, and cameras, conducted the interview, and completed the final edit. It was a hectic series with a lot of quick turnarounds.
-
-I also made the title sequence and theme tune, which was a fun diversion from the regular work of Metro.
+I sourced the guests, arranged the shoot, conducted the interview, and completed the final edit alongside creating graphics, title sequence, and theme tune. It was a hectic series with a lot of quick turnarounds.
 
 <Gallery {images} size={500} accent="#fbcb71" />

@@ -1,7 +1,7 @@
 ---
 title: "Skate."
 subtitle: Dev Diary
-description: "Get ready for the skate. Early Access release. Your new favorite hangout awaits."
+description: "Drop in and escape the grind. Your new favorite hangout awaits."
 skill: { editing: 2 }
 category: EA
 accent: "#fa9c06"

@@ -1,7 +1,7 @@
 ---
 title: Jurassic World Evolution 2
 subtitle: "DLC Trailers & Featurettes"
-description: "Jurassic World Evolution 2 is the much-anticipated sequel to Frontier’s ground-breaking 2018 management simulation"
+description: "Return to Jurassic World with this Simulation-based management sequel"
 skill: { editing: 8, capture: 2 }
 accent: "#DC8519"
 category: Frontier

@@ -4,7 +4,6 @@ subtitle: "Secondary Trailers"
 description: "The biggest DLC yet features an immersive new campaign inspired by Jurassic World Dominion."
 accent: "#EC4E34"
 tools: ["After Effects", "Premiere"]
-feature: "https://www.youtube.com/watch?v=gUrRHlW9Rio"
 role: "Scripted, Edited, Directed, Captured"
 poster: "/images/capture/biosyn.png"
 ---
@@ -12,6 +11,7 @@ poster: "/images/capture/biosyn.png"
 <script>
   import YouTube from '$lib/components/YouTube.svelte';
   import Gallery from '$lib/components/Gallery.svelte';
+  import TwoColumn from '$lib/components/TwoColumn.svelte';
 
   const videos = [
     { src: "https://www.youtube.com/watch?v=8N5ZAWEW2JE", title: "Species Field Guide | Quetzalcoatlus" },
@@ -20,7 +20,15 @@ poster: "/images/capture/biosyn.png"
   ];
 </script>
 
-The first large-scale DLC for the game. For these I worked on the supplimentary trailers such as the Species Field Guides and the Park Management Guide gameplay trailer.
+<TwoColumn>
+
+<YouTube url="https://www.youtube.com/watch?v=gUrRHlW9Rio" title="Dominion: BioSyn Expansion" />
+
+The first of two large-scale DLCs tied to the release of Jurassic World Dominion. For these I worked on the supplimentary trailers such as the Species Field Guides and the Park Management Guide gameplay trailer.
+
+_Fun fact_: While the scripts were verified by Universal, there's a line from the Park Management Guide that is directly contradicted in the film. So I'm glad to have written a lore inconsistency for a major franchise.
+
+</TwoColumn>
 
 > The biggest DLC yet for Jurassic World Evolution 2 features an immersive new campaign inspired by the events from Jurassic World Dominion.
 

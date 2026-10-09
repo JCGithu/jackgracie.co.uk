@@ -212,7 +212,7 @@
 
   @media screen and (max-width: $bp-mobile) {
     .modal-backdrop {
-      padding: 0.75rem;
+      padding: 1.25rem;
       padding-top: 4rem;
       align-items: flex-start;
     }
@@ -226,6 +226,8 @@
 
     .info-box {
       padding: 1rem;
+      width: 90%;
+      margin-left: 5%;
     }
 
     .project-title {

@@ -1,7 +1,7 @@
 ---
 title: "Warhammer 40K: Chaos Gate"
 subtitle: Console Launch Trailer
-description: "Lead the Grey Knights to exterminate the forces of Chaos in fast-paced, ferocious, turn-based tactical combat."
+description: "Lead the Grey Knights to exterminate the forces of Chaos in fast-paced tactical combat."
 skill: { editing: 6, capture: 3 }
 category: Frontier
 accent: "#1C748A"

@@ -4,19 +4,33 @@ subtitle: "DLC Trailers"
 description: "Explore breathtaking archipelagos and experience the beauty and culture of the continent’s sun-kissed Pacific islands"
 accent: "#2FB684"
 tools: ["After Effects", "Premiere"]
-feature: "https://www.youtube.com/watch?v=KBQjFXOz1mc"
 poster: "/images/ExampleCard2.png"
 role: "Shot, Captured, Directed"
 ---
 
 <script>
   import YouTube from '$lib/components/YouTube.svelte';
+    import Gallery from '$lib/components/Gallery.svelte';
+  import TwoColumn from '$lib/components/TwoColumn.svelte';
+
+  const videos = [
+    { src: "https://www.youtube.com/watch?v=ERPC2iTEz-Q", title: "Oceania Pack Announce" },
+    { src: "https://www.youtube.com/watch?v=-nprdAsN4qE", title: "Kiwi Introduction" },
+  ];
 </script>
+
+<TwoColumn>
 
 This DLC was especially fun. The animals and location were playful, and we were really given time to develop the location. New camera tools were being included in the game as well, making it possible to bring in motion (such as the 180 bat spin) that really let the trailer showcase the characteristics of the animals.
 
+<YouTube url="https://www.youtube.com/watch?v=KBQjFXOz1mc" title="Oceania Pack" />
+
+</TwoColumn>
+
 > Explore breathtaking archipelagos and experience the beauty and culture of the continent’s sun-kissed Pacific islands.
 
-<YouTube url="https://www.youtube.com/watch?v=ERPC2iTEz-Q" />
+<!-- <YouTube url="https://www.youtube.com/watch?v=ERPC2iTEz-Q" />
 
-<YouTube url="https://www.youtube.com/watch?v=-nprdAsN4qE" />
+<YouTube url="https://www.youtube.com/watch?v=-nprdAsN4qE" /> -->
+
+<Gallery {videos} size=350 accent="#EC4E34" />

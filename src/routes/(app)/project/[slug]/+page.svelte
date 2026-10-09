@@ -5,24 +5,15 @@
   import "$lib/styles/markdown.scss";
   import ProjectCard from "$lib/components/ProjectCard.svelte";
   import ProjectChapters from "$lib/components/ProjectChapters.svelte";
-  import type { Chapter } from "$lib/utils/types.js";
   import { goto } from "$app/navigation";
-  import { fade, fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import { ElementSize } from "runed";
-  import { scrollY } from "svelte/reactivity/window";
-  import { onMount } from "svelte";
   import { horizontalScroll } from "$lib/utils/horizontalScroll.js";
   let { data } = $props();
 
   let project = data.project;
   let relatedProjects = data.relatedProjects;
   let chapters = $derived(data.chapters);
-  let activeChapter: Chapter | undefined = $state();
-  let showMetadata = $derived((scrollY?.current ?? 0) > 50);
-  onMount(() => {
-    let scrollHeight = document.documentElement.scrollHeight;
-    if (scrollHeight <= window.innerHeight) showMetadata = true;
-  });
 </script>
 
 <svelte:head>
@@ -35,83 +26,84 @@
   {/if}
 </svelte:head>
 
-<div class="project-page" class:on-accent={activeChapter} style="--project-accent: {project.accent}">
-  <div class="title-container">
-    <div class="feature-container">
-      <ProjectFeature {project} priority />
+<div class="project-layout" style="--project-accent: {project.accent}">
+  <div class="project-page">
+    <div class="title-container">
+      <div class="feature-container">
+        <ProjectFeature {project} priority />
+      </div>
+      <h1>{project.title}</h1>
+      <p class="project-year">{project.year}</p>
     </div>
-    <h1>{project.title}</h1>
-    <p class="project-year">{project.year}</p>
-  </div>
 
-  <div class="project-body">
     <div class="project-content">
       {#if chapters.length}
         <nav class="chapter-nav" aria-label="Chapters">
           <span class="chapter-nav-label">Chapters</span>
-          {#each chapters as chapter (chapter.slug)}
-            <a href="#{chapter.slug}" style={chapter.accent ? `--chapter-accent: ${chapter.accent}` : undefined}>{chapter.title}</a>
-          {/each}
+          <div>
+            {#each chapters as chapter (chapter.slug)}
+              <a href="#{chapter.slug}" style={chapter.accent ? `--chapter-accent: ${chapter.accent}` : undefined}>{chapter.title}</a>
+            {/each}
+          </div>
         </nav>
       {/if}
       <project.content />
-      <ProjectChapters {chapters} bind:active={activeChapter} />
+      <ProjectChapters {chapters} />
     </div>
-    <aside class="sidebar">
-      {#if showMetadata}
-        <div class="metadata" transition:fly={{ x: -200 }}>
-          <div class="metadata-inner">
-            {#if project.subtitle}
-              <div class="metadata-item">
-                <span class="metadata-value">{project.subtitle}</span>
-              </div>
-            {/if}
-            <div class="description">
-              {@html project.description}
-            </div>
 
-            {#if project.client}
-              <div class="metadata-item">
-                <span class="metadata-label">Client:</span>
-                <span class="metadata-value">{project.client}</span>
-              </div>
-            {/if}
-
-            <div class="tools-list">
-              {#each project.tools as tool}
-                <ToolIcon toolName={tool} />
-              {/each}
-
-              {#if project.links && project.links.length > 0}
-                <div class="links-list">
-                  {#each project.links as link}
-                    <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
-                      {link.text}
-                    </a>
-                  {/each}
-                </div>
-              {/if}
-            </div>
-          </div>
-        </div>
-      {/if}
-    </aside>
+    {#if relatedProjects.length}
+      <h3>Related Projects</h3>
+      <div class="projects-horizontal-scroll" use:horizontalScroll>
+        {#each relatedProjects as related}
+          <ProjectCard
+            project={related}
+            horizontal={true}
+            onProjectClick={() => {
+              goto(`/project/${related.slug}`);
+            }}
+          />
+        {/each}
+      </div>
+    {/if}
   </div>
 
-  {#if relatedProjects.length}
-    <h3>Related Projects</h3>
-    <div class="projects-horizontal-scroll" use:horizontalScroll>
-      {#each relatedProjects as related}
-        <ProjectCard
-          project={related}
-          horizontal={true}
-          onProjectClick={() => {
-            goto(`/project/${related.slug}`);
-          }}
-        />
-      {/each}
+  <footer class="project-banner">
+    <div class="banner-inner">
+      <div class="banner-main">
+        {#if project.subtitle}
+          <span class="metadata-value banner-subtitle">{project.subtitle}</span>
+        {/if}
+        <div class="description">
+          {@html project.description}
+        </div>
+      </div>
+
+      <div class="banner-meta">
+        {#if project.client}
+          <div class="metadata-item">
+            <span class="metadata-label">Client:</span>
+            <span class="metadata-value">{project.client}</span>
+          </div>
+        {/if}
+
+        <div class="tools-list">
+          {#each project.tools as tool}
+            <ToolIcon toolName={tool} />
+          {/each}
+        </div>
+
+        {#if project.links && project.links.length > 0}
+          <div class="links-list">
+            {#each project.links as link}
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
+                {link.text}
+              </a>
+            {/each}
+          </div>
+        {/if}
+      </div>
     </div>
-  {/if}
+  </footer>
 </div>
 
 <DynamicBackground />
@@ -126,15 +118,19 @@
     --project-accent: var(--project-accent);
   }
 
+  // The banner grows to fill any space left below short pages, so it always reaches the bottom
+  .project-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
   .project-page {
+    width: 100%;
     padding: 6rem 2rem 2rem 2rem;
-    max-width: 1100px;
-    position: fixed;
+    max-width: 1000px;
     margin: 0 auto;
     color: var(--sinon-black);
-    position: static;
-
-    gap: 2rem;
   }
 
   .title-container {
@@ -156,34 +152,26 @@
     }
   }
 
-  .project-body {
-    display: grid;
-    grid-template-columns: 1fr 0.3fr;
-    grid-gap: 2rem;
-    align-items: baseline !important;
-  }
-
   .project-content {
     z-index: 5;
   }
 
-  // The sidebar sits over the active chapter's accent band, so it switches to off-white
-  .on-accent {
-    .metadata-inner {
-      background: var(--off-white);
-    }
-
-    .metadata-value {
-      color: var(--sinon-black);
-    }
-  }
-
   .chapter-nav {
-    display: flex;
+    // display: flex;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+      a {
+        margin: 2px;
+      }
+    }
 
     a {
       --chapter-accent: var(--project-accent);
@@ -211,30 +199,34 @@
     font-size: 0.8rem;
   }
 
-  .sidebar {
-    position: sticky !important;
-    top: 5rem;
-    align-self: start;
-    z-index: 4;
-  }
-
-  @keyframes skew {
-    from {
-      transform: skew(-20deg);
-    }
-    to {
-      transform: skew(0deg);
-    }
-  }
-
-  .metadata-inner {
+  .project-banner {
+    --banner-value: var(--sinon-white);
+    flex: 1;
+    width: 100%;
     background: var(--project-accent);
-    border-radius: 1rem;
-    padding: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.8rem !important;
-    animation: skew 0.4s ease-out;
-    transition: background-color 0.8s ease;
+    color: var(--sinon-black);
+    font-size: 0.9rem;
+  }
+
+  .banner-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+
+  .banner-main,
+  .banner-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .banner-subtitle {
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   .metadata-item {
@@ -250,13 +242,14 @@
   }
 
   .metadata-value {
-    color: var(--sinon-white);
+    color: var(--banner-value);
     opacity: 0.9;
-    transition: color 0.8s ease;
   }
 
+  // Capped by viewport height so a 16:9 feature never fills more than ~70% of the screen
   .feature-container {
     width: 100%;
+    max-width: min(100%, calc(70vh * 16 / 9));
     //max-width: 800px;
     //aspect-ratio: 16 / 9;
     display: flex;
@@ -276,8 +269,8 @@
   .tools-list {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 0.5rem;
   }
 
   .links-list {
@@ -287,20 +280,21 @@
   }
 
   .project-link {
-    color: var(--sinon-white);
+    color: var(--banner-value);
     text-decoration: none;
     padding: 0.875rem 1.5rem;
     background: transparent;
     border-radius: 0.5rem;
-    border: 1px solid var(--project-accent);
+    border: 1px solid currentColor;
     transition: all 0.3s ease;
     text-align: center;
     font-weight: 600;
     display: block;
 
     &:hover {
-      background: var(--project-accent);
-      color: var(--sinon-black);
+      background: var(--sinon-black);
+      border-color: var(--sinon-black);
+      color: var(--sinon-white);
       transform: translateY(-1px);
     }
   }
@@ -315,39 +309,16 @@
   @media screen and (max-width: $bp-mobile) {
     .project-page {
       padding: 6rem 1rem 1rem 1rem;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .project-body {
-      grid-template-columns: 1fr;
-    }
-
-    .sidebar {
-      margin-bottom: 1rem;
-    }
-
-    .title-container {
-      flex: none;
     }
 
     .title-container h1 {
       font-size: 2rem;
     }
 
-    .metadata {
-      position: static; // Remove sticky on mobile
-      top: auto;
-    }
-
-    .metadata-inner {
-      padding: 1.5rem;
+    .banner-inner {
       grid-template-columns: 1fr;
       gap: 1.5rem;
-    }
-
-    .links-list {
-      flex-direction: column;
+      padding: 1.5rem 1rem;
     }
   }
 </style>

@@ -23,9 +23,9 @@ year: 2026
   ];
 </script>
 
-Senua was due to be the third game in Ninja Theory's Hellblade series. I was the lead on the announce trailer, covering capture, editing, and guiding the project through all stages. It premiered at the Xbox Games Showcase on 7 June 2026.
+Senua was due to be the third game in Ninja Theory's Hellblade series. I led the announce trailer; covering capture, editing, and guiding the project through all stages. It premiered at the Xbox Games Showcase on 7 June 2026.
 
-Despite being made over a year from release there was a heavy emphasis to keep the trailer's focus on the gameplay, to assure to fans that criticisms of the previous title had been addressed. The result covered a span of gameplay including traversal, multi-enemy combat, dual-wielded weapons, and boss battles. Given the distance from release and the studios mission for extreme technical quality it was a heavy task to pull together gameplay that met the bar set by the team.
+Despite being made over a year from release there was a heavy emphasis to keep the trailer's focus on gameplay, such as traversal, multi-enemy combat, dual-wielded weapons, and boss battles, all with the focus on assuring fans that criticisms of the previous title had been addressed. Given the distance from release, alongside the studio's mission for extreme technical quality, it was a heavy task to pull scenes that met the bar set by the team.
 
 > Explore a fantastical vision of purgatory and fight manifestations of fear, destruction, and pain through tactical, visceral combat. Master weapons, dual-wield in the chaos of battle and unleash powerful abilities to overcome the monsters of the mind and fantastical bosses that stand in the way of her quest.
 

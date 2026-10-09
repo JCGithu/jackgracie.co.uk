@@ -13,9 +13,9 @@ poster: "/images/MaltaCard.png"
   import YouTube from '$lib/components/YouTube.svelte';
 </script>
 
-My largest project for JWE2, doubling the previous shot counts.
+My largest project for JWE2, doubling previous shot counts.
 
-The addition of a first-person camera system near the end of DLC4 opened up the game to much more dynamic camera movement. Previously, shots would need to have a set trajectory and speed — now with modifications to mouse and game speed we could allow for sweeping, eased, and targeted movements. This is showcased best in the whip-pan face-off scene and the "Fury Road" style jeep sequence.
+The addition of a first-person camera system (See [Late Cretaceous Pack](/project/jwe2#lateCretaceous)) opened up the game to much more dynamic camera movement. Previously, shots would need to have a set trajectory and speed — now with modifications to mouse and game speed we could allow for sweeping, eased, and targeted movements. This is showcased best in the whip-pan face-off scene and the _"Fury Road"_ style jeep sequence.
 
 Despite the franchise continuing to focus on ever-larger prehistoric creatures, a majority added in this pack were some of the smallest in the game. The issue here is that JWE2 is a top-down management game. Ground assets were not designed to be viewed close up, and especially not from an angle. Getting up close to these creatures inevitabley meant pixelated grass and stretched textures. The new camera system partially helped this, allowing for shots with motion blur, and zoom to justify a shallower depth of field (through post-processing).
 

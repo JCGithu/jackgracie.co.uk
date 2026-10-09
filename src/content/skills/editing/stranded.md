@@ -1,7 +1,7 @@
 ---
 title: "Stranded: Alien Dawn"
 subtitle: "Release & DLC Trailer"
-description: "Brave a new world in Stranded: Alien Dawn, a planet survival sim placing the fate of a small marooned group in your hands"
+description: "Brave a new world in Stranded: Alien Dawn, a planet survival sim where the fate of a small marooned group is in your hands"
 skill: { editing: 9, capture: 5 }
 accent: "#2FB684"
 category: Frontier
@@ -20,10 +20,10 @@ year: 2023
   ]
 </script>
 
-All my previous Frontier projects had been building on established properties — so working on _Stranded_ leaving early access was a very different experience. Its gameplay and toolset were constantly improving, and our workflow had to adapt alongside.
+All my previous Frontier projects had been building on established properties — so working on _Stranded_ was a very different experience. Its gameplay and toolset were constantly improving, being in Early Access, and our workflow had to adapt alongside.
 
 Plotted camera moves needed to be completed through their Lua-based modding system, which allowed access to environmental controls such as atmosphere and lighting.
 
-Given the game is so focused on building and expanding your base we needed to make the bases in the trailers depicted the quintessential _Stranded_ experience. This involved in-game 'location scouting' to hand-pick interesting spots for dwellings, such as a crashsite or an overlook, and taking the time to playthrough hours of the game — ensuring that the base was fully usable and achievable.
+Given the game's focus on building and expanding your base we needed to make the bases in the trailers depicted the quintessential _Stranded_ experience. This involved in-game 'location scouting' to hand-pick interesting spots for dwellings, such as a crashsite or an overlook, and taking the time to playthrough hours of the game — ensuring that the base was fully usable and achievable.
 
 > Brave a new world in Stranded: Alien Dawn, a planet survival sim placing the fate of a small marooned group in your hands. Forge your story through compelling and immersive strategic gameplay as you make vital decisions to protect your survivors from starvation, disease, extreme weather and more.

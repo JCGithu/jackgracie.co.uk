@@ -58,7 +58,7 @@
   let imageSizes = validImages.map((image) => {
     if (!image.picture) return undefined;
     const minWidth = Math.round((size * image.picture.img.w) / image.picture.img.h);
-    return minWidth >= 780 ? `${minWidth}px` : `(max-width: ${minWidth}px) ${minWidth}px, (max-width: 780px) 100vw, 780px`;
+    return minWidth >= 1040 ? `${minWidth}px` : `(max-width: ${minWidth}px) ${minWidth}px, (max-width: 1100px) 100vw, 1040px`;
   });
 
   let imageStyles = validImages.map((image, index) => {

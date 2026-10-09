@@ -1,13 +1,22 @@
 @use '$lib/styles/_breakpoints' as *;
 
+// Resolved per element, so content inside a chapter picks up that chapter's accent
+$accent: var(--chapter-accent, var(--project-accent, var(--sinon-red)));
+
 .project-content {
   position: relative;
   width: 100%;
   overflow: visible;
 
+  // Everything, chapters and embedded videos included, sits in one centred reading column
+  > :not(dialog) {
+    // max-width: 772px;
+    margin-inline: auto;
+  }
+
   // Headings
   h1,h2,h3,h4,h5,h6 {
-    color: var(--project-accent, var(--sinon-red));
+    color: $accent;
     margin: 1.5rem 0 1rem 0;
     line-height: 1.3;
   }
@@ -52,14 +61,18 @@
   }
 
   // Links
+  // Text stays dark for legibility on light accents; the accent comes through the underline
   a {
-    color: var(--project-accent, var(--sinon-red));
-    text-decoration: none;
-    transition: all 0.2s ease;
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: $accent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+    transition: background-color 0.2s ease;
 
     &:hover {
-      text-decoration: underline;
-      opacity: 0.8;
+      background-color: color-mix(in srgb, #{$accent} 30%, transparent);
     }
   }
 
@@ -80,17 +93,25 @@
       //color: var(--sinon-white);
       color: var(--sinon-black);
       opacity: 0.9;
+
+      &::marker {
+        color: $accent;
+      }
     }
   }
 
   // Blockquotes
   blockquote {
-    border-left: 3px solid var(--project-accent, var(--sinon-red));
-    padding-left: 1rem;
+    border-left: 4px solid $accent;
+    background: color-mix(in srgb, #{$accent} 15%, transparent);
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 0.25rem 1rem;
     margin: 1.5rem 0;
     font-style: italic;
-    color: var(--sinon-white);
-    opacity: 0.8;
+
+    p {
+      margin: 0.5rem 0;
+    }
   }
 
   // Code
@@ -109,7 +130,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     overflow-x: auto;
-    margin: 1.5rem 0;
+    margin-block: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
 
     code {
@@ -122,7 +143,7 @@
   // Images
   img {
     max-width: 100%;
-    max-height: 400px;
+    // max-height: 400px;
     width: auto;
     height: auto;
     border-radius: 0.2rem;
@@ -137,7 +158,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem 0;
+    margin-block: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 0.5rem;
     overflow: hidden;
@@ -152,7 +173,7 @@
     th {
       background: rgba(255, 255, 255, 0.1);
       font-weight: 600;
-      color: var(--project-accent, var(--sinon-red));
+      color: $accent;
     }
 
     td {
